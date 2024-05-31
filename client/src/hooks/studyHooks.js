@@ -6,7 +6,7 @@ export const useStudySessions = (filters = {}) => {
     const { data, error, isLoading } = useSWR(
         "/studysession" + JSON.stringify(filters),
         async () => {
-            const res = await axios.get(`http://localhost:3700/studysession`);
+            const res = await axios.get(`http://localhost:3800/studysession`);
             return res.data;
         }
     );
@@ -18,7 +18,7 @@ export const useCreateSession = () => {
     const { trigger } = useSWRMutation(
         "/studysession",
         async (url, { arg }) => {
-            axios.post(`http://localhost:3700/studysession`, arg);
+            axios.post(`http://localhost:3800/studysession`, arg);
         }
     );
 
