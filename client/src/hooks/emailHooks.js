@@ -8,4 +8,5 @@ export const useStudySessions = (filters = {}) => {
     });
 
     return { studySpots: data, error, isLoading };
+    
 }

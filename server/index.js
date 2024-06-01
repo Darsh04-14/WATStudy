@@ -75,7 +75,7 @@ app.get("/studysession", (req, res) => {
     });
 });
 
-// GET Endpoin - email
+// GET Endpoin - email currently default
 // GET Endpoint
 app.get("/email", (req, res) => { // session id = ? depends on the session you want to search for
     const query = "SELECT user_table.email, session_table.subject, session_table.title, session_table.description, session_table.session_date, session_table.duration, session_table.group_size, session_table.location FROM user_table JOIN participants ON user_table.uid = participants.userId JOIN session_table ON participants.sessionId = session_table.id WHERE participants.sessionId = 6;";
