@@ -1,7 +1,7 @@
 var express = require("express");
 var mysql = require("mysql");
 var cors = require("cors");
-require('dotenv').config()
+require("dotenv").config();
 
 var app = express();
 
@@ -10,7 +10,7 @@ app.use(cors());
 
 const con = mysql.createConnection({
     host: process.env.GOOGLE_SQL_HOST,
-    user: 'root',
+    user: "root",
     password: process.env.GOOGLE_SQL_PASSWORD,
     database: "watstudy",
 });
@@ -69,15 +69,27 @@ app.get("/studysession", (req, res) => {
     let query = "SELECT * FROM session_table";
     if (searchFilter) {
         const params = JSON.parse(searchFilter);
-        const {subject, group_size, duration, search} = params;
-        query = query + " WHERE";
-        if (subject) query = query.concat(` subject = "${subject}" AND`);
-        if (group_size) query = query.concat(` group_size >= ${group_size[0]} AND group_size <= ${group_size[1]} AND`);
-        if (params.duration) query = query.concat(` duration >= ${duration[0]} AND duration <= ${duration[1]} AND`);
-        if (params.search) query = query.concat(` (title LIKE "$%{search}%" OR description LIKE "%${search}%" OR location LIKE "%${search}%") AND`);
+        const { subject, group_size, duration, search } = params;
+        let filterQuery = "";
 
-        query = query.substring(0, query.length - 3);
+        if (subject)
+            filterQuery = filterQuery.concat(` subject = "${subject}" AND`);
+
+        if (group_size)
+            filterQuery = filterQuery.concat(` group_size >= ${group_size[0]} AND group_size <= ${group_size[1]} AND`);
+
+        if (duration)
+            filterQuery = filterQuery.concat(` duration >= ${duration[0]} AND duration <= ${duration[1]} AND`);
+
+        if (search && search !== '') {
+            filterQuery = filterQuery.concat(` (title LIKE "$%{search}%" OR description LIKE "%${search}%" OR location LIKE "%${search}%") AND`);
+        }
+
+        if (filterQuery !== "") {
+            query = query + " WHERE" + filterQuery.substring(0, filterQuery.length - 3);
+        }
     }
+
     con.query(query, (err, result) => {
         if (err) {
             console.log("Error");
@@ -89,8 +101,10 @@ app.get("/studysession", (req, res) => {
 
 // GET Endpoin - email
 // GET Endpoint
-app.get("/email", (req, res) => { // session id = ? depends on the session you want to search for
-    const query = "SELECT user_table.email, session_table.subject, session_table.title, session_table.description, session_table.session_date, session_table.duration, session_table.group_size, session_table.location FROM user_table JOIN participants ON user_table.uid = participants.userId JOIN session_table ON participants.sessionId = session_table.id WHERE participants.sessionId = 6;";
+app.get("/email", (req, res) => {
+    // session id = ? depends on the session you want to search for
+    const query =
+        "SELECT user_table.email, session_table.subject, session_table.title, session_table.description, session_table.session_date, session_table.duration, session_table.group_size, session_table.location FROM user_table JOIN participants ON user_table.uid = participants.userId JOIN session_table ON participants.sessionId = session_table.id WHERE participants.sessionId = 6;";
     con.query(query, (err, result) => {
         if (err) {
             console.log("Error");

@@ -47,7 +47,7 @@ const SessionCard = ({ studySession }) => {
     );
     return (
         <Box sx={{ minWidth: 275 }}>
-            <Card variant="outlined" sx={{ width: "15vw" }}>
+            <Card variant="outlined" sx={{ width: "15vw", height: 300 }}>
                 {card}
             </Card>
         </Box>
