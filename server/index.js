@@ -55,7 +55,7 @@ app.post("/studysession", (req, res) => {
         ],
         (err, result) => {
             if (err) {
-                console.log("Inserting Error");
+                console.log("Inserting Error", err);
             } else {
                 res.send("POSTED");
             }
