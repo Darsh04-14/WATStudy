@@ -55,7 +55,7 @@ app.post("/studysession", (req, res) => {
         ],
         (err, result) => {
             if (err) {
-                console.log("Inserting Error");
+                console.log("Inserting Error", err);
             } else {
                 res.send("POSTED");
             }
@@ -99,7 +99,7 @@ app.get("/studysession", (req, res) => {
     });
 });
 
-// GET Endpoin - email
+// GET Endpoin - email currently default
 // GET Endpoint
 app.get("/email", (req, res) => {
     // session id = ? depends on the session you want to search for

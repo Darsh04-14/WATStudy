@@ -19,7 +19,7 @@ const Study = () => {
                 Group Size: ${sessionDetails.group_size}
                 Location: ${sessionDetails.location}
             `;
-                // for auto adressing
+            // for auto adressing
             const mailtoLink = `mailto:${emailAddresses}?subject=${encodeURIComponent(sessionDetails.title)}&body=${encodeURIComponent(emailBody)}`;
             window.location.href = mailtoLink;
         }
