@@ -175,11 +175,8 @@ app.get("/data", (req, res) => {
             console.log("Error:", err);
             res.status(500).send('Server error');
         } else {
-            if (result.length === 0) {
-                res.status(404).send('User does not exist');
-            } else {
-                res.send(result[0]);
-            }
+            res.send(result[0]);
+
         }
     });
 });
@@ -206,11 +203,32 @@ app.get("/topstudyspot", (req, res) => {
             console.error("Error:", err);
             return res.status(500).send('Server error');
         }
+        res.send(result[0]);
+    });
+});
 
-        if (result.length === 0) {
-            return res.status(404).send('No study spots found for this user');
+//Query for top course and total hours on a top course
+app.get("/topcourse", (req, res) => {
+    const userId = req.query.userId;
+
+    if (!userId) {
+        return res.status(400).send('User query parameter is required');
+    }
+
+    const query = `      
+        select subject, sum(duration) as total_hours
+        from session_table
+        where creator_fk = ?
+        group by subject
+        order by total_hours desc
+        limit 1;
+    `;
+
+    con.query(query, [userId], (err, result) => {
+        if (err) {
+            console.error("Error:", err);
+            return res.status(500).send('Server error');
         }
-
         res.send(result[0]);
     });
 });
