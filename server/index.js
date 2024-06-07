@@ -87,30 +87,7 @@ app.get("/email", (req, res) => { // session id = ? depends on the session you w
     });
 });
 
-//////////////////////////////////////// - GET Endpoint for data page
-app.get("/data", (req, res) => {
-    const userId = req.query.userId;
 
-    if (!userId) {
-        return res.status(400).send('user query parameter is required');
-    }
-    const query = `select uid, password from user_table where uid = ?;`;
-
-    con.query(query, [userId], (err, result) => {
-        if (err) {
-            console.log("Error:", err);
-            res.status(500).send('server had a error');
-        } else {
-            if (result.length === 0) {
-                res.status(404).send('user does not exist');
-            } else {
-                res.send(result[0]);
-            }
-        }
-    });
-});
-
-////////////////////////////// - end
 
 // PUT Endpoint
 app.put("/studysession", (req, res) => {
@@ -178,6 +155,70 @@ app.delete("/studysession", (req, res) => {
     });
 });
 
+
+///////////////////////// GET Endpoint - Data Page
+
+// Query for total hours studied by user
+app.get("/data", (req, res) => {
+    const userId = req.query.userId;
+    if (!userId) {
+        return res.status(400).send('User query parameter is required');
+    }
+    const query = `
+    select sum(duration)/60 as total_hours 
+    from session_table 
+    where creator_fk = ?;
+    `;
+
+    con.query(query, [userId], (err, result) => {
+        if (err) {
+            console.log("Error:", err);
+            res.status(500).send('Server error');
+        } else {
+            if (result.length === 0) {
+                res.status(404).send('User does not exist');
+            } else {
+                res.send(result[0]);
+            }
+        }
+    });
+});
+
+//Query for top study spot and total hours spent at study spot
+app.get("/topstudyspot", (req, res) => {
+    const userId = req.query.userId;
+
+    if (!userId) {
+        return res.status(400).send('User query parameter is required');
+    }
+
+    const query = `
+        select location, max(duration) as max_duration 
+        from session_table 
+        where creator_fk = ? 
+        group by location 
+        order by max_duration desc 
+        limit 1;
+    `;
+
+    con.query(query, [userId], (err, result) => {
+        if (err) {
+            console.error("Error:", err);
+            return res.status(500).send('Server error');
+        }
+
+        if (result.length === 0) {
+            return res.status(404).send('No study spots found for this user');
+        }
+
+        res.send(result[0]);
+    });
+});
+///////////////////////////// END for GET Endpoint Datapage
+
+
+
+/////////////////////////////
 app.listen(3800, (err) => {
     // open port
     if (err) {
@@ -186,3 +227,4 @@ app.listen(3800, (err) => {
         console.log("connected!");
     }
 });
+/////////////////////////////
