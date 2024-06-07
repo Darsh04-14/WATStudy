@@ -32,5 +32,15 @@ export const useStudySessions = (userId, filters = {}) => {
         }
     );
 
-    return { studySpots, studySpotsError, isStudySpotsLoading, topStudySpot, topStudySpotError, isTopStudySpotLoading, topCourse, topCourseError, isTopCourseLoading };
+    const { data: top5users, error: top5usersError, isLoading: istop5usersLoading } = useSWR(
+        ['/top5users', userId, filters],
+        async () => {
+            const res = await axios.get(`http://localhost:3800/top5users`, {
+                params: { userId, filters }
+            });
+            return res.data;
+        }
+    );
+
+    return { studySpots, studySpotsError, isStudySpotsLoading, topStudySpot, topStudySpotError, isTopStudySpotLoading, topCourse, topCourseError, isTopCourseLoading, top5users, top5usersError, istop5usersLoading };
 };
