@@ -1,4 +1,4 @@
-const nodemailer = require('nodemailer');
+const nodemailer = require("nodemailer");
 require("dotenv").config();
 
 const transporter = nodemailer.createTransport({
@@ -6,22 +6,32 @@ const transporter = nodemailer.createTransport({
     port: 465,
     secure: true, // Use `true` for port 465, `false` for all other ports
     auth: {
-      user: process.env.USER,
-      pass: process.env.PASSWORD,
+        user: process.env.GMAIL_USER,
+        pass: process.env.GMAIL_PASSWORD,
     },
-  });
+});
 
-  const mailOptions = {
-    from: process.env.USER,
-    to: "INSERT EMAIL HERE",
-    subject: "WATStudy Verification",
-    text: "Hello from WATStudy. Here is your verificiation code: ",
-  };
+const HTMLtemplates = {
+    verify: (token) => `<p>Here is your verification link: <a>http://localhost:3000/verify/${token}</a></p>`
+};
 
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.error("Error sending email: ", error);
-    } else {
-      console.log("Email sent: ", info.response);
-    }
-  });
+const send = (to, subject, template, args = undefined) => {
+    const mailOptions = { 
+        from: process.env.USER,
+        to: to,
+        subject: subject,
+        html: HTMLtemplates[template](args),
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            console.error("Error sending email: ", error);
+        } else {
+            console.log("Email sent: ", info.response);
+        }
+    });
+};
+
+module.exports = {
+    send
+};
