@@ -42,7 +42,38 @@ function AppAppBar({ mode, toggleColorMode }) {
 
   return (
     <div>
-      <AppBar
+      <Box
+        display="flex"
+        justifyContent="flex-end"
+        alignItems="center"
+         
+      >
+          <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
+          <Button
+            color="primary"
+            variant="text"
+            size="small"
+            component="a"
+            href="/material-ui/getting-started/templates/sign-in/"
+            target="_blank"
+          >
+            Sign in
+          </Button>
+          <Button
+            color="primary"
+            variant="contained"
+            size="small"
+            component="a"
+            href="/material-ui/getting-started/templates/sign-up/"
+            target="_blank"
+          >
+            Sign up
+          </Button>
+        </Box>
+   
+      
+      
+      {/* <AppBar
         position="fixed"
         sx={{
           boxShadow: 0,
@@ -234,7 +265,7 @@ function AppAppBar({ mode, toggleColorMode }) {
             </Box>
           </Toolbar>
         </Container>
-      </AppBar>
+      </AppBar> */}
     </div>
   );
 }

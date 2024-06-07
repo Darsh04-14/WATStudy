@@ -2,21 +2,21 @@ import { alpha } from '@mui/material/styles';
 import { red } from '@mui/material/colors';
 
 export const brand = {
-  50: '#F0F7FF',
-  100: '#CEE5FD',
-  200: '#9CCCFC',
-  300: '#55A6F6',
-  400: '#0A66C2',
-  500: '#0959AA',
-  600: '#064079',
-  700: '#033363',
-  800: '#02294F',
-  900: '#021F3B',
+  50: '#FFFFFF',  
+  100: '#F4BB00',
+  200: '#F4BB00',
+  300: '#F4BB00',
+  400: '#F4BB00',
+  500: '#F4BB00',  
+  600: '#F4BB00',
+  700: '#F4BB00',
+  800: '#F4BB00',
+  900: '#F4BB00',  
 };
 
 export const secondary = {
-  50: '#F9F0FF',
-  100: '#E9CEFD',
+  50: '#F4BB00',
+  100: '#F4BB00',
   200: '#D49CFC',
   300: '#B355F6',
   400: '#750AC2',
@@ -27,6 +27,18 @@ export const secondary = {
   900: '#23023B',
 };
 
+export const yellow = {
+  50: '#F4BB00',  
+  100: '#F4BB00',
+  200: '#F4BB00',
+  300: '#F4BB00',
+  400: '#F4BB00',
+  500: '#F4BB00',  
+  600: '#F4BB00',
+  700: '#F4BB00',
+  800: '#F4BB00',
+  900: '#F4BB00',
+}
 export const gray = {
   50: '#FBFCFE',
   100: '#EAF0F5',
@@ -111,7 +123,7 @@ const getDesignTokens = (mode) => ({
       800: gray[800],
       900: gray[900],
     },
-    divider: mode === 'dark' ? alpha(gray[600], 0.3) : alpha(gray[300], 0.5),
+    divider: mode === 'dark' ? alpha(yellow[600], 0.3) : alpha(yellow[300], 0.5),
     background: {
       default: '#fff',
       paper: gray[50],
@@ -130,7 +142,7 @@ const getDesignTokens = (mode) => ({
     },
   },
   typography: {
-    fontFamily: ['"Inter", "sans-serif"'].join(','),
+    fontFamily: ['"Calibri"'].join(','),
     h1: {
       fontSize: 60,
       fontWeight: 600,
