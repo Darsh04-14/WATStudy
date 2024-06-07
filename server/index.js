@@ -75,10 +75,9 @@ app.get("/studysession", (req, res) => {
     });
 });
 
-// GET Endpoin - email currently default
-// GET Endpoint
+// GET Endpoint - email
 app.get("/email", (req, res) => { // session id = ? depends on the session you want to search for
-    const query = "SELECT user_table.email, session_table.subject, session_table.title, session_table.description, session_table.session_date, session_table.duration, session_table.group_size, session_table.location FROM user_table JOIN participants ON user_table.uid = participants.userId JOIN session_table ON participants.sessionId = session_table.id WHERE participants.sessionId = 6;";
+    const query = "SELECT user_table.email, session_table.subject, session_table.title, session_table.description, session_table.session_date, session_table.duration, session_table.group_size, session_table.location FROM user_table JOIN participants ON user_table.uid = participants.userId JOIN session_table ON participants.sessionId = session_table.id WHERE participants.sessionId = 1;";
     con.query(query, (err, result) => {
         if (err) {
             console.log("Error");
@@ -87,6 +86,31 @@ app.get("/email", (req, res) => { // session id = ? depends on the session you w
         }
     });
 });
+
+//////////////////////////////////////// - GET Endpoint for data page
+app.get("/data", (req, res) => {
+    const userId = req.query.userId;
+
+    if (!userId) {
+        return res.status(400).send('user query parameter is required');
+    }
+    const query = `select uid, password from user_table where uid = ?;`;
+
+    con.query(query, [userId], (err, result) => {
+        if (err) {
+            console.log("Error:", err);
+            res.status(500).send('server had a error');
+        } else {
+            if (result.length === 0) {
+                res.status(404).send('user does not exist');
+            } else {
+                res.send(result[0]);
+            }
+        }
+    });
+});
+
+////////////////////////////// - end
 
 // PUT Endpoint
 app.put("/studysession", (req, res) => {
