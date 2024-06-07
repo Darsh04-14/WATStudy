@@ -5,77 +5,99 @@ const Datapage = () => {
     const [userId, setUserId] = useState(null);
 
     useEffect(() => {
-        promptForUserId();
+        const id = prompt("Please enter your user ID:");
+        if (id) {
+            setUserId(id);
+        } else {
+            alert("User ID is required to view the page.");
+        }
     }, []);
 
-    const promptForUserId = () => {
-        let id = null;
-        while (!id) {
-            id = prompt("Please enter your user ID:");
-            if (!id) {
-                alert("User ID is required to view the page.");
-            }
-        }
-        setUserId(id);
-    };
-
-    const { studySpots, studySpotsError, isStudySpotsLoading, topStudySpot, topStudySpotError, isTopStudySpotLoading, topCourse, topCourseError, isTopCourseLoading } = useStudySessions(userId);
+    const {
+        studySpots,
+        studySpotsError,
+        isStudySpotsLoading,
+        topStudySpot,
+        topStudySpotError,
+        isTopStudySpotLoading,
+        topCourse,
+        topCourseError,
+        isTopCourseLoading,
+        top5users,
+        top5usersError,
+        istop5usersLoading
+    } = useStudySessions(userId);
 
     useEffect(() => {
-        if (studySpots) {
-            console.log('Total Hour Details:', studySpots);
-        } else if (studySpotsError) {
+        if (studySpotsError) {
             console.error('Error:', studySpotsError);
             alert("Error fetching user data: " + studySpotsError.message);
-            promptForUserId();
+        } else if (studySpots) {
+            console.log('Total Hour Details:', studySpots);
         }
     }, [studySpots, studySpotsError]);
 
     useEffect(() => {
-        if (topStudySpot) {
-            console.log('top study spot:', topStudySpot);
-        } else if (topStudySpotError) {
+        if (topStudySpotError) {
             console.error('Error:', topStudySpotError);
             alert("Error fetching top study spot: " + topStudySpotError.message);
-            promptForUserId();
+        } else if (topStudySpot) {
+            console.log('Top Study Spot:', topStudySpot);
         }
     }, [topStudySpot, topStudySpotError]);
 
     useEffect(() => {
-        if (topCourse) {
-            console.log('top course details:', topCourse);
-        } else if (topCourseError) {
+        if (topCourseError) {
             console.error('Error:', topCourseError);
             alert("Error fetching top course: " + topCourseError.message);
-            promptForUserId();
+        } else if (topCourse) {
+            console.log('Top Course Details:', topCourse);
         }
     }, [topCourse, topCourseError]);
 
+    useEffect(() => {
+        if (top5usersError) {
+            console.error('Error:', top5usersError);
+        } else if (top5users) {
+            console.log('Top 5 Users:', top5users);
+        }
+    }, [top5users, top5usersError]);
+
     if (!userId) return <div>User ID is required</div>;
-    if (isStudySpotsLoading || isTopStudySpotLoading) return <div>Loading...</div>;
-    if (isTopCourseLoading) return <div>Loading...</div>;
-    if (studySpotsError) return <div>Error: {studySpotsError.message}</div>;
-    if (topCourseError) return <div>Error: {topCourseError.message}</div>;
-    if (topStudySpotError) return <div>Error: {topStudySpotError.message}</div>;
+    if (isStudySpotsLoading || isTopStudySpotLoading || istop5usersLoading || isTopCourseLoading) return <div>Loading...</div>;
 
     return (
         <div>
             Hi, this is the data analytics page:
             <div>
-
                 <div>
-                    <p>Total Hours Studied: {studySpots.total_hours}</p>
+                    <p>Total Hours Studied: {studySpots?.total_hours}</p>
                 </div>
-
-
                 <div>
-                    <p>Top Study Spot: {topStudySpot.location}</p>
-                    <p>Time Spent At Top Study Spot {topStudySpot.max_duration} Hours</p>
+                    <p>Top Study Spot: {topStudySpot?.location}</p>
+                    <p>Time Spent At Top Study Spot: {topStudySpot?.max_duration} Hours</p>
                 </div>
-
                 <div>
-                    <p> Top Course: {topCourse.subject}</p>
-                    <p> Time Spent On Top Course {topCourse.total_hours} Hours</p>
+                    <p>Top Course: {topCourse?.subject}</p>
+                    <p>Time Spent On Top Course: {topCourse?.total_hours} Hours</p>
+                </div>
+                <div>
+                    <p> Top 5 users:
+                        {top5users[0] && (
+                            <div>
+                                {top5users[0].name},
+                                {top5users[1].name},
+                                {top5users[2].name},
+                                {top5users[3].name},
+                                {top5users[4].name}
+                            </div>
+                        )}
+
+
+
+
+
+                    </p>
                 </div>
             </div>
         </div>

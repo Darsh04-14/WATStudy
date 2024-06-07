@@ -232,6 +232,64 @@ app.get("/topcourse", (req, res) => {
         res.send(result[0]);
     });
 });
+// Query to return the top 5 users with the highest study preformance a user has had with
+app.get("/top5users", (req, res) => {
+    const userId = req.query.userId;
+
+    if (!userId) {
+        return res.status(400).send('User query parameter is required');
+    }
+
+    const query = `      
+    with usersessions as (
+        select sessionid
+        from participants
+        where userid = ?
+    ),
+    commonsessions as (
+        select p.userid, p.sessionid
+        from participants as p
+        join usersessions as us on p.sessionid = us.sessionid
+        where p.userid != ?
+    ),
+    userratings as (
+        select cs.userid, cs.sessionid, sr.review as userreview
+        from commonsessions as cs
+        join session_review as sr on cs.sessionid = sr.sessionid
+        where sr.userid = ?
+    ),
+    otheruserratings as (
+        select cs.userid, cs.sessionid, sr.review as otheruserreview
+        from commonsessions as cs
+        join session_review as sr on cs.sessionid = sr.sessionid and sr.userid = cs.userid
+    ),
+    combinedratings as (
+        select ur.userid, 
+               (ur.userreview + our.otheruserreview) / 2.0 as avgrating
+        from userratings as ur
+        join otheruserratings as our on ur.userid = our.userid and ur.sessionid = our.sessionid
+    ),
+    averageratings as (
+        select userid, avg(avgrating) as avgrating
+        from combinedratings
+        group by userid
+    )
+    select u.uid, u.name, ar.avgrating
+    from averageratings as ar
+    join user_table as u on ar.userid = u.uid
+    order by ar.avgrating desc
+    limit 5;    
+    `;
+
+    con.query(query, [userId, userId, userId], (err, result) => {
+        if (err) {
+            console.error("Error:", err);
+            return res.status(500).send('Server error');
+        }
+        res.send(result);
+    });
+
+});
 ///////////////////////////// END for GET Endpoint Datapage
 
 
