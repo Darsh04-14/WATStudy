@@ -85,11 +85,12 @@ const Datapage = () => {
                     <p> Top 5 users:
                         {top5users[0] && (
                             <div>
-                                {top5users[0].name},
-                                {top5users[1].name},
-                                {top5users[2].name},
-                                {top5users[3].name},
-                                {top5users[4].name}
+                                {top5users[0].name}: {top5users[0].avgrating},
+                                {top5users[1].name}: {top5users[1].avgrating},
+                                {top5users[2].name}: {top5users[2].avgrating},
+                                {top5users[3].name}: {top5users[3].avgrating},
+                                {top5users[4].name}: {top5users[4].avgrating}
+
                             </div>
                         )}
 

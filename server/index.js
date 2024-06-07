@@ -274,7 +274,7 @@ app.get("/top5users", (req, res) => {
         from combinedratings
         group by userid
     )
-    select u.uid, u.name, ar.avgrating
+    select u.name, ar.avgrating
     from averageratings as ar
     join user_table as u on ar.userid = u.uid
     order by ar.avgrating desc
