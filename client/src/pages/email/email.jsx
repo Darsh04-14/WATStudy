@@ -2,7 +2,7 @@ import React from "react";
 import { useStudySessions } from "../../hooks/emailHooks";
 import { Typography, Box, CircularProgress, Button, } from "@mui/material";
 
-const Study = () => {
+const Email = () => {
     const { studySpots, isLoading, error } = useStudySessions({ sessionId: 6 });
 
     const handleSendEmail = () => {
@@ -48,4 +48,4 @@ const Study = () => {
     );
 };
 
-export default Study;
+export default Email;

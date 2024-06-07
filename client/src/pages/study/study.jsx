@@ -20,7 +20,7 @@ const Study = () => {
                 ))
             )}
             <Button variant="contained" onClick={handleOpen}>
-                Make Post
+                Make Post (Study Page)
             </Button>
               <SessionModal open={open} handleClose={handleClose} />
         </Box>
