@@ -1,16 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useStudySessions } from "../../hooks/emailHooks";
 import { Typography, Box, CircularProgress, Button, TextField, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
 
 const Study = () => {
-    const [userId, setUserId] = useState('');
-    const [open, setOpen] = useState(true);
+    const initialUserId = JSON.parse(localStorage.getItem('user') ?? '{}')?.uid || '';
+    const [userId, setUserId] = useState(initialUserId);
+    const [open, setOpen] = useState(!initialUserId);
 
     const { studySpots, isLoading, error } = useStudySessions(userId);
+
+    useEffect(() => {
+        if (initialUserId) {
+            setOpen(false);
+        }
+    }, [initialUserId]);
 
     const handleClose = () => {
         if (userId) {
             console.log("Entered User ID:", userId);
+            localStorage.setItem('user', JSON.stringify({ uid: userId }));
             setOpen(false);
         } else {
             alert("User ID is required to proceed.");
@@ -48,6 +56,7 @@ const Study = () => {
                         type="text"
                         fullWidth
                         variant="outlined"
+                        value={userId}
                         onChange={e => setUserId(e.target.value)}
                     />
                 </DialogContent>
