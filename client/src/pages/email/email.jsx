@@ -1,14 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { useStudySessions } from "../../hooks/emailHooks";
-import { Typography, Box, CircularProgress, Button, } from "@mui/material";
+import { Typography, Box, CircularProgress, Button, TextField, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
 
 const Study = () => {
-    const { studySpots, isLoading, error } = useStudySessions({ sessionId: 6 });
+    const [userId, setUserId] = useState('');
+    const [open, setOpen] = useState(true);
+
+    const { studySpots, isLoading, error } = useStudySessions(userId);
+
+    const handleClose = () => {
+        if (userId) {
+            console.log("Entered User ID:", userId);
+            setOpen(false);
+        } else {
+            alert("User ID is required to proceed.");
+        }
+    };
 
     const handleSendEmail = () => {
         if (studySpots && studySpots.length > 0) {
             const emailAddresses = studySpots.map(spot => spot.email).join(',');
-
             const sessionDetails = studySpots[0];
             const emailBody = `
                 Subject: ${sessionDetails.subject}
@@ -19,30 +30,50 @@ const Study = () => {
                 Group Size: ${sessionDetails.group_size}
                 Location: ${sessionDetails.location}
             `;
-            // for auto adressing
             const mailtoLink = `mailto:${emailAddresses}?subject=${encodeURIComponent(sessionDetails.title)}&body=${encodeURIComponent(emailBody)}`;
             window.location.href = mailtoLink;
         }
     };
 
-    if (isLoading) {
-        return <CircularProgress />;
-    }
-
-    if (error) {
-        return <Typography>Error loading session details.</Typography>;
-    }
-
     return (
         <Box>
-            {studySpots && (
-                <Box>
-
-                    <Button variant="contained" color="primary" onClick={handleSendEmail}>
-                        Send Email
+            <Dialog open={open} onClose={handleClose}>
+                <DialogTitle>Enter User ID</DialogTitle>
+                <DialogContent>
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="userId"
+                        label="User ID"
+                        type="text"
+                        fullWidth
+                        variant="outlined"
+                        onChange={e => setUserId(e.target.value)}
+                    />
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleClose} color="primary">
+                        Submit
                     </Button>
+                </DialogActions>
+            </Dialog>
 
-                </Box>
+            {isLoading ? <CircularProgress /> : error ? <Typography>{error.message}</Typography> : (
+                studySpots && (
+                    <Box>
+                        <Typography variant="h6">Session Details</Typography>
+                        <Typography>{`Subject: ${studySpots[0].subject}`}</Typography>
+                        <Typography>{`Title: ${studySpots[0].title}`}</Typography>
+                        <Typography>{`Description: ${studySpots[0].description}`}</Typography>
+                        <Typography>{`Date: ${new Date(studySpots[0].session_date).toLocaleString()}`}</Typography>
+                        <Typography>{`Duration: ${studySpots[0].duration} minutes`}</Typography>
+                        <Typography>{`Group Size: ${studySpots[0].group_size}`}</Typography>
+                        <Typography>{`Location: ${studySpots[0].location}`}</Typography>
+                        <Button variant="contained" color="primary" onClick={handleSendEmail}>
+                            Send Email
+                        </Button>
+                    </Box>
+                )
             )}
         </Box>
     );
