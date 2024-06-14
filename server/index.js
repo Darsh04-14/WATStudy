@@ -125,7 +125,7 @@ app.post("/login", async (req, res) => {
     }
 });
 
-// POST Endpoint
+// POST Endpoint - for creating events
 app.post("/studysession", (req, res) => {
     const {
         subject,
@@ -139,7 +139,15 @@ app.post("/studysession", (req, res) => {
     } = req.body;
 
     const query = `
-          INSERT INTO session_table (subject, title, description, session_date, duration, group_size, creator_fk, location)
+          INSERT INTO session_table (
+          subject, 
+          title, 
+          description, 
+          session_date, 
+          duration, 
+          group_size, 
+          creator_fk, 
+          location)
           VALUES (?, ?, ?, ?, ?, ?, ?, ?)
       `;
 
@@ -155,7 +163,7 @@ app.post("/studysession", (req, res) => {
     ]);
 });
 
-// GET Endpoint - studysession
+// GET Endpoint - studysession all details
 app.get("/studysession", (req, res) => {
     const query = "SELECT * FROM session_table";
     db.query(query, (err, result) => {
@@ -167,6 +175,47 @@ app.get("/studysession", (req, res) => {
     });
 });
 
+// GET Endpoint - email optional sender, queries earliest event
+app.get("/email", (req, res) => {
+    const userId = req.query.userId;
+
+    if (!userId) {
+        return res.status(400).send('User ID is required');
+    }
+
+    const query = `
+        SELECT 
+        u.email,
+        s.subject,
+        s.title,
+        s.description,
+        s.session_date,
+        s.duration,
+        s.group_size,
+        s.location
+        FROM 
+            user_table AS u
+        JOIN 
+            participants AS p ON u.uid = p.userId
+        JOIN 
+            session_table AS s ON p.sessionId = s.id
+        WHERE 
+            s.id = (
+                SELECT 
+                    p.sessionId
+                FROM 
+                    participants AS p
+                JOIN 
+                    session_table AS s ON p.sessionId = s.id
+                WHERE 
+                    p.userId = ?
+                ORDER BY 
+                    s.session_date ASC
+                LIMIT 1
+            );
+
+    `;
+    con.query(query, [userId], (err, result) => {
 // GET Endpoint - email
 app.get("/email", (req, res) => {
     // session id = ? depends on the session you want to search for
@@ -174,14 +223,20 @@ app.get("/email", (req, res) => {
         "SELECT user_table.email, session_table.subject, session_table.title, session_table.description, session_table.session_date, session_table.duration, session_table.group_size, session_table.location FROM user_table JOIN participants ON user_table.uid = participants.userId JOIN session_table ON participants.sessionId = session_table.id WHERE participants.sessionId = 1;";
     db.query(query, (err, result) => {
         if (err) {
-            console.log("Error");
+            console.error("Error executing query:", err);
+            res.status(500).send("Error fetching email data");
+        } else if (result.length === 0) {
+            res.status(404).send("No data found for the given user ID");
         } else {
             res.send(result);
         }
     });
 });
 
-// PUT Endpoint
+
+
+
+// PUT Endpoint - for updating events
 app.put("/studysession", (req, res) => {
     const {
         id,
@@ -201,7 +256,14 @@ app.put("/studysession", (req, res) => {
 
     const query = `
       UPDATE session_table
-      SET subject = ?, title = ?, description = ?, session_date = ?, duration = ?, group_size = ?, creator_fk = ?, location = ?
+      SET subject = ?, 
+      title = ?, 
+      description = ?, 
+      session_date = ?, 
+      duration = ?, 
+      group_size = ?, 
+      creator_fk = ?, 
+      location = ?
       WHERE id = ?
     `;
 
@@ -229,7 +291,7 @@ app.put("/studysession", (req, res) => {
     );
 });
 
-// DELETE Endpoint
+// DELETE Endpoint - to remove posts
 app.delete("/studysession", (req, res) => {
     const { id } = req.body;
 
@@ -256,9 +318,9 @@ app.get("/data", (req, res) => {
         return res.status(400).send("User query parameter is required");
     }
     const query = `
-    select sum(duration)/60 as total_hours 
-    from session_table 
-    where creator_fk = ?;
+    SELECT sum(duration)/60 as total_hours 
+    FROM session_table 
+    WHERE creator_fk = ?;
     `;
 
     con.query(query, [userId], (err, result) => {
@@ -280,12 +342,12 @@ app.get("/topstudyspot", (req, res) => {
     }
 
     const query = `
-        select location, max(duration) as max_duration 
-        from session_table 
-        where creator_fk = ? 
-        group by location 
-        order by max_duration desc 
-        limit 1;
+        SELECT location, max(duration) AS max_duration 
+        FROM session_table 
+        WHERE creator_fk = ? 
+        GROUP BY location 
+        ORDER BY max_duration desc 
+        LIMIT 1;
     `;
 
     con.query(query, [userId], (err, result) => {
@@ -306,12 +368,12 @@ app.get("/topcourse", (req, res) => {
     }
 
     const query = `      
-        select subject, sum(duration) as total_hours
-        from session_table
-        where creator_fk = ?
-        group by subject
-        order by total_hours desc
-        limit 1;
+        SELECT subject, sum(duration) as total_hours
+        FROM session_table
+        WHERE creator_fk = ?
+        GROUP BY subject
+        ORDER BY total_hours desc
+        LIMIT 1;
     `;
 
     con.query(query, [userId], (err, result) => {
@@ -331,7 +393,7 @@ app.get("/top5users", (req, res) => {
     }
 
     const query = `      
-    with usersessions as (
+    WITH usersessions as (
         select sessionid
         from participants
         where userid = ?
@@ -364,11 +426,11 @@ app.get("/top5users", (req, res) => {
         from combinedratings
         group by userid
     )
-    select u.name, ar.avgrating
-    from averageratings as ar
-    join user_table as u on ar.userid = u.uid
-    order by ar.avgrating desc
-    limit 5;    
+    SELECT u.name, ar.avgrating
+    FROM averageratings as ar
+    JOIN user_table as u on ar.userid = u.uid
+    ORDER BY ar.avgrating desc
+    LIMIT 5;    
     `;
 
     con.query(query, [userId, userId, userId], (err, result) => {
