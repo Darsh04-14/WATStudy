@@ -180,7 +180,7 @@ app.get("/email", (req, res) => {
     const userId = req.query.userId;
 
     if (!userId) {
-        return res.status(400).send('User ID is required');
+        return res.status(400).send("User ID is required");
     }
 
     const query = `
@@ -215,13 +215,8 @@ app.get("/email", (req, res) => {
             );
 
     `;
-    con.query(query, [userId], (err, result) => {
-// GET Endpoint - email
-app.get("/email", (req, res) => {
-    // session id = ? depends on the session you want to search for
-    const query =
-        "SELECT user_table.email, session_table.subject, session_table.title, session_table.description, session_table.session_date, session_table.duration, session_table.group_size, session_table.location FROM user_table JOIN participants ON user_table.uid = participants.userId JOIN session_table ON participants.sessionId = session_table.id WHERE participants.sessionId = 1;";
-    db.query(query, (err, result) => {
+
+    db.query(query, [userId], (err, result) => {
         if (err) {
             console.error("Error executing query:", err);
             res.status(500).send("Error fetching email data");
@@ -232,9 +227,6 @@ app.get("/email", (req, res) => {
         }
     });
 });
-
-
-
 
 // PUT Endpoint - for updating events
 app.put("/studysession", (req, res) => {
@@ -323,7 +315,7 @@ app.get("/data", (req, res) => {
     WHERE creator_fk = ?;
     `;
 
-    con.query(query, [userId], (err, result) => {
+    db.query(query, [userId], (err, result) => {
         if (err) {
             console.log("Error:", err);
             res.status(500).send("Server error");
@@ -350,7 +342,7 @@ app.get("/topstudyspot", (req, res) => {
         LIMIT 1;
     `;
 
-    con.query(query, [userId], (err, result) => {
+    db.query(query, [userId], (err, result) => {
         if (err) {
             console.error("Error:", err);
             return res.status(500).send("Server error");
@@ -376,7 +368,7 @@ app.get("/topcourse", (req, res) => {
         LIMIT 1;
     `;
 
-    con.query(query, [userId], (err, result) => {
+    db.query(query, [userId], (err, result) => {
         if (err) {
             console.error("Error:", err);
             return res.status(500).send("Server error");
@@ -433,7 +425,7 @@ app.get("/top5users", (req, res) => {
     LIMIT 5;    
     `;
 
-    con.query(query, [userId, userId, userId], (err, result) => {
+    db.query(query, [userId, userId, userId], (err, result) => {
         if (err) {
             console.error("Error:", err);
             return res.status(500).send("Server error");

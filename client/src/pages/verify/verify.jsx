@@ -1,5 +1,5 @@
 import { useVerify } from "../../hooks/authHooks";
-import { CircularProgress, TextField, Button, Typography } from "@mui/material";
+import { TextField, Button, Typography } from "@mui/material";
 import { useFormik } from "formik";
 import * as yup from "yup";
 

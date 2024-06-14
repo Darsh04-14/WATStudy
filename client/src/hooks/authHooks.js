@@ -1,5 +1,4 @@
 import useSWRMutation from "swr/mutation";
-import useSWR from "swr";
 import axios from "axios";
 
 export const useSignUp = () => {
