@@ -2,11 +2,15 @@ import useSWR from "swr";
 import useSWRMutation from "swr/mutation";
 import axios from "axios";
 
-export const useStudySessions = (filters = {}) => {
+export const useStudySessions = (filter = {}) => {
     const { data, error, isLoading } = useSWR(
-        "/studysession" + JSON.stringify(filters),
+        "/studysession?filter=" + encodeURI(JSON.stringify(filter)),
         async () => {
-            const res = await axios.get(`http://localhost:3800/studysession`);
+            const res = await axios.get(
+                `http://localhost:3800/studysession?filter=${encodeURI(
+                    JSON.stringify(filter)
+                )}`
+            );
             return res.data;
         }
     );
@@ -15,12 +19,27 @@ export const useStudySessions = (filters = {}) => {
 };
 
 export const useCreateSession = () => {
-    const { trigger } = useSWRMutation(
-        "/studysession",
+    const { trigger, isMutating } = useSWRMutation(
+        "create/studysession",
         async (url, { arg }) => {
-            axios.post(`http://localhost:3800/studysession`, arg);
+            axios.post(`http://localhost:3800/studysession`, {
+                data: arg
+            });
         }
     );
 
-    return { createSession: trigger };
+    return { createSession: trigger, isCreating: isMutating };
+};
+
+export const useDeleteSession = () => {
+    const { trigger, isMutating } = useSWRMutation(
+        "delete/studysession",
+        async (url, { arg }) => {
+            console.log(arg);
+            axios.delete(`http://localhost:3800/studysession`, {
+                data: { id: arg },
+            });
+        }
+    );
+    return { deleteSession: trigger, isDeleting: isMutating };
 };
