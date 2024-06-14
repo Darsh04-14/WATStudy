@@ -18,7 +18,7 @@ export const useCreateSession = () => {
     const { trigger } = useSWRMutation(
         "/studysession",
         async (url, { arg }) => {
-            axios.post(`http://localhost:3800/studysession`, arg);
+            axios.post(`http://localhost:3800/studysession`, { data: { ...arg } });
         }
     );
 

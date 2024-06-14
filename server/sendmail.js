@@ -12,10 +12,10 @@ const transporter = nodemailer.createTransport({
 });
 
 const HTMLtemplates = {
-    verify: (token) => `<p>Here is your verification link: <a>http://localhost:3000/verify/${token}</a></p>`
+    verify: (token) => `<p>Here is your verification link: <a>http://localhost:3000/verify/?token=${token}</a></p>`
 };
 
-const send = (to, subject, template, args = undefined) => {
+const send = (to, subject, template, args = never) => {
     const mailOptions = { 
         from: process.env.USER,
         to: to,

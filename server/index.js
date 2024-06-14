@@ -15,6 +15,7 @@ app.use(cors());
 //Verification Endpoints
 app.post("/signup", async (req, res) => {
     const { email } = req.body;
+    console.log("email", email);
 
     const userQuery = "SELECT * FROM user_table WHERE email = ?";
     const userRecord = await db.getOne(userQuery, [email]);
@@ -24,6 +25,7 @@ app.post("/signup", async (req, res) => {
     const query = "SELECT * FROM verification_table WHERE email = ?";
     const record = await db.getOne(query, [email]);
 
+    console.log("the record", record);
     if (record === null) {
         const token = crypto.randomUUID();
         const expiry_date = format(
@@ -35,14 +37,11 @@ app.post("/signup", async (req, res) => {
             "INSERT INTO verification_table (email, token, expiry_date) VALUES (?,?,?)";
 
         db.query(query, [email, token, expiry_date], (error, result) => {
-            if (error) res.status(400).send("Server error");
-            else {
-                mailer.send(
-                    "d36patel@uwaterloo.ca",
-                    "Watstudy Verification",
-                    "verify",
-                    token
-                );
+            if (error) {
+                console.log("db error", error);
+                res.status(400).send("Server error");
+            } else {
+                mailer.send(email, "Watstudy Verification", "verify", token);
                 res.send("Link sent");
             }
         });
@@ -90,12 +89,40 @@ app.post("/verify", async (req, res) => {
                 .createHash("sha256")
                 .update(password)
                 .digest("base64");
-            db.query(query, [name, verifyRecord.email, hash]);
-            res.send("User profile created");
+            db.query(query, [name, verifyRecord.email, hash], (err, result) => {
+                if (!err) {
+                    const query2 =
+                        "DELETE FROM verification_table WHERE email = 'd36patel@uwaterloo.ca'";
+                    db.query(query2, (err2, result2) => {
+                        if (!err2) {
+                            res.send("User profile created");
+                        } else {
+                            res.send("Server error");
+                        }
+                    });
+                } else {
+                    res.send("Server error");
+                }
+            });
         }
+    } else {
+        res.send("Invalid token.");
     }
+});
 
-    res.send("Invalid token.");
+app.post("/login", async (req, res) => {
+    const { email, password } = req.body;
+    const hash = crypto.createHash("sha256").update(password).digest("base64");
+    const query = "SELECT * FROM user_table WHERE email = ? AND password = ?";
+    const userRecord = await db.getOne(query, [email, hash]);
+    console.log("found user", userRecord);
+    if (userRecord != null) {
+        res.send(
+            JSON.stringify({ name: userRecord.name, uid: userRecord.uid })
+        );
+    } else {
+        res.status(404).send("Invalid credentials");
+    }
 });
 
 // POST Endpoint
@@ -153,8 +180,6 @@ app.get("/email", (req, res) => {
         }
     });
 });
-
-
 
 // PUT Endpoint
 app.put("/studysession", (req, res) => {
@@ -222,14 +247,13 @@ app.delete("/studysession", (req, res) => {
     });
 });
 
-
 ///////////////////////// GET Endpoint - Data Page
 
 // Query for total hours studied by user
 app.get("/data", (req, res) => {
     const userId = req.query.userId;
     if (!userId) {
-        return res.status(400).send('User query parameter is required');
+        return res.status(400).send("User query parameter is required");
     }
     const query = `
     select sum(duration)/60 as total_hours 
@@ -240,10 +264,9 @@ app.get("/data", (req, res) => {
     con.query(query, [userId], (err, result) => {
         if (err) {
             console.log("Error:", err);
-            res.status(500).send('Server error');
+            res.status(500).send("Server error");
         } else {
             res.send(result[0]);
-
         }
     });
 });
@@ -253,7 +276,7 @@ app.get("/topstudyspot", (req, res) => {
     const userId = req.query.userId;
 
     if (!userId) {
-        return res.status(400).send('User query parameter is required');
+        return res.status(400).send("User query parameter is required");
     }
 
     const query = `
@@ -268,7 +291,7 @@ app.get("/topstudyspot", (req, res) => {
     con.query(query, [userId], (err, result) => {
         if (err) {
             console.error("Error:", err);
-            return res.status(500).send('Server error');
+            return res.status(500).send("Server error");
         }
         res.send(result[0]);
     });
@@ -279,7 +302,7 @@ app.get("/topcourse", (req, res) => {
     const userId = req.query.userId;
 
     if (!userId) {
-        return res.status(400).send('User query parameter is required');
+        return res.status(400).send("User query parameter is required");
     }
 
     const query = `      
@@ -294,7 +317,7 @@ app.get("/topcourse", (req, res) => {
     con.query(query, [userId], (err, result) => {
         if (err) {
             console.error("Error:", err);
-            return res.status(500).send('Server error');
+            return res.status(500).send("Server error");
         }
         res.send(result[0]);
     });
@@ -304,7 +327,7 @@ app.get("/top5users", (req, res) => {
     const userId = req.query.userId;
 
     if (!userId) {
-        return res.status(400).send('User query parameter is required');
+        return res.status(400).send("User query parameter is required");
     }
 
     const query = `      
@@ -351,15 +374,12 @@ app.get("/top5users", (req, res) => {
     con.query(query, [userId, userId, userId], (err, result) => {
         if (err) {
             console.error("Error:", err);
-            return res.status(500).send('Server error');
+            return res.status(500).send("Server error");
         }
         res.send(result);
     });
-
 });
 ///////////////////////////// END for GET Endpoint Datapage
-
-
 
 /////////////////////////////
 app.listen(3800, (err) => {

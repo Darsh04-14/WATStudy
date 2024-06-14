@@ -11,15 +11,18 @@ const Study = () => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-    const handleDeleteSession = (sessionId) => { //outside hook
-        axios.delete(`http://localhost:3800/studysession`, {
-            data: { id: sessionId }
-        })
-            .then(response => {
+
+    const handleDeleteSession = (sessionId) => {
+        //outside hook
+        axios
+            .delete(`http://localhost:3800/studysession`, {
+                data: { id: sessionId },
+            })
+            .then((response) => {
                 console.log(response.data);
             })
-            .catch(error => {
-                console.error('Error deleting this:', error);
+            .catch((error) => {
+                console.error("Error deleting this:", error);
             });
     };
 
@@ -31,7 +34,10 @@ const Study = () => {
                 studySpots?.map((session, idx) => (
                     <Box key={idx}>
                         <SessionCard studySession={session} />
-                        <Button variant="contained" onClick={() => handleDeleteSession(session.id)}>
+                        <Button
+                            variant="contained"
+                            onClick={() => handleDeleteSession(session.id)}
+                        >
                             Delete Session
                         </Button>
                     </Box>
