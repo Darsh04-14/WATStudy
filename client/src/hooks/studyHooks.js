@@ -23,7 +23,7 @@ export const useCreateSession = () => {
         "create/studysession",
         async (url, { arg }) => {
             axios.post(`http://localhost:3800/studysession`, {
-                data: arg
+                data: { data: { ...arg } }
             });
         }
     );

@@ -1,25 +1,127 @@
 var express = require("express");
-var mysql = require("mysql");
 var cors = require("cors");
-require('dotenv').config()
+const crypto = require("crypto");
+var { format, addMinutes, compareDesc, compareAsc } = require("date-fns");
+require("dotenv").config();
+
+var db = require("./db");
+var mailer = require("./sendmail");
 
 var app = express();
 
 app.use(express.json());
 app.use(cors());
 
-const con = mysql.createConnection({
-    host: process.env.GOOGLE_SQL_HOST,
-    user: 'root',
-    password: process.env.GOOGLE_SQL_PASSWORD,
-    database: "watstudy",
+//Verification Endpoints
+app.post("/signup", async (req, res) => {
+    const { email } = req.body;
+    console.log("email", email);
+
+    const userQuery = "SELECT * FROM user_table WHERE email = ?";
+    const userRecord = await db.getOne(userQuery, [email]);
+
+    if (userRecord) res.status(404).send("User with email already exists");
+
+    const query = "SELECT * FROM verification_table WHERE email = ?";
+    const record = await db.getOne(query, [email]);
+
+    console.log("the record", record);
+    if (record === null) {
+        const token = crypto.randomUUID();
+        const expiry_date = format(
+            addMinutes(new Date(), 15),
+            "yyyy-MM-dd HH:mm:ss"
+        );
+
+        const query =
+            "INSERT INTO verification_table (email, token, expiry_date) VALUES (?,?,?)";
+
+        db.query(query, [email, token, expiry_date], (error, result) => {
+            if (error) {
+                console.log("db error", error);
+                res.status(400).send("Server error");
+            } else {
+                mailer.send(email, "Watstudy Verification", "verify", token);
+                res.send("Link sent");
+            }
+        });
+    } else {
+        if (compareDesc(new Date(record.expiry_date), new Date()) === 1) {
+            const token = crypto.randomUUID();
+            const expiry_date = format(
+                addMinutes(new Date(), 15),
+                "yyyy-MM-dd HH:mm:ss"
+            );
+            const query =
+                "UPDATE verification_table SET token = ?, expiry_date = ? WHERE email = ?";
+            db.query(query, [token, expiry_date, email], (error, result) => {
+                if (error) res.status(400).send("Server error");
+                else {
+                    mailer.send(
+                        record.email,
+                        "Watstudy Verification",
+                        "verify",
+                        token
+                    );
+                    res.send("Link sent");
+                }
+            });
+        } else {
+            res.send("Link already sent");
+        }
+    }
 });
 
-con.connect((err) => {
-    if (err) {
-        console.log(err);
+app.post("/verify", async (req, res) => {
+    const { name, token, password } = req.body;
+    console.log(name, token, password);
+    const query = `SELECT * FROM verification_table WHERE token = ?`;
+
+    const verifyRecord = await db.getOne(query, [token]);
+
+    if (verifyRecord) {
+        if (compareAsc(new Date(verifyRecord.expiry_date), new Date()) === -1) {
+            res.send("Link expired");
+        } else {
+            const query =
+                "INSERT INTO user_table (name, email, password) VALUES (?, ? ,?)";
+            const hash = crypto
+                .createHash("sha256")
+                .update(password)
+                .digest("base64");
+            db.query(query, [name, verifyRecord.email, hash], (err, result) => {
+                if (!err) {
+                    const query2 =
+                        "DELETE FROM verification_table WHERE email = 'd36patel@uwaterloo.ca'";
+                    db.query(query2, (err2, result2) => {
+                        if (!err2) {
+                            res.send("User profile created");
+                        } else {
+                            res.send("Server error");
+                        }
+                    });
+                } else {
+                    res.send("Server error");
+                }
+            });
+        }
     } else {
-        console.log("connected!");
+        res.send("Invalid token.");
+    }
+});
+
+app.post("/login", async (req, res) => {
+    const { email, password } = req.body;
+    const hash = crypto.createHash("sha256").update(password).digest("base64");
+    const query = "SELECT * FROM user_table WHERE email = ? AND password = ?";
+    const userRecord = await db.getOne(query, [email, hash]);
+    console.log("found user", userRecord);
+    if (userRecord != null) {
+        res.send(
+            JSON.stringify({ name: userRecord.name, uid: userRecord.uid })
+        );
+    } else {
+        res.status(404).send("Invalid credentials");
     }
 });
 
@@ -49,32 +151,22 @@ app.post("/studysession", (req, res) => {
           VALUES (?, ?, ?, ?, ?, ?, ?, ?)
       `;
 
-    con.query(
-        query,
-        [
-            subject,
-            title,
-            description,
-            session_date,
-            duration,
-            group_size,
-            creator_fk,
-            location,
-        ],
-        (err, result) => {
-            if (err) {
-                console.log("Inserting Error");
-            } else {
-                res.send("POSTED");
-            }
-        }
-    );
+    db.query(query, [
+        subject,
+        title,
+        description,
+        session_date,
+        duration,
+        group_size,
+        creator_fk,
+        location,
+    ]);
 });
 
 // GET Endpoint - studysession all details
 app.get("/studysession", (req, res) => {
     const query = "SELECT * FROM session_table";
-    con.query(query, (err, result) => {
+    db.query(query, (err, result) => {
         if (err) {
             console.log("Error");
         } else {
@@ -88,7 +180,7 @@ app.get("/email", (req, res) => {
     const userId = req.query.userId;
 
     if (!userId) {
-        return res.status(400).send('User ID is required');
+        return res.status(400).send("User ID is required");
     }
 
     const query = `
@@ -123,7 +215,8 @@ app.get("/email", (req, res) => {
             );
 
     `;
-    con.query(query, [userId], (err, result) => {
+
+    db.query(query, [userId], (err, result) => {
         if (err) {
             console.error("Error executing query:", err);
             res.status(500).send("Error fetching email data");
@@ -134,9 +227,6 @@ app.get("/email", (req, res) => {
         }
     });
 });
-
-
-
 
 // PUT Endpoint - for updating events
 app.put("/studysession", (req, res) => {
@@ -169,7 +259,7 @@ app.put("/studysession", (req, res) => {
       WHERE id = ?
     `;
 
-    con.query(
+    db.query(
         query,
         [
             subject,
@@ -201,7 +291,7 @@ app.delete("/studysession", (req, res) => {
       DELETE FROM session_table WHERE id = ?
     `;
 
-    con.query(query, [id], (err, result) => {
+    db.query(query, [id], (err, result) => {
         if (err) {
             console.log("Error Deleting", err);
             res.status(500).send("Error deleting data");
@@ -211,14 +301,13 @@ app.delete("/studysession", (req, res) => {
     });
 });
 
-
 ///////////////////////// GET Endpoint - Data Page
 
 // Query for total hours studied by user
 app.get("/data", (req, res) => {
     const userId = req.query.userId;
     if (!userId) {
-        return res.status(400).send('User query parameter is required');
+        return res.status(400).send("User query parameter is required");
     }
     const query = `
     SELECT sum(duration)/60 as total_hours 
@@ -226,13 +315,12 @@ app.get("/data", (req, res) => {
     WHERE creator_fk = ?;
     `;
 
-    con.query(query, [userId], (err, result) => {
+    db.query(query, [userId], (err, result) => {
         if (err) {
             console.log("Error:", err);
-            res.status(500).send('Server error');
+            res.status(500).send("Server error");
         } else {
             res.send(result[0]);
-
         }
     });
 });
@@ -242,7 +330,7 @@ app.get("/topstudyspot", (req, res) => {
     const userId = req.query.userId;
 
     if (!userId) {
-        return res.status(400).send('User query parameter is required');
+        return res.status(400).send("User query parameter is required");
     }
 
     const query = `
@@ -254,10 +342,10 @@ app.get("/topstudyspot", (req, res) => {
         LIMIT 1;
     `;
 
-    con.query(query, [userId], (err, result) => {
+    db.query(query, [userId], (err, result) => {
         if (err) {
             console.error("Error:", err);
-            return res.status(500).send('Server error');
+            return res.status(500).send("Server error");
         }
         res.send(result[0]);
     });
@@ -268,7 +356,7 @@ app.get("/topcourse", (req, res) => {
     const userId = req.query.userId;
 
     if (!userId) {
-        return res.status(400).send('User query parameter is required');
+        return res.status(400).send("User query parameter is required");
     }
 
     const query = `      
@@ -280,10 +368,10 @@ app.get("/topcourse", (req, res) => {
         LIMIT 1;
     `;
 
-    con.query(query, [userId], (err, result) => {
+    db.query(query, [userId], (err, result) => {
         if (err) {
             console.error("Error:", err);
-            return res.status(500).send('Server error');
+            return res.status(500).send("Server error");
         }
         res.send(result[0]);
     });
@@ -293,7 +381,7 @@ app.get("/top5users", (req, res) => {
     const userId = req.query.userId;
 
     if (!userId) {
-        return res.status(400).send('User query parameter is required');
+        return res.status(400).send("User query parameter is required");
     }
 
     const query = `      
@@ -337,18 +425,15 @@ app.get("/top5users", (req, res) => {
     LIMIT 5;    
     `;
 
-    con.query(query, [userId, userId, userId], (err, result) => {
+    db.query(query, [userId, userId, userId], (err, result) => {
         if (err) {
             console.error("Error:", err);
-            return res.status(500).send('Server error');
+            return res.status(500).send("Server error");
         }
         res.send(result);
     });
-
 });
 ///////////////////////////// END for GET Endpoint Datapage
-
-
 
 /////////////////////////////
 app.listen(3800, (err) => {

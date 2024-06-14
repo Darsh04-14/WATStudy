@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useDeleteSession, useStudySessions } from "../../hooks/studyHooks";
 import { Box, CircularProgress, Button, TextField } from "@mui/material";
 import _ from "lodash";
-import axios from "axios";
 import SessionCard from "../../components/sessionCard/sessionCard";
 import SessionModal from "../../components/sessionModal/sessionModal";
 

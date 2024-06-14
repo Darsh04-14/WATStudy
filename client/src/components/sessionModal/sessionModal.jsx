@@ -1,4 +1,4 @@
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field } from "formik";
 import { Box, Modal } from "@mui/material";
 import { useCreateSession } from "../../hooks/studyHooks";
 
