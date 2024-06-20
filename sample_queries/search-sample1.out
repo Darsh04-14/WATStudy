@@ -1,0 +1,12 @@
+id	subject	title	description	session_date	duration	group_size	creator_fk	location
+155	KIN 177	Interactive Quiz	Collaborating on project ideas	2024-07-18 11:35:00	30	2	103	EV3 4221
+204	SUSM 339	Problem-Solving Session	Open forum for discussing ideas	2024-07-20 18:45:00	60	5	103	RCH 3950
+207	PHYS 293	Test Preparation	Open forum for discussing ideas	2024-08-14 05:35:00	30	5	103	HH 3093
+240	CIVE 178	Discussion Forum	Open forum for discussing ideas	2024-08-01 15:15:00	90	4	103	E5 2020
+301	AFM 185	Project Brainstorming	Collaborating on project ideas	2024-08-13 04:55:00	30	4	103	SLC 3284
+319	SYDE 279	Discussion on Current Topics	Collaborating on project ideas	2024-08-12 08:45:00	90	2	103	EV2 3641
+371	SYDE 178	Collaborative Study	Collaborating on project ideas	2024-07-24 22:15:00	90	2	102	E2 3186
+470	PSYCH 361	Writing Workshop	Open forum for discussing ideas	2024-07-12 07:50:00	90	4	103	AL 4111
+549	REC 419	Interactive Quiz	Collaborating on project ideas	2024-07-26 22:10:00	120	4	103	E2 1969
+556	ME 117	Writing Workshop	Open forum for discussing ideas	2024-07-15 10:25:00	60	2	102	OPT 1828
+560	PSCI 402	Interactive Study Group	Collaborating on project ideas	2024-07-11 16:50:00	90	2	102	PAS 3099
