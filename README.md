@@ -10,6 +10,7 @@ WATStudy is an application designed to help students at the University of Waterl
 -   **Filters/Sort Options**: Filter and sort study groups by program, year, and term.
 
 ## Setup
+If you want to access the database, please reach out to us for the `.env` file because the database is stored on the Google Cloud SQL Server. Place it in the `server` folder and then run the `npm` commands below.
 
 1. Clone the repo:
    `git clone https://github.com/Darsh04-14/WATStudy.git`
