@@ -1,0 +1,11 @@
+id	subject	title	description	session_date	duration	group_size	creator_fk	location
+158	HRM 303	Presentation Practice	Planning and organizing study schedules	2024-08-01 18:10:00	30	5	102	HH 2800
+192	PHARM 297	Quiz Preparation	Support for academic writing tasks	2024-08-02 01:55:00	30	6	103	BMH 2074
+196	MUSIC 271	Subject Review	Sharing of useful online resources	2024-08-01 13:10:00	60	5	102	PAS 2494
+214	SE 339	Interactive Learning	Providing academic support and guidance	2024-08-02 06:15:00	30	5	102	EV3 2568
+226	GS 106	Resource Sharing	Consultation on thesis structure and content	2024-08-02 07:40:00	60	9	103	MC 2791
+368	PHYS 347	Test Preparation	Enhancing knowledge through group discussion	2024-08-03 23:35:00	30	7	103	SLC 4095
+388	CS 363	Group Discussion	Discussion on the latest trends in the field	2024-08-02 20:35:00	60	3	102	EV2 3306
+463	SE 351	Knowledge Sharing	Clarifying difficult concepts	2024-08-03 12:15:00	60	7	102	E6 2279
+493	REC 139	Project Brainstorming	Strategies for effective learning	2024-08-03 23:20:00	60	2	102	DC 1640
+495	LS 222	Skill Development Workshop	Collaborating on project ideas	2024-08-03 01:35:00	60	7	102	ML 1785

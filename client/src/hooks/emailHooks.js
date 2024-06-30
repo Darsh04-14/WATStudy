@@ -6,8 +6,17 @@
 //         const res = await axios.get(`http://localhost:3800/email`);
 //         return res.data;
 //     });
+export const useStudySessions = (userId) => {
+    const fetcher = (url) => axios.get(url).then((res) => res.data);
 
-//     return { studySpots: data, error, isLoading };
-// }
+    const { data, error } = useSWR(
+        userId ? `http://localhost:3800/email?userId=${userId}` : null,
+        fetcher
+    );
 
-
+    return {
+        studySpots: data,
+        isLoading: !error && !data,
+        error,
+    };
+};

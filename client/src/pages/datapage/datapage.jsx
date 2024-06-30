@@ -5,7 +5,7 @@ const Datapage = () => {
     const [userId, setUserId] = useState(null);
 
     useEffect(() => {
-        const id = prompt("Please enter your user ID:");
+        const id = JSON.parse(localStorage.getItem('user') ?? '{}')?.uid;
         if (id) {
             setUserId(id);
         } else {
