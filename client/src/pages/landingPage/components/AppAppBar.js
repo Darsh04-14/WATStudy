@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import logo from '../../../assets/logo.png';
+import {Link} from 'react-router-dom'
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -40,32 +41,33 @@ function AppAppBar({ mode, toggleColorMode }) {
         alignItems="center"
         sx={{ backgroundColor: 'black', padding: '16px' }}
       >
-        <Box>
-          <img src={logo} alt="Logo" style={logoStyle} />
-        </Box>
+         <Link to="/">
+                <img src={logo} alt="Logo" style={logoStyle} />
+            </Link>
         <Box display="flex" justifyContent="flex-end" alignItems="center">
-          <ToggleColorMode sx={{backgroundColor: 'blue'}} mode={mode} toggleColorMode={toggleColorMode} />
+          {/* <ToggleColorMode sx={{backgroundColor: 'blue'}} mode={mode} toggleColorMode={toggleColorMode} /> */}
           <Button
             color="primary"
             variant="text"
             size="small"
-            component="a"
-            href="/material-ui/getting-started/templates/sign-in/"
+            component={Link}
+            to="/signup"
             target="_blank"
           >
-            Sign in
+            Log in
           </Button>
           <Button
             color="primary"
             variant="contained"
             size="small"
-            component="a"
-            href="/material-ui/getting-started/templates/sign-up/"
+            component={Link}
+            to="/login"
             target="_blank"
           >
             Sign up
           </Button>
-        </Box>
+
+                  </Box>
       </Box>
     </div>
   );

@@ -1,5 +1,5 @@
-// import useSWR from 'swr';
-// import axios from 'axios';
+import useSWR from 'swr';
+import axios from 'axios';
 
 // export const useStudySessions = (filters = {}) => {
 //     const { data, error, isLoading } = useSWR('/email' + JSON.stringify(filters), async () => {

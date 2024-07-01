@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useStudySessions } from "../../hooks/emailHooks";
 import { Typography, Box, CircularProgress, Button, TextField, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
 
-const Study = () => {
+const Email = () => {
     const initialUserId = JSON.parse(localStorage.getItem('user') ?? '{}')?.uid || '';
     const [userId, setUserId] = useState(initialUserId);
     const [open, setOpen] = useState(!initialUserId);
