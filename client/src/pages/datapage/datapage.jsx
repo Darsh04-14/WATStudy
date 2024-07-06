@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { Card, CardContent, Typography, CircularProgress, Grid, Button } from "@mui/material";
 import { useStudySessions } from "../../hooks/datapageHooks";
 
 const Datapage = () => {
     const [userId, setUserId] = useState(null);
+    const [showStudySpots, setShowStudySpots] = useState(false);
+    const [showTopStudySpot, setShowTopStudySpot] = useState(false);
+    const [showTopCourse, setShowTopCourse] = useState(false);
+    const [showTop5Users, setShowTop5Users] = useState(false);
 
     useEffect(() => {
         const id = JSON.parse(localStorage.getItem('user') ?? '{}')?.uid;
@@ -68,39 +73,65 @@ const Datapage = () => {
 
     return (
         <div>
-            Hi, this is the data analytics page:
-            <div>
-                <div>
-                    <p>Total Hours Studied: {studySpots?.total_hours}</p>
-                </div>
-                <div>
-                    <p>Top Study Spot: {topStudySpot?.location}</p>
-                    <p>Time Spent At Top Study Spot: {topStudySpot?.max_duration} Hours</p>
-                </div>
-                <div>
-                    <p>Top Course: {topCourse?.subject}</p>
-                    <p>Time Spent On Top Course: {topCourse?.total_hours} Hours</p>
-                </div>
-                <div>
-                    <p> Top 5 users:
-                        {top5users[0] && (
-                            <div>
-                                {top5users[0].name}: {top5users[0].avgrating},
-                                {top5users[1].name}: {top5users[1].avgrating},
-                                {top5users[2].name}: {top5users[2].avgrating},
-                                {top5users[3].name}: {top5users[3].avgrating},
-                                {top5users[4].name}: {top5users[4].avgrating}
-
-                            </div>
-                        )}
-
-
-
-
-
-                    </p>
-                </div>
-            </div>
+            <Typography variant="h4" gutterBottom>Data Analytics Page</Typography>
+            <Grid container spacing={2}>
+                <Grid item xs={12} md={6}>
+                    <Card>
+                        <CardContent>
+                            <Typography variant="h6">Total Hours Studied</Typography>
+                            <Button variant="contained" onClick={() => setShowStudySpots(!showStudySpots)}>
+                                {showStudySpots ? 'Hide' : 'View'}
+                            </Button>
+                            {showStudySpots && <Typography>{studySpots?.total_hours}</Typography>}
+                        </CardContent>
+                    </Card>
+                </Grid>
+                <Grid item xs={12} md={6}>
+                    <Card>
+                        <CardContent>
+                            <Typography variant="h6">Top Study Spot</Typography>
+                            <Button variant="contained" onClick={() => setShowTopStudySpot(!showTopStudySpot)}>
+                                {showTopStudySpot ? 'Hide' : 'View'}
+                            </Button>
+                            {showTopStudySpot && (
+                                <>
+                                    <Typography>{topStudySpot?.location}</Typography>
+                                    <Typography>Time Spent: {topStudySpot?.max_duration} Hours</Typography>
+                                </>
+                            )}
+                        </CardContent>
+                    </Card>
+                </Grid>
+                <Grid item xs={12} md={6}>
+                    <Card>
+                        <CardContent>
+                            <Typography variant="h6">Top Course</Typography>
+                            <Button variant="contained" onClick={() => setShowTopCourse(!showTopCourse)}>
+                                {showTopCourse ? 'Hide' : 'View'}
+                            </Button>
+                            {showTopCourse && (
+                                <>
+                                    <Typography>{topCourse?.subject}</Typography>
+                                    <Typography>Time Spent: {topCourse?.total_hours} Hours</Typography>
+                                </>
+                            )}
+                        </CardContent>
+                    </Card>
+                </Grid>
+                <Grid item xs={12} md={6}>
+                    <Card>
+                        <CardContent>
+                            <Typography variant="h6">Top 5 Users</Typography>
+                            <Button variant="contained" onClick={() => setShowTop5Users(!showTop5Users)}>
+                                {showTop5Users ? 'Hide' : 'View'}
+                            </Button>
+                            {showTop5Users && top5users.map((user, index) => (
+                                <Typography key={index}>{user.name}: {user.avgrating}</Typography>
+                            ))}
+                        </CardContent>
+                    </Card>
+                </Grid>
+            </Grid>
         </div>
     );
 };
