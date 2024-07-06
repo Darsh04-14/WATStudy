@@ -1,0 +1,20 @@
+uid,name,email,password
+102,Sparsh,sparsh@example.com,sparshpass
+103,Darsh,darsh@example.com,darshpass
+104,"John Doe",johndoe@example.com,password123
+105,"Jane Smith",janesmith@example.com,securepass
+106,"Alice Johnson",alicejohnson@example.com,alicepass
+107,"Bob Brown",bobbrown@example.com,bobbypass
+108,"Charlie Davis",charliedavis@example.com,charlie123
+109,"Diana Evans",dianaevans@example.com,dianapass
+110,"Frank Green",frankgreen@example.com,franklysecure
+111,"Grace Hall",gracehall@example.com,gracefulpass
+112,"Henry Isaac",henryisaac@example.com,henryspassword
+113,"Ivy Jackson",ivyjackson@example.com,ivyivyivy
+119,"Sparsh Patel",s62patel@uwaterloo.ca,73l8gRjwLftklgfdXT+MdiMEjJwGPVMsyVxe16iYpk8=
+124,"Darsh Patel",d36patel@uwaterloo.ca,73l8gRjwLftklgfdXT+MdiMEjJwGPVMsyVxe16iYpk8=
+125,alice,alice91@uwaterloo.ca,password123
+126,jamie,jamie45@uwaterloo.ca,password456
+127,bob,bob3@uwaterloo.ca,password789
+128,katie,katie54@uwaterloo.ca,password101
+129,jason,jason12@uwaterloo.ca,password202
