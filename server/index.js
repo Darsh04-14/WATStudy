@@ -162,6 +162,93 @@ app.post("/studysession", (req, res) => {
         location,
     ]);
 });
+app.get("/courses", (req, res) => {
+    const userId = req.query.userId;
+
+    if (!userId) {
+        return res.status(400).send("User ID is required");
+    }
+
+    const query = `
+     SELECT 
+    s.subject, 
+    SUM(s.duration) AS total_hours,
+    COUNT(s.id) AS total_sessions,
+    AVG(s.duration) AS avg_duration,
+    MAX(s.session_date) AS last_session_date,
+    COUNT(DISTINCT p.userId) AS total_participants,
+    u.name AS creator_name,
+    us.session_date AS upcoming_session_date,
+    us.title AS upcoming_session_title,
+    us.location AS upcoming_session_location
+FROM 
+    session_table s
+JOIN 
+    user_table u ON s.creator_fk = u.uid
+LEFT JOIN 
+    participants p ON s.id = p.sessionId
+LEFT JOIN (
+    SELECT 
+        subject,
+        session_date,
+        title,
+        location
+    FROM 
+        session_table
+    WHERE 
+        session_date > NOW()
+) us ON s.subject = us.subject
+WHERE 
+    s.creator_fk = 103
+GROUP BY 
+    s.subject, u.name, us.session_date, us.title, us.location
+ORDER BY 
+    total_hours DESC;
+
+
+
+    `;
+
+    db.query(query, [userId], (err, result) => {
+        if (err) {
+            console.error("Error fetching courses:", err);
+            res.status(500).send("Server error");
+        } else {
+            res.json(result);
+        }
+    });
+});
+
+// GET Endpoint - fetch all courses a user has studied
+// GET Endpoint - fetch all courses a user has studied
+// GET Endpoint - fetch all courses a user has studied
+// Add this endpoint to your server code
+app.get("/suggestions", (req, res) => {
+    const userId = req.query.userId;
+
+    if (!userId) {
+        return res.status(400).send("User ID is required");
+    }
+
+    const query = `
+        SELECT s.subject, SUM(s.duration) AS total_hours
+            FROM session_table s
+            WHERE s.creator_fk = ?
+            GROUP BY s.subject
+            ORDER BY total_hours DESC;
+    `;
+
+    db.query(query, [userId], (err, result) => {
+        if (err) {
+            console.error("Error fetching suggestions:", err);
+            res.status(500).send("Server error");
+        } else {
+            res.json(result);
+        }
+    });
+});
+
+
 
 // GET Endpoint - studysession all details
 app.get("/studysession", (req, res) => {
@@ -324,6 +411,8 @@ app.get("/data", (req, res) => {
         }
     });
 });
+
+
 
 //Query for top study spot and total hours spent at study spot
 app.get("/topstudyspot", (req, res) => {

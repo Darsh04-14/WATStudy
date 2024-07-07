@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Card, CardContent, Typography, CircularProgress, Grid, Button } from "@mui/material";
 import { useStudySessions } from "../../hooks/datapageHooks";
+import { Card, CardContent, Button, Typography, Box } from "@mui/material";
 
 const Datapage = () => {
     const [userId, setUserId] = useState(null);
-    const [showStudySpots, setShowStudySpots] = useState(false);
-    const [showTopStudySpot, setShowTopStudySpot] = useState(false);
-    const [showTopCourse, setShowTopCourse] = useState(false);
-    const [showTop5Users, setShowTop5Users] = useState(false);
+    const [view, setView] = useState(null);
 
     useEffect(() => {
         const id = JSON.parse(localStorage.getItem('user') ?? '{}')?.uid;
@@ -72,67 +69,65 @@ const Datapage = () => {
     if (isStudySpotsLoading || isTopStudySpotLoading || istop5usersLoading || isTopCourseLoading) return <div>Loading...</div>;
 
     return (
-        <div>
-            <Typography variant="h4" gutterBottom>Data Analytics Page</Typography>
-            <Grid container spacing={2}>
-                <Grid item xs={12} md={6}>
-                    <Card>
-                        <CardContent>
-                            <Typography variant="h6">Total Hours Studied</Typography>
-                            <Button variant="contained" onClick={() => setShowStudySpots(!showStudySpots)}>
-                                {showStudySpots ? 'Hide' : 'View'}
-                            </Button>
-                            {showStudySpots && <Typography>{studySpots?.total_hours}</Typography>}
-                        </CardContent>
-                    </Card>
-                </Grid>
-                <Grid item xs={12} md={6}>
-                    <Card>
-                        <CardContent>
-                            <Typography variant="h6">Top Study Spot</Typography>
-                            <Button variant="contained" onClick={() => setShowTopStudySpot(!showTopStudySpot)}>
-                                {showTopStudySpot ? 'Hide' : 'View'}
-                            </Button>
-                            {showTopStudySpot && (
-                                <>
-                                    <Typography>{topStudySpot?.location}</Typography>
-                                    <Typography>Time Spent: {topStudySpot?.max_duration} Hours</Typography>
-                                </>
-                            )}
-                        </CardContent>
-                    </Card>
-                </Grid>
-                <Grid item xs={12} md={6}>
-                    <Card>
-                        <CardContent>
-                            <Typography variant="h6">Top Course</Typography>
-                            <Button variant="contained" onClick={() => setShowTopCourse(!showTopCourse)}>
-                                {showTopCourse ? 'Hide' : 'View'}
-                            </Button>
-                            {showTopCourse && (
-                                <>
-                                    <Typography>{topCourse?.subject}</Typography>
-                                    <Typography>Time Spent: {topCourse?.total_hours} Hours</Typography>
-                                </>
-                            )}
-                        </CardContent>
-                    </Card>
-                </Grid>
-                <Grid item xs={12} md={6}>
-                    <Card>
-                        <CardContent>
-                            <Typography variant="h6">Top 5 Users</Typography>
-                            <Button variant="contained" onClick={() => setShowTop5Users(!showTop5Users)}>
-                                {showTop5Users ? 'Hide' : 'View'}
-                            </Button>
-                            {showTop5Users && top5users.map((user, index) => (
-                                <Typography key={index}>{user.name}: {user.avgrating}</Typography>
-                            ))}
-                        </CardContent>
-                    </Card>
-                </Grid>
-            </Grid>
-        </div>
+        <Box>
+            <Typography variant="h4">Hi, this is the data analytics page:</Typography>
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                <Card>
+                    <CardContent>
+                        <Typography variant="h6">Total Hours Studied</Typography>
+                        <Button variant="contained" onClick={() => setView('hours')}>
+                            View Details
+                        </Button>
+                        {view === 'hours' && (
+                            <Typography variant="body2">Total Hours: {studySpots?.total_hours}</Typography>
+                        )}
+                    </CardContent>
+                </Card>
+                <Card>
+                    <CardContent>
+                        <Typography variant="h6">Top Study Spot</Typography>
+                        <Button variant="contained" onClick={() => setView('studySpot')}>
+                            View Details
+                        </Button>
+                        {view === 'studySpot' && (
+                            <>
+                                <Typography variant="body2">Location: {topStudySpot?.location}</Typography>
+                                <Typography variant="body2">Time Spent: {topStudySpot?.max_duration} Hours</Typography>
+                            </>
+                        )}
+                    </CardContent>
+                </Card>
+                <Card>
+                    <CardContent>
+                        <Typography variant="h6">Top Course</Typography>
+                        <Button variant="contained" onClick={() => setView('course')}>
+                            View Details
+                        </Button>
+                        {view === 'course' && (
+                            <>
+                                <Typography variant="body2">Subject: {topCourse?.subject}</Typography>
+                                <Typography variant="body2">Time Spent: {topCourse?.total_hours} Hours</Typography>
+                            </>
+                        )}
+                    </CardContent>
+                </Card>
+                <Card>
+                    <CardContent>
+                        <Typography variant="h6">Top 5 Users</Typography>
+                        <Button variant="contained" onClick={() => setView('users')}>
+                            View Details
+                        </Button>
+                        {view === 'users' && top5users && (
+                            <Box>
+                                {top5users.map((user, index) => (
+                                    <Typography key={index} variant="body2">{user.name}: {user.avgrating}</Typography>
+                                ))}
+                            </Box>
+                        )}
+                    </CardContent>
+                </Card>
+            </Box>
+        </Box>
     );
 };
 
