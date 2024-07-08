@@ -13,9 +13,24 @@ export const useCourses = (userId) => {
         }
     );
 
+    const joinCourse = async (sessionId, userId) => {
+        try {
+            console.log(`Joining course with User ID: ${userId}, Session ID: ${sessionId}`);
+            const response = await axios.post('http://localhost:3800/api/participants', {
+                sessionId,
+                userId
+            });
+            return response.data;
+        } catch (error) {
+            console.error('Error joining course:', error);
+            throw error;
+        }
+    };
+
     return {
         courses,
         coursesError,
-        isCoursesLoading
+        isCoursesLoading,
+        joinCourse
     };
 };

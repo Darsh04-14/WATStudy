@@ -256,6 +256,55 @@ ORDER BY SUM(s.duration) DESC;
     });
 });
 
+// Endpoint to get session ID by course name
+app.get("/api/sessionId", (req, res) => {
+    const { subject } = req.query;
+
+    if (!subject) {
+        console.log("No subject provided");
+        return res.status(400).send("Course subject is required");
+    }
+
+    console.log(`Received request for subject: ${subject}`);
+
+    const query = "SELECT id FROM session_table WHERE subject = ?";
+
+    db.query(query, [subject], (err, result) => {
+        if (err) {
+            console.error("Error fetching session ID:", err);
+            res.status(500).send("Server error");
+        } else if (result.length === 0) {
+            console.log(`No session found for subject: ${subject}`);
+            res.status(404).send("Session not found");
+        } else {
+            console.log(`Session ID for subject ${subject}: ${result[0].id}`);
+            res.json(result[0]);
+        }
+    });
+});
+
+// Endpoint to join a course
+app.post("/api/participants", (req, res) => {
+    const { sessionId, userId } = req.body;
+
+    if (!sessionId || !userId) {
+        return res.status(400).send("Session ID and User ID are required");
+    }
+
+    console.log('Printing..........');
+    console.log(`User ID: ${userId}, Session ID: ${sessionId}`);
+
+    const query = "INSERT INTO participants (sessionId, userId) VALUES (?, ?)";
+
+    db.query(query, [sessionId, userId], (err, result) => {
+        if (err) {
+            console.error("Error joining course:", err);
+            res.status(500).send("Server error");
+        } else {
+            res.status(201).send("Successfully joined the course");
+        }
+    });
+});
 
 
 // GET Endpoint - studysession all details
