@@ -277,7 +277,7 @@ app.get("/studysession", (req, res) => {
             filterQuery = filterQuery.concat(` duration >= ${duration[0]} AND duration <= ${duration[1]} AND`);
 
         if (search && search !== '') {
-            filterQuery = filterQuery.concat(` (title LIKE "$%{search}%" OR description LIKE "%${search}%" OR location LIKE "%${search}%") AND`);
+            filterQuery = filterQuery.concat(` (subject LIKE "$%{search}%" OR title LIKE "$%{search}%" OR description LIKE "%${search}%" OR location LIKE "%${search}%") AND`);
         }
 
         if (filterQuery !== "") {
