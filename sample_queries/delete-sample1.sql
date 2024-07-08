@@ -1,1 +1,0 @@
-DELETE FROM session_table WHERE id = 587;
