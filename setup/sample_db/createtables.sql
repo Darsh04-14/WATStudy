@@ -1,4 +1,3 @@
-
 CREATE TABLE user_table (
     uid INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
@@ -75,18 +74,44 @@ CREATE TABLE verification_table (
     CONSTRAINT fk_verification_email FOREIGN KEY (email) REFERENCES user_table(email) ON DELETE CASCADE
 );
 
+DELIMITER //
 
+CREATE TRIGGER ReviewOnlyIfParticipated
+BEFORE INSERT ON watstudy.session_review
+FOR EACH ROW
+BEGIN
+    DECLARE participant_count INT;
 
---All sessions our person is participating in, within the next week
-WITH UpcomingSessions as (
-    SELECT session_table.*
-    FROM session_table 
-    JOIN participants ON session_table.id = participants.sessionId
-    WHERE session_date >= ? AND session_date <= ? + `1 week` AND participants.userId = ?
-)
-SELECT UpcomingSessions.*, listagg(user_table.name, ',')
-FROM UpcomingSessions
-JOIN participants ON UpcomingSessions.id = participants.sessionId
-JOIN user_table ON participants.userId = user_table.uid
-WHERE participants.userId != ?
-GROUP BY (UpcomingSessions.*);
+    SELECT COUNT(*) INTO participant_count
+    FROM watstudy.participants
+    WHERE sessionId = NEW.sessionId
+    AND userId = NEW.userId;
+
+    IF participant_count = 0 THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'User must participate in the session to leave a review';
+    END IF;
+END //
+
+CREATE TRIGGER ParticipantsCannotExceedGroupSize
+BEFORE INSERT ON watstudy.participants
+FOR EACH ROW
+BEGIN
+    DECLARE current_participants INT;
+
+    SELECT COUNT(*) INTO current_participants
+    FROM watstudy.participants
+    WHERE sessionId = NEW.sessionId;
+
+    DECLARE max_group_size INT;
+    SELECT group_size INTO max_group_size
+    FROM watstudy.session_table
+    WHERE id = NEW.sessionId;
+
+    IF current_participants >= max_group_size THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Cannot exceed group size limit for this session';
+    END IF;
+END //
+
+DELIMITER ;
