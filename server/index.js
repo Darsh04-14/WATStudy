@@ -199,7 +199,7 @@ LEFT JOIN (
         session_date > NOW()
 ) us ON s.subject = us.subject
 WHERE 
-    s.creator_fk = 103
+    s.creator_fk = ?
 GROUP BY 
     s.subject, u.name, us.session_date, us.title, us.location
 ORDER BY 
@@ -231,11 +231,19 @@ app.get("/suggestions", (req, res) => {
     }
 
     const query = `
-        SELECT s.subject, SUM(s.duration) AS total_hours
-            FROM session_table s
-            WHERE s.creator_fk = ?
-            GROUP BY s.subject
-            ORDER BY total_hours DESC;
+        SELECT s.subject
+FROM session_table s
+JOIN user_table u ON s.creator_fk = u.uid
+LEFT JOIN participants p ON s.id = p.sessionId
+LEFT JOIN (
+SELECT subject, session_date, title, location
+FROM session_table
+WHERE session_date > NOW()
+) us ON s.subject = us.subject
+WHERE s.creator_fk = ?
+GROUP BY s.subject
+ORDER BY SUM(s.duration) DESC;
+
     `;
 
     db.query(query, [userId], (err, result) => {
