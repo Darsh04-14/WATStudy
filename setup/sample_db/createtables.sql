@@ -1,27 +1,16 @@
-CREATE TABLE user_table (
+CREATE TABLE watstudy.user_table (
     uid INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    CONSTRAINT email_unique UNIQUE (email),
     CONSTRAINT uwaterloo_email CHECK (email LIKE '%@uwaterloo.ca')
 );
 
-
-CREATE TABLE enrolled (
-    uid INT NOT NULL,
-    cid CHAR(10) NOT NULL,
-    PRIMARY KEY (uid, cid),
-    CONSTRAINT fk_student_enrolled FOREIGN KEY (uid) REFERENCES students(uid) ON DELETE CASCADE,
-    CONSTRAINT fk_course_enrolled FOREIGN KEY (cid) REFERENCES courses(cid) ON DELETE CASCADE
-);
-
-CREATE TABLE courses (
+CREATE TABLE watstudy.courses (
     cid CHAR(10) PRIMARY KEY
 );
 
-
-CREATE TABLE session_table (
+CREATE TABLE watstudy.session_table (
     id INT AUTO_INCREMENT PRIMARY KEY,
     subject CHAR(10) NOT NULL,
     title VARCHAR(255) NOT NULL,
@@ -35,18 +24,26 @@ CREATE TABLE session_table (
     CONSTRAINT fk_subject FOREIGN KEY (subject) REFERENCES courses(cid) ON DELETE CASCADE
 );
 
+CREATE TABLE watstudy.enrolled (
+    uid INT NOT NULL,
+    cid CHAR(10) NOT NULL,
+    PRIMARY KEY (uid, cid),
+    CONSTRAINT fk_student_enrolled FOREIGN KEY (uid) REFERENCES user_table(uid) ON DELETE CASCADE,
+    CONSTRAINT fk_course_enrolled FOREIGN KEY (cid) REFERENCES courses(cid) ON DELETE CASCADE
+);
 
-CREATE TABLE friends (
+
+CREATE TABLE watstudy.friends (
     uid1 INT,
     uid2 INT,
     PRIMARY KEY (uid1, uid2),
     CONSTRAINT fk_friend1 FOREIGN KEY (uid1) REFERENCES user_table(uid) ON DELETE CASCADE,
     CONSTRAINT fk_friend2 FOREIGN KEY (uid2) REFERENCES user_table(uid) ON DELETE CASCADE,
-    CONSTRAINT noSelfFriend CHECK (uid1 != uid2);
+    CONSTRAINT noSelfFriend CHECK (uid1 != uid2)
 );
 
 
-CREATE TABLE participants (
+CREATE TABLE watstudy.participants (
     sessionId INT NOT NULL,
     userId INT NOT NULL,
     PRIMARY KEY (sessionId, userId),
@@ -55,7 +52,7 @@ CREATE TABLE participants (
 );
 
 
-CREATE TABLE session_review (
+CREATE TABLE watstudy.session_review (
     sessionId INT NOT NULL,
     userId INT NOT NULL,
     review INT NOT NULL,
@@ -66,52 +63,10 @@ CREATE TABLE session_review (
 );
 
 
-CREATE TABLE verification_table (
+CREATE TABLE watstudy.verification_table (
     email VARCHAR(255) NOT NULL,
     token VARCHAR(255) NOT NULL,
     expiry_date DATETIME NOT NULL,
     PRIMARY KEY (email),
     CONSTRAINT fk_verification_email FOREIGN KEY (email) REFERENCES user_table(email) ON DELETE CASCADE
 );
-
-DELIMITER //
-
-CREATE TRIGGER ReviewOnlyIfParticipated
-BEFORE INSERT ON watstudy.session_review
-FOR EACH ROW
-BEGIN
-    DECLARE participant_count INT;
-
-    SELECT COUNT(*) INTO participant_count
-    FROM watstudy.participants
-    WHERE sessionId = NEW.sessionId
-    AND userId = NEW.userId;
-
-    IF participant_count = 0 THEN
-        SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = 'User must participate in the session to leave a review';
-    END IF;
-END //
-
-CREATE TRIGGER ParticipantsCannotExceedGroupSize
-BEFORE INSERT ON watstudy.participants
-FOR EACH ROW
-BEGIN
-    DECLARE current_participants INT;
-
-    SELECT COUNT(*) INTO current_participants
-    FROM watstudy.participants
-    WHERE sessionId = NEW.sessionId;
-
-    DECLARE max_group_size INT;
-    SELECT group_size INTO max_group_size
-    FROM watstudy.session_table
-    WHERE id = NEW.sessionId;
-
-    IF current_participants >= max_group_size THEN
-        SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = 'Cannot exceed group size limit for this session';
-    END IF;
-END //
-
-DELIMITER ;

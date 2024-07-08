@@ -1,3 +1,4 @@
+sessionId, userId, review
 1,5,7
 2,12,9
 3,45,8

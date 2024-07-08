@@ -1,3 +1,4 @@
+sessionId, userId
 40,1
 1,2
 3,2
