@@ -1,4 +1,4 @@
-	SELECT * FROM session_table 
+SELECT * FROM session_table 
 WHERE group_size >= 10
 AND group_size <= 20
 AND duration >= 0
