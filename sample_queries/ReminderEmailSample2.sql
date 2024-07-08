@@ -3,10 +3,10 @@ FROM user_table AS u
 JOIN participants AS p ON u.uid = p.userId 
 JOIN session_table AS s ON p.sessionId = s.id 
 WHERE s.id = ( 
-    SELECT p.sessionId 
-    FROM participants AS p 
-    JOIN session_table AS s ON p.sessionId = s.id 
-    WHERE p.userId = 125 
-    ORDER BY s.session_date
-    ASC LIMIT 1 
+SELECT p.sessionId 
+FROM participants AS p 
+JOIN session_table AS s ON p.sessionId = s.id 
+WHERE p.userId = 3
+ORDER BY s.session_date
+ASC LIMIT 1 
 );
