@@ -4,6 +4,7 @@ import { Box, CircularProgress, Button, TextField, Pagination, Typography } from
 import _ from "lodash";
 import SessionCard from "../../components/sessionCard/sessionCard";
 import SessionModal from "../../components/sessionModal/sessionModal";
+import { useNavigate } from "react-router-dom";
 
 const Study = () => {
     const [filter, setFilter] = useState({ search: "" });
@@ -14,6 +15,7 @@ const Study = () => {
     const [userId, setUserId] = useState(null);
     const [page, setPage] = useState(1);
     const itemsPerPage = 10;
+    const navigate = useNavigate();
 
     useEffect(() => {
         const id = JSON.parse(localStorage.getItem('user') ?? '{}')?.uid;
@@ -106,6 +108,24 @@ const Study = () => {
                 Make Post
             </Button>
             <SessionModal open={open} handleClose={handleClose} />
+            <Box
+                sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    gap: 2,
+                    marginTop: 4,
+                }}
+            >
+                <Button variant="contained" color="primary" onClick={() => navigate("/datapage")}>
+                    Data Page
+                </Button>
+                <Button variant="contained" color="primary" onClick={() => navigate("/email")}>
+                    Email
+                </Button>
+                <Button variant="contained" color="primary" onClick={() => navigate("/courses")}>
+                    Courses
+                </Button>
+            </Box>
         </Box>
     );
 };
