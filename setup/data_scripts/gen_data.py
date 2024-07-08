@@ -399,6 +399,7 @@ def generate_enrollments(num_students, courses):
 
 def read_courses(file_path):
     with open(file_path, 'r') as file:
+        file.readline()
         courses = [line.strip() for line in file.readlines()]
     return courses
 
@@ -497,7 +498,7 @@ if __name__ == "__main__":
             participants = set()
             participants.add(session['creator_fk'])
             for i in range(1, num_participants + 1):
-                p = random.randint(1, num_users + 1)
+                p = random.randint(1, num_users)
                 if p not in participants:
                     participants.add(p)
                     print(f"{sid}, {p}", file = g)

@@ -1,5 +1,6 @@
 import csv
 
+
 def generate_insert_statements(file_path, table_name):
     insert_statements = []
     with open(file_path, 'r', newline='') as file:
@@ -7,8 +8,11 @@ def generate_insert_statements(file_path, table_name):
         headers = next(reader)  # First line contains headers
         for row in reader:
             values = ["{}".format(value) for value in row]
-            if values[0][0].isalpha():
-                values[0] = f"\"{values[0]}\""
+            for i in range(0, len(values)):
+                values[i] = values[i].strip()
+                if values[i].isdigit() == False and values[i][0] != '\"':
+                    values[i] = f"\"{values[i]}\""
+                    
             insert_statement = f"INSERT INTO watstudy.{table_name} ({', '.join(headers)}) VALUES ({', '.join(values)});"
             insert_statements.append(insert_statement)
     return insert_statements
