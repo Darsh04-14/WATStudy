@@ -1,14 +1,5 @@
 SELECT 
     s.subject, 
-    SUM(s.duration) AS total_hours,
-    COUNT(s.id) AS total_sessions,
-    AVG(s.duration) AS avg_duration,
-    MAX(s.session_date) AS last_session_date,
-    COUNT(DISTINCT p.userId) AS total_participants,
-    u.name AS creator_name,
-    us.session_date AS upcoming_session_date,
-    us.title AS upcoming_session_title,
-    us.location AS upcoming_session_location
 FROM 
     session_table s
 JOIN 
