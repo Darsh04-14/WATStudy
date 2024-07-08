@@ -260,7 +260,31 @@ ORDER BY SUM(s.duration) DESC;
 
 // GET Endpoint - studysession all details
 app.get("/studysession", (req, res) => {
-    const query = "SELECT * FROM session_table";
+    const searchFilter = req.query.filter;
+    let query = "SELECT * FROM session_table";
+    if (searchFilter) {
+        const params = JSON.parse(searchFilter);
+        const { subject, group_size, duration, search } = params;
+        let filterQuery = "";
+
+        if (subject)
+            filterQuery = filterQuery.concat(` subject = "${subject}" AND`);
+
+        if (group_size)
+            filterQuery = filterQuery.concat(` group_size >= ${group_size[0]} AND group_size <= ${group_size[1]} AND`);
+
+        if (duration)
+            filterQuery = filterQuery.concat(` duration >= ${duration[0]} AND duration <= ${duration[1]} AND`);
+
+        if (search && search !== '') {
+            filterQuery = filterQuery.concat(` (title LIKE "$%{search}%" OR description LIKE "%${search}%" OR location LIKE "%${search}%") AND`);
+        }
+
+        if (filterQuery !== "") {
+            query = query + " WHERE" + filterQuery.substring(0, filterQuery.length - 3);
+        }
+    }
+
     db.query(query, (err, result) => {
         if (err) {
             console.log("Error");

@@ -42,7 +42,8 @@ CREATE TABLE friends (
     uid2 INT,
     PRIMARY KEY (uid1, uid2),
     CONSTRAINT fk_friend1 FOREIGN KEY (uid1) REFERENCES user_table(uid) ON DELETE CASCADE,
-    CONSTRAINT fk_friend2 FOREIGN KEY (uid2) REFERENCES user_table(uid) ON DELETE CASCADE
+    CONSTRAINT fk_friend2 FOREIGN KEY (uid2) REFERENCES user_table(uid) ON DELETE CASCADE,
+    CONSTRAINT noSelfFriend CHECK (uid1 != uid2);
 );
 
 
