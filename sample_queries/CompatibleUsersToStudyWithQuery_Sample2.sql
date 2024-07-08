@@ -1,28 +1,3 @@
-select * from courses;
-select * from user_table;
-select * from session_review;
-select * from session_table;
-select * from participants;
-select * from friends;
-
-
-
-INSERT INTO session_review (sessionId, userId, review) VALUES (43, 13, 10);
-INSERT INTO session_review (sessionId, userId, review) VALUES (43, 32, 9);
-INSERT INTO session_review (sessionId, userId, review) VALUES (43, 41, 8);
-INSERT INTO session_review (sessionId, userId, review) VALUES (43, 51, 7);
-INSERT INTO session_review (sessionId, userId, review) VALUES (43, 113, 6);
-
-
-INSERT INTO participants (sessionId, userId) VALUES (43, 23);
-INSERT INTO participants (sessionId, userId) VALUES (43, 32);
-INSERT INTO participants (sessionId, userId) VALUES (43, 41);
-INSERT INTO participants (sessionId, userId) VALUES (43, 7);
-INSERT INTO participants (sessionId, userId) VALUES (43, 113);
-
-
-
-
 WITH usersessions AS ( 
 SELECT sessionid 
 FROM participants 
