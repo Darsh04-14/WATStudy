@@ -9,3 +9,4 @@ title LIKE '%%'
 OR description LIKE '%improve%' 
 OR location LIKE '%STC%'
 );
+

@@ -1,10 +1,10 @@
 SELECT * FROM session_table 
-WHERE group_size >= 10
-AND group_size <= 20
+WHERE subject = 'CS106'
+AND group_size >= 1
+AND group_size <= 30
 AND duration >= 0
-AND duration <= 50
+AND duration <= 180
 AND (
-title LIKE '%%' 
-OR description LIKE '%%' 
-OR location LIKE '%%'
-);
+title LIKE '%%' OR 
+description LIKE '%improve%' OR 
+location LIKE '%STC%');
