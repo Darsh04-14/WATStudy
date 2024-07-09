@@ -1,0 +1,5 @@
+sessionId, subject, title, description, session_date, duration, group_size, location, friends_participating_names
+'14038','SDS499B','Virtual Reality','An in-depth session to understand and analyze important topics.','2024-08-01 10:30:00','30','6','E64436',''
+'26679','PSCI433','Homework Help Session','An experiment discussion session to analyze and understand experiments.','2024-07-30 19:35:00','45','6','E21805',''
+'44132','BLKST308','Case Study Review','A hypothesis testing session to learn and apply testing methods.','2024-07-31 19:35:00','15','9','OPT1577',''
+'46065','PACS302','Problem-Solving Session','An interactive workshop with practical examples and exercises.','2024-07-30 10:45:00','60','3','PAS3714',''
