@@ -4,6 +4,10 @@ import { useCourses } from "../../hooks/coursesHooks";
 import axios from "axios";
 import './couses.css'; // Import the CSS file for styling
 
+const axiosInstance = axios.create({
+    withCredentials: true // Ensure credentials are sent with every request
+});
+
 const Courses = () => {
     const [userId, setUserId] = useState(null);
 
@@ -21,7 +25,7 @@ const Courses = () => {
     const handleJoinCourse = async (subject) => {
         try {
             // Fetch sessionId using the course name
-            const response = await axios.get('http://localhost:3800/api/sessionId', {
+            const response = await axiosInstance.get('http://localhost:3800/api/sessionId', {
                 params: { subject }
             });
             const sessionId = response.data.id;
