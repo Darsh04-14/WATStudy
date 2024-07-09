@@ -3,7 +3,6 @@ import { TextField, Button, ThemeProvider, Typography, Box, createTheme } from "
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { useLogin } from "../../hooks/authHooks";
-import { useEffect } from "react";
 import getLPTheme from "../landingPage/getLPTheme";
 import { styled } from "@mui/system";
 import AppAppBar from '../landingPage/components/AppAppBar';
@@ -46,15 +45,9 @@ const style = {
     };
   
 const Login = () => {
-    const [mode, setMode] = React.useState('dark');
-    const LPtheme = createTheme(getLPTheme(mode));
+    const LPtheme = createTheme(getLPTheme('dark'));
     
-    const { login, loginStatus } = useLogin();
-
-    useEffect(() => {
-        if (loginStatus)
-            localStorage.setItem("user", JSON.stringify(loginStatus));
-    }, [loginStatus])
+    const { login } = useLogin();
 
     const formik = useFormik({
         initialValues: {
@@ -69,7 +62,7 @@ const Login = () => {
 
     return (
         <ThemeProvider theme={LPtheme}>
-        <AppAppBar mode={mode} />
+        <AppAppBar mode={'dark'} />
             <FullPageContainer>
                 <Box sx={style}>
                     

@@ -1,11 +1,15 @@
 import useSWR from "swr";
 import axios from "axios";
 
+const axiosInstance = axios.create({
+    withCredentials: true // Ensure credentials are sent with every request
+});
+
 export const useStudySessions = (userId, filters = {}) => {
     const { data: studySpots, error: studySpotsError, isLoading: isStudySpotsLoading } = useSWR(
         ['/data', userId, filters],
         async () => {
-            const res = await axios.get(`http://localhost:3800/data`, {
+            const res = await axiosInstance.get(`http://localhost:3800/data`, {
                 params: { userId, filters }
             });
             return res.data;
@@ -15,7 +19,7 @@ export const useStudySessions = (userId, filters = {}) => {
     const { data: topStudySpot, error: topStudySpotError, isLoading: isTopStudySpotLoading } = useSWR(
         ['/topstudyspot', userId, filters],
         async () => {
-            const res = await axios.get(`http://localhost:3800/topstudyspot`, {
+            const res = await axiosInstance.get(`http://localhost:3800/topstudyspot`, {
                 params: { userId, filters }
             });
             return res.data;
@@ -25,7 +29,7 @@ export const useStudySessions = (userId, filters = {}) => {
     const { data: topCourse, error: topCourseError, isLoading: isTopCourseLoading } = useSWR(
         ['/topcourse', userId, filters],
         async () => {
-            const res = await axios.get(`http://localhost:3800/topcourse`, {
+            const res = await axiosInstance.get(`http://localhost:3800/topcourse`, {
                 params: { userId, filters }
             });
             return res.data;
@@ -35,7 +39,7 @@ export const useStudySessions = (userId, filters = {}) => {
     const { data: top5users, error: top5usersError, isLoading: istop5usersLoading } = useSWR(
         ['/top5users', userId, filters],
         async () => {
-            const res = await axios.get(`http://localhost:3800/top5users`, {
+            const res = await axiosInstance.get(`http://localhost:3800/top5users`, {
                 params: { userId, filters }
             });
             return res.data;
