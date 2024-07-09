@@ -35,7 +35,6 @@ const Datapage = () => {
     useEffect(() => {
         if (studySpotsError) {
             console.error('Error:', studySpotsError);
-            alert("Error fetching user data: " + studySpotsError.message);
         } else if (studySpots) {
             console.log('Total Hour Details:', studySpots);
         }
@@ -44,7 +43,6 @@ const Datapage = () => {
     useEffect(() => {
         if (topStudySpotError) {
             console.error('Error:', topStudySpotError);
-            alert("Error fetching top study spot: " + topStudySpotError.message);
         } else if (topStudySpot) {
             console.log('Top Study Spot:', topStudySpot);
         }
@@ -53,7 +51,6 @@ const Datapage = () => {
     useEffect(() => {
         if (topCourseError) {
             console.error('Error:', topCourseError);
-            alert("Error fetching top course: " + topCourseError.message);
         } else if (topCourse) {
             console.log('Top Course Details:', topCourse);
         }

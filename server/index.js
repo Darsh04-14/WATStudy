@@ -7,10 +7,17 @@ require("dotenv").config();
 var db = require("./db");
 var mailer = require("./sendmail");
 
+const corsOptions = {
+    origin: "http://localhost:3000",
+    credentials: true,
+    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
+
 var app = express();
+const jwt = require("jsonwebtoken");
 
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOptions));
 
 //Verification Endpoints
 app.post("/signup", async (req, res) => {
@@ -110,23 +117,41 @@ app.post("/verify", async (req, res) => {
     }
 });
 
+const authenticateToken = (req, res, next) => {
+    const authHeader = req.headers["cookie"];
+    const auth = authHeader?.split(" ")[0];
+    const token = auth?.substring(6, auth.length - 1);
+    if (!token) return res.sendStatus(401);
+    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+        if (err) return res.sendStatus(401);
+        console.log("Authtenticated");
+        next();
+    });
+};
+
 app.post("/login", async (req, res) => {
     const { email, password } = req.body;
-    const hash = crypto.createHash("sha256").update(password).digest("base64");
+    const hash = crypto.createHash("sha256").update(password).digest("hex");
     const query = "SELECT * FROM user_table WHERE email = ? AND password = ?";
     const userRecord = await db.getOne(query, [email, hash]);
     console.log("found user", userRecord);
     if (userRecord != null) {
-        res.send(
-            JSON.stringify({ name: userRecord.name, uid: userRecord.uid })
-        );
+        const user = {
+            name: userRecord.name,
+            uid: userRecord.uid,
+            email: userRecord.email,
+        };
+        const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {
+            expiresIn: 1800,
+        });
+        res.send(accessToken);
     } else {
         res.status(404).send("Invalid credentials");
     }
 });
 
 // POST Endpoint - for creating events
-app.post("/studysession", (req, res) => {
+app.post("/studysession", authenticateToken, (req, res) => {
     const {
         subject,
         title,
@@ -204,9 +229,6 @@ GROUP BY
     s.subject, u.name, us.session_date, us.title, us.location
 ORDER BY 
     total_hours DESC;
-
-
-
     `;
 
     db.query(query, [userId], (err, result) => {
@@ -223,7 +245,7 @@ ORDER BY
 // GET Endpoint - fetch all courses a user has studied
 // GET Endpoint - fetch all courses a user has studied
 // Add this endpoint to your server code
-app.get("/suggestions", (req, res) => {
+app.get("/suggestions", authenticateToken, (req, res) => {
     const userId = req.query.userId;
 
     if (!userId) {
@@ -257,7 +279,7 @@ ORDER BY SUM(s.duration) DESC;
 });
 
 // Endpoint to get session ID by course name
-app.get("/api/sessionId", (req, res) => {
+app.get("/api/sessionId", authenticateToken, (req, res) => {
     const { subject } = req.query;
 
     if (!subject) {
@@ -284,14 +306,14 @@ app.get("/api/sessionId", (req, res) => {
 });
 
 // Endpoint to join a course
-app.post("/api/participants", (req, res) => {
+app.post("/api/participants", authenticateToken, (req, res) => {
     const { sessionId, userId } = req.body;
 
     if (!sessionId || !userId) {
         return res.status(400).send("Session ID and User ID are required");
     }
 
-    console.log('Printing..........');
+    console.log("Printing..........");
     console.log(`User ID: ${userId}, Session ID: ${sessionId}`);
 
     const query = "INSERT INTO participants (sessionId, userId) VALUES (?, ?)";
@@ -306,9 +328,8 @@ app.post("/api/participants", (req, res) => {
     });
 });
 
-
 // GET Endpoint - studysession all details
-app.get("/studysession", (req, res) => {
+app.get("/studysession", authenticateToken, (req, res) => {
     const searchFilter = req.query.filter;
     let query = "SELECT * FROM session_table";
     if (searchFilter) {
@@ -320,17 +341,26 @@ app.get("/studysession", (req, res) => {
             filterQuery = filterQuery.concat(` subject = "${subject}" AND`);
 
         if (group_size)
-            filterQuery = filterQuery.concat(` group_size >= ${group_size[0]} AND group_size <= ${group_size[1]} AND`);
+            filterQuery = filterQuery.concat(
+                ` group_size >= ${group_size[0]} AND group_size <= ${group_size[1]} AND`
+            );
 
         if (duration)
-            filterQuery = filterQuery.concat(` duration >= ${duration[0]} AND duration <= ${duration[1]} AND`);
+            filterQuery = filterQuery.concat(
+                ` duration >= ${duration[0]} AND duration <= ${duration[1]} AND`
+            );
 
-        if (search && search !== '') {
-            filterQuery = filterQuery.concat(` (subject LIKE "%${search}%" OR title LIKE "%${search}%" OR description LIKE "%${search}%" OR location LIKE "%${search}%") AND`);
+        if (search && search !== "") {
+            filterQuery = filterQuery.concat(
+                ` (subject LIKE "%${search}%" OR title LIKE "%${search}%" OR description LIKE "%${search}%" OR location LIKE "%${search}%") AND`
+            );
         }
 
         if (filterQuery !== "") {
-            query = query + " WHERE" + filterQuery.substring(0, filterQuery.length - 3);
+            query =
+                query +
+                " WHERE" +
+                filterQuery.substring(0, filterQuery.length - 3);
         }
     }
 
@@ -397,7 +427,7 @@ app.get("/email", (req, res) => {
 });
 
 // PUT Endpoint - for updating events
-app.put("/studysession", (req, res) => {
+app.put("/studysession", authenticateToken, (req, res) => {
     const {
         id,
         subject,
@@ -452,7 +482,7 @@ app.put("/studysession", (req, res) => {
 });
 
 // DELETE Endpoint - to remove posts
-app.delete("/studysession", (req, res) => {
+app.delete("/studysession", authenticateToken, (req, res) => {
     const { id } = req.body;
 
     const query = `
@@ -472,7 +502,7 @@ app.delete("/studysession", (req, res) => {
 ///////////////////////// GET Endpoint - Data Page
 
 // Query for total hours studied by user
-app.get("/data", (req, res) => {
+app.get("/data", authenticateToken, (req, res) => {
     const userId = req.query.userId;
     if (!userId) {
         return res.status(400).send("User query parameter is required");
@@ -493,10 +523,8 @@ app.get("/data", (req, res) => {
     });
 });
 
-
-
 //Query for top study spot and total hours spent at study spot
-app.get("/topstudyspot", (req, res) => {
+app.get("/topstudyspot", authenticateToken, (req, res) => {
     const userId = req.query.userId;
 
     if (!userId) {
@@ -522,7 +550,7 @@ app.get("/topstudyspot", (req, res) => {
 });
 
 //Query for top course and total hours on a top course
-app.get("/topcourse", (req, res) => {
+app.get("/topcourse", authenticateToken, (req, res) => {
     const userId = req.query.userId;
 
     if (!userId) {
@@ -560,7 +588,7 @@ LIMIT 1;
     });
 });
 // Query to return the top 5 users with the highest study preformance a user has had with
-app.get("/top5users", (req, res) => {
+app.get("/top5users", authenticateToken, (req, res) => {
     const userId = req.query.userId;
 
     if (!userId) {
@@ -617,6 +645,51 @@ app.get("/top5users", (req, res) => {
     });
 });
 ///////////////////////////// END for GET Endpoint Datapage
+
+app.get("/upcomingsessions", authenticateToken, (req, res) => {
+    const { userId } = req.query;
+    const date = format(new Date(), "yyyy-MM-dd HH:mm:ss");
+    const query = `
+    WITH UpcomingSessions AS (
+	    SELECT 
+	    	s.id AS sessionId,
+	    	s.subject,
+	    	s.title,
+	    	s.description,
+	    	s.session_date,
+	    	s.duration,
+	    	s.group_size,
+	    	s.location
+	    FROM watstudy.session_table s
+	    JOIN watstudy.participants p ON s.id = p.sessionId
+	    WHERE p.userId = ?
+	    AND s.session_date BETWEEN ? AND DATE_ADD(?, INTERVAL 1 WEEK)
+    ), SessionFriends AS (
+        SELECT p.*, u.name
+   	    FROM watstudy.participants p
+    	JOIN watstudy.user_table u ON u.uid = p.userId
+    	WHERE sessionId IN
+        (SELECT UpcomingSessions.sessionId FROM UpcomingSessions) 
+    		AND userId IN (
+	            SELECT uid2
+			    FROM watstudy.friends
+	    WHERE uid1 = ?)
+    ) 
+    SELECT s.*,
+    IFNULL(GROUP_CONCAT(f.name), '') AS friends_participating_names
+    FROM UpcomingSessions s
+    LEFT JOIN SessionFriends f ON s.sessionId = f.sessionId
+    GROUP BY s.sessionId;
+    `;
+    db.query(query, [userId, date, date, userId], (err, result) => {
+        if (err) {
+            console.error("Error:", err);
+            return res.status(500).send("Server error");
+        }
+        res.send(result);
+    });
+
+});
 
 /////////////////////////////
 app.listen(3800, (err) => {

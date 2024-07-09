@@ -1,11 +1,15 @@
 import useSWR from "swr";
 import axios from "axios";
 
+const axiosInstance = axios.create({
+    withCredentials: true // Ensure credentials are sent with every request
+});
+
 export const useStudySessions = (filter = {}) => {
     const { data: studySpots, error: studySpotsError, isLoading: isStudySpotsLoading } = useSWR(
         `/studysession?filter=${encodeURI(JSON.stringify(filter))}`,
         async () => {
-            const res = await axios.get(
+            const res = await axiosInstance.get(
                 `http://localhost:3800/studysession?filter=${encodeURI(JSON.stringify(filter))}`
             );
             return res.data;
@@ -22,7 +26,7 @@ export const useStudySessions = (filter = {}) => {
 export const useCreateSession = () => {
     const createSession = async (data) => {
         try {
-            const response = await axios.post('http://localhost:3800/studysession', data);
+            const response = await axiosInstance.post('http://localhost:3800/studysession', data);
             return response.data;
         } catch (error) {
             console.error("Error creating session:", error);
@@ -36,7 +40,7 @@ export const useCreateSession = () => {
 export const useDeleteSession = () => {
     const deleteSession = async (id) => {
         try {
-            await axios.delete(`http://localhost:3800/studysession`, {
+            await axiosInstance.delete(`http://localhost:3800/studysession`, {
                 data: { id }
             });
         } catch (error) {
@@ -52,7 +56,7 @@ export const useJoinSession = () => {
     const joinSession = async (sessionId, userId) => {
         try {
             console.log(`Joining session with User ID: ${userId}, Session ID: ${sessionId}`);
-            const response = await axios.post('http://localhost:3800/api/participants', {
+            const response = await axiosInstance.post('http://localhost:3800/api/participants', {
                 sessionId,
                 userId
             });
