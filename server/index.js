@@ -646,6 +646,51 @@ app.get("/top5users", authenticateToken, (req, res) => {
 });
 ///////////////////////////// END for GET Endpoint Datapage
 
+app.get("/upcomingsessions", authenticateToken, (req, res) => {
+    const { userId } = req.query;
+    const date = format(new Date(), "yyyy-MM-dd HH:mm:ss");
+    const query = `
+    WITH UpcomingSessions AS (
+	    SELECT 
+	    	s.id AS sessionId,
+	    	s.subject,
+	    	s.title,
+	    	s.description,
+	    	s.session_date,
+	    	s.duration,
+	    	s.group_size,
+	    	s.location
+	    FROM watstudy.session_table s
+	    JOIN watstudy.participants p ON s.id = p.sessionId
+	    WHERE p.userId = ?
+	    AND s.session_date BETWEEN ? AND DATE_ADD(?, INTERVAL 1 WEEK)
+    ), SessionFriends AS (
+        SELECT p.*, u.name
+   	    FROM watstudy.participants p
+    	JOIN watstudy.user_table u ON u.uid = p.userId
+    	WHERE sessionId IN
+        (SELECT UpcomingSessions.sessionId FROM UpcomingSessions) 
+    		AND userId IN (
+	            SELECT uid2
+			    FROM watstudy.friends
+	    WHERE uid1 = ?)
+    ) 
+    SELECT s.*,
+    IFNULL(GROUP_CONCAT(f.name), '') AS friends_participating_names
+    FROM UpcomingSessions s
+    LEFT JOIN SessionFriends f ON s.sessionId = f.sessionId
+    GROUP BY s.sessionId;
+    `;
+    db.query(query, [userId, date, date, userId], (err, result) => {
+        if (err) {
+            console.error("Error:", err);
+            return res.status(500).send("Server error");
+        }
+        res.send(result);
+    });
+
+});
+
 /////////////////////////////
 app.listen(3800, (err) => {
     // open port
