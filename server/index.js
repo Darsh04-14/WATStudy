@@ -162,10 +162,178 @@ app.post("/studysession", (req, res) => {
         location,
     ]);
 });
+app.get("/courses", (req, res) => {
+    const userId = req.query.userId;
+
+    if (!userId) {
+        return res.status(400).send("User ID is required");
+    }
+
+    const query = `
+     SELECT 
+    s.subject, 
+    SUM(s.duration) AS total_hours,
+    COUNT(s.id) AS total_sessions,
+    AVG(s.duration) AS avg_duration,
+    MAX(s.session_date) AS last_session_date,
+    COUNT(DISTINCT p.userId) AS total_participants,
+    u.name AS creator_name,
+    us.session_date AS upcoming_session_date,
+    us.title AS upcoming_session_title,
+    us.location AS upcoming_session_location
+FROM 
+    session_table s
+JOIN 
+    user_table u ON s.creator_fk = u.uid
+LEFT JOIN 
+    participants p ON s.id = p.sessionId
+LEFT JOIN (
+    SELECT 
+        subject,
+        session_date,
+        title,
+        location
+    FROM 
+        session_table
+    WHERE 
+        session_date > NOW()
+) us ON s.subject = us.subject
+WHERE 
+    s.creator_fk = ?
+GROUP BY 
+    s.subject, u.name, us.session_date, us.title, us.location
+ORDER BY 
+    total_hours DESC;
+
+
+
+    `;
+
+    db.query(query, [userId], (err, result) => {
+        if (err) {
+            console.error("Error fetching courses:", err);
+            res.status(500).send("Server error");
+        } else {
+            res.json(result);
+        }
+    });
+});
+
+// GET Endpoint - fetch all courses a user has studied
+// GET Endpoint - fetch all courses a user has studied
+// GET Endpoint - fetch all courses a user has studied
+// Add this endpoint to your server code
+app.get("/suggestions", (req, res) => {
+    const userId = req.query.userId;
+
+    if (!userId) {
+        return res.status(400).send("User ID is required");
+    }
+
+    const query = `
+        SELECT s.subject
+FROM session_table s
+JOIN user_table u ON s.creator_fk = u.uid
+LEFT JOIN participants p ON s.id = p.sessionId
+LEFT JOIN (
+SELECT subject, session_date, title, location
+FROM session_table
+WHERE session_date > NOW()
+) us ON s.subject = us.subject
+WHERE s.creator_fk = ?
+GROUP BY s.subject
+ORDER BY SUM(s.duration) DESC;
+
+    `;
+
+    db.query(query, [userId], (err, result) => {
+        if (err) {
+            console.error("Error fetching suggestions:", err);
+            res.status(500).send("Server error");
+        } else {
+            res.json(result);
+        }
+    });
+});
+
+// Endpoint to get session ID by course name
+app.get("/api/sessionId", (req, res) => {
+    const { subject } = req.query;
+
+    if (!subject) {
+        console.log("No subject provided");
+        return res.status(400).send("Course subject is required");
+    }
+
+    console.log(`Received request for subject: ${subject}`);
+
+    const query = "SELECT id FROM session_table WHERE subject = ?";
+
+    db.query(query, [subject], (err, result) => {
+        if (err) {
+            console.error("Error fetching session ID:", err);
+            res.status(500).send("Server error");
+        } else if (result.length === 0) {
+            console.log(`No session found for subject: ${subject}`);
+            res.status(404).send("Session not found");
+        } else {
+            console.log(`Session ID for subject ${subject}: ${result[0].id}`);
+            res.json(result[0]);
+        }
+    });
+});
+
+// Endpoint to join a course
+app.post("/api/participants", (req, res) => {
+    const { sessionId, userId } = req.body;
+
+    if (!sessionId || !userId) {
+        return res.status(400).send("Session ID and User ID are required");
+    }
+
+    console.log('Printing..........');
+    console.log(`User ID: ${userId}, Session ID: ${sessionId}`);
+
+    const query = "INSERT INTO participants (sessionId, userId) VALUES (?, ?)";
+
+    db.query(query, [sessionId, userId], (err, result) => {
+        if (err) {
+            console.error("Error joining course:", err);
+            res.status(500).send("Server error");
+        } else {
+            res.status(201).send("Successfully joined the course");
+        }
+    });
+});
+
 
 // GET Endpoint - studysession all details
 app.get("/studysession", (req, res) => {
-    const query = "SELECT * FROM session_table";
+    const searchFilter = req.query.filter;
+    let query = "SELECT * FROM session_table";
+    if (searchFilter) {
+        const params = JSON.parse(searchFilter);
+        const { subject, group_size, duration, search } = params;
+        let filterQuery = "";
+
+        if (subject)
+            filterQuery = filterQuery.concat(` subject = "${subject}" AND`);
+
+        if (group_size)
+            filterQuery = filterQuery.concat(` group_size >= ${group_size[0]} AND group_size <= ${group_size[1]} AND`);
+
+        if (duration)
+            filterQuery = filterQuery.concat(` duration >= ${duration[0]} AND duration <= ${duration[1]} AND`);
+
+        if (search && search !== '') {
+            filterQuery = filterQuery.concat(` (subject LIKE "%${search}%" OR title LIKE "%${search}%" OR description LIKE "%${search}%" OR location LIKE "%${search}%") AND`);
+        }
+
+        if (filterQuery !== "") {
+            query = query + " WHERE" + filterQuery.substring(0, filterQuery.length - 3);
+        }
+    }
+
     db.query(query, (err, result) => {
         if (err) {
             console.log("Error");
@@ -325,6 +493,8 @@ app.get("/data", (req, res) => {
     });
 });
 
+
+
 //Query for top study spot and total hours spent at study spot
 app.get("/topstudyspot", (req, res) => {
     const userId = req.query.userId;
@@ -360,12 +530,25 @@ app.get("/topcourse", (req, res) => {
     }
 
     const query = `      
-        SELECT subject, sum(duration) as total_hours
-        FROM session_table
-        WHERE creator_fk = ?
-        GROUP BY subject
-        ORDER BY total_hours desc
-        LIMIT 1;
+       SELECT 
+    s.subject, 
+    SUM(s.duration) AS total_hours, 
+    u.name AS creator_name, 
+    COUNT(p.userId) AS participant_count
+FROM 
+    session_table s
+JOIN 
+    user_table u ON s.creator_fk = u.uid
+LEFT JOIN 
+    participants p ON s.id = p.sessionId
+WHERE 
+    s.creator_fk = ?
+GROUP BY 
+    s.subject, u.name
+ORDER BY 
+    total_hours DESC
+LIMIT 1;
+
     `;
 
     db.query(query, [userId], (err, result) => {

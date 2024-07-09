@@ -1,0 +1,501 @@
+subject,title,description,session_date,duration,group_size,creator_fk,location
+ARCH260,"Problem Solving Session","This session will help you stay on top of the course content.","2024-05-07 10:10:00",90,1,9,QNC1179
+PSCI250,"Problem Solving Session","Join us for a comprehensive review of the course material.","2024-07-12 07:15:00",90,10,27,AL1888
+MATH215,"Course Overview","Get help with your homework and assignments in this session.","2024-06-15 18:55:00",60,9,21,SLC3657
+OPTOM248,"Lab Review","This session will cover key concepts and prepare you for the upcoming exams.","2024-05-30 08:25:00",45,3,24,HH3667
+GBDA304,"Lab Review","Join your peers for a group study session.","2024-06-06 23:10:00",30,4,172,HH3865
+THPERF300,"Lecture Recap","This study session will help reinforce your understanding of the lectures.","2024-06-12 00:20:00",15,4,101,E32233
+AE224,"Final Exam Study Session","Get help with your homework and assignments in this session.","2024-06-04 07:55:00",90,5,49,EIT3104
+COMMST225,"Exam Preparation","Join your peers for a group study session.","2024-07-14 01:45:00",30,9,8,EV22291
+NE380L,"Review Session","This study session will help reinforce your understanding of the lectures.","2024-06-07 05:10:00",60,5,143,STC4462
+MATH239,"Exam Preparation","This session will help you stay on top of the course content.","2024-07-25 00:45:00",15,9,8,EV33352
+RS361,"Problem Solving Session","Prepare for the midterm/final with this detailed review session.","2024-06-13 02:25:00",15,10,164,RCH4290
+EASIA203R,"Group Study","We'll work through lab exercises and discuss key points.","2024-07-25 00:55:00",45,2,126,MC3201
+LAT491,"Lecture Recap","This session will help you stay on top of the course content.","2024-06-14 13:50:00",30,1,126,STC1435
+EARTH440,"Problem Solving Session","Improve your problem-solving skills with this focused session.","2024-07-20 01:15:00",60,5,141,OPT2235
+AVIA417,"Homework Help","Improve your problem-solving skills with this focused session.","2024-05-06 13:05:00",30,4,169,EIT4019
+BUS398W,"Review Session","Prepare for the midterm/final with this detailed review session.","2024-06-26 03:15:00",120,6,89,E21827
+ENVS274,"Midterm Review","Join us for a comprehensive review of the course material.","2024-08-08 21:15:00",30,3,54,E61760
+HIST348,"Homework Help","This session will cover key concepts and prepare you for the upcoming exams.","2024-07-22 13:45:00",60,9,122,E12741
+SCI238,"Lecture Recap","This session will help you stay on top of the course content.","2024-06-07 14:35:00",120,2,167,PAS3970
+JS209,"Final Exam Study Session","This session will help you stay on top of the course content.","2024-06-21 11:05:00",30,5,79,QNC3058
+PSYCH462,"Final Exam Study Session","We'll go over important topics and answer any questions you may have.","2024-05-03 15:50:00",60,6,50,E61273
+CHE211,"Review Session","Prepare for the midterm/final with this detailed review session.","2024-05-19 05:05:00",90,4,130,E62001
+BIOL331,"Review Session","Improve your problem-solving skills with this focused session.","2024-06-16 08:40:00",30,7,199,ML2055
+PHARM467,"Lecture Recap","Join your peers for a group study session.","2024-06-13 13:40:00",120,6,138,PAS1466
+EASIA277R,"Final Exam Study Session","Improve your problem-solving skills with this focused session.","2024-07-03 05:45:00",120,8,174,SLC2326
+MATH218,"Problem Solving Session","We'll work through lab exercises and discuss key points.","2024-06-23 07:45:00",90,9,58,E63020
+BUS462W,"Group Study","Join your peers for a group study session.","2024-05-24 23:20:00",30,7,161,STC1768
+NE453,"Problem Solving Session","We'll work through lab exercises and discuss key points.","2024-05-18 13:00:00",30,9,98,ML3642
+KIN427,"Final Exam Study Session","We'll work through lab exercises and discuss key points.","2024-06-15 20:45:00",15,5,140,SLC2793
+RS358,"Lab Review","This study session will help reinforce your understanding of the lectures.","2024-06-24 11:55:00",45,1,169,DC1511
+KIN433,"Course Overview","Join your peers for a group study session.","2024-07-19 04:30:00",120,3,140,DC3586
+CO485,"Lecture Recap","Join us for a comprehensive review of the course material.","2024-08-11 16:10:00",30,3,184,AL1543
+AMATH251,"Homework Help","This study session will help reinforce your understanding of the lectures.","2024-07-16 03:15:00",120,2,80,SLC1743
+ARTS290,"Exam Preparation","We'll work through lab exercises and discuss key points.","2024-07-09 05:15:00",120,1,86,BMH3525
+GEOG405,"Midterm Review","Join your peers for a group study session.","2024-07-25 07:35:00",90,9,89,EV34312
+BIOL273,"Problem Solving Session","Improve your problem-solving skills with this focused session.","2024-08-05 18:40:00",60,8,140,E61105
+GER262,"Final Exam Study Session","This session will help you stay on top of the course content.","2024-07-11 22:15:00",45,6,140,EV31614
+BLKST230,"Group Study","Get help with your homework and assignments in this session.","2024-05-16 22:45:00",15,6,85,E52023
+PSCI277,"Review Session","This study session will help reinforce your understanding of the lectures.","2024-08-15 11:35:00",15,8,133,STC3866
+CS106,"Lecture Recap","Improve your problem-solving skills with this focused session.","2024-07-30 10:35:00",120,5,200,STC1554
+ME201,"Midterm Review","Get help with your homework and assignments in this session.","2024-05-30 10:30:00",45,9,93,DC3717
+FR484,"Final Exam Study Session","Get help with your homework and assignments in this session.","2024-07-11 06:00:00",120,3,21,E34192
+PHIL227,"Lecture Recap","This session will cover key concepts and prepare you for the upcoming exams.","2024-07-03 17:15:00",120,7,83,E62309
+MTE203,"Homework Help","We'll go over important topics and answer any questions you may have.","2024-06-12 05:55:00",45,5,12,E51075
+BME285L,"Lecture Recap","Improve your problem-solving skills with this focused session.","2024-07-22 10:10:00",120,5,52,CPH1336
+HLTH290,"Course Overview","This session will help you stay on top of the course content.","2024-05-16 13:40:00",30,7,55,E53585
+PHARM364,"Group Study","We'll go over important topics and answer any questions you may have.","2024-06-17 09:45:00",60,9,192,PAS1362
+GER330,"Exam Preparation","Prepare for the midterm/final with this detailed review session.","2024-07-26 21:05:00",30,2,167,BMH1601
+SMF350,"Final Exam Study Session","This session will help you stay on top of the course content.","2024-06-02 22:10:00",60,7,163,SLC2769
+AFM415,"Homework Help","This session will cover key concepts and prepare you for the upcoming exams.","2024-05-22 04:25:00",15,8,193,E34129
+ANTH395,"Review Session","This session will cover key concepts and prepare you for the upcoming exams.","2024-06-30 06:35:00",90,1,165,QNC3044
+ECE474,"Exam Preparation","Join your peers for a group study session.","2024-06-01 13:20:00",120,3,79,MC3178
+PHIL286J,"Review Session","Join your peers for a group study session.","2024-08-03 04:55:00",15,7,42,EIT3629
+BUS452W,"Course Overview","Join us for a comprehensive review of the course material.","2024-05-11 00:40:00",30,9,5,PAS2660
+CDNST101,"Lab Review","We'll go over important topics and answer any questions you may have.","2024-08-03 04:20:00",30,6,4,BMH2459
+ERS375,"Course Overview","This session will help you stay on top of the course content.","2024-06-17 15:00:00",45,6,65,ML1346
+PHARM391,"Lab Review","This session will cover key concepts and prepare you for the upcoming exams.","2024-06-18 08:10:00",60,6,129,AL3781
+BIOL444,"Lecture Recap","Join us for a comprehensive review of the course material.","2024-05-04 08:20:00",45,7,124,ML3624
+GENE399,"Review Session","Join us for a comprehensive review of the course material.","2024-06-15 21:35:00",90,5,98,E62893
+SFM411,"Course Overview","Join your peers for a group study session.","2024-07-01 21:50:00",120,10,190,MC2798
+CHEM264,"Lecture Recap","Improve your problem-solving skills with this focused session.","2024-07-26 23:35:00",60,10,122,E13576
+BUS472W,"Problem Solving Session","This study session will help reinforce your understanding of the lectures.","2024-06-25 15:55:00",30,10,20,E64058
+ENVS410,"Homework Help","We'll go over important topics and answer any questions you may have.","2024-06-29 19:20:00",30,8,171,E54113
+FR363,"Group Study","This session will help you stay on top of the course content.","2024-07-11 20:00:00",120,6,169,ML4189
+ARTS111,"Exam Preparation","Improve your problem-solving skills with this focused session.","2024-05-15 10:30:00",45,10,187,DC3672
+FINE112,"Homework Help","This study session will help reinforce your understanding of the lectures.","2024-07-05 17:10:00",15,3,84,E21879
+FINE212,"Lecture Recap","Join us for a comprehensive review of the course material.","2024-06-04 13:20:00",120,1,140,E11997
+SPAN344,"Course Overview","Get help with your homework and assignments in this session.","2024-05-08 07:00:00",90,8,146,ML1057
+PHARM374,"Review Session","This session will help you stay on top of the course content.","2024-07-19 11:55:00",60,5,176,STC2357
+ENGL230,"Lab Review","This study session will help reinforce your understanding of the lectures.","2024-07-17 21:45:00",15,3,93,E22389
+SOC346,"Course Overview","We'll go over important topics and answer any questions you may have.","2024-06-06 02:25:00",30,3,84,STC1920
+LS386,"Lab Review","This session will cover key concepts and prepare you for the upcoming exams.","2024-05-05 18:45:00",60,3,26,EIT1990
+GENE403,"Exam Preparation","Join your peers for a group study session.","2024-07-19 14:25:00",30,3,68,E52060
+PSCI260,"Exam Preparation","Join your peers for a group study session.","2024-07-25 15:10:00",60,9,191,QNC3440
+CHEM233,"Midterm Review","This session will help you stay on top of the course content.","2024-06-14 15:10:00",90,7,58,HH2670
+BME582,"Problem Solving Session","Improve your problem-solving skills with this focused session.","2024-05-14 09:30:00",90,5,130,DC2487
+AMATH353,"Midterm Review","Prepare for the midterm/final with this detailed review session.","2024-05-17 06:40:00",60,1,17,E11725
+DAC202,"Group Study","Join us for a comprehensive review of the course material.","2024-07-27 04:25:00",15,10,62,OPT1784
+ECE302,"Lab Review","This study session will help reinforce your understanding of the lectures.","2024-07-29 08:05:00",120,8,23,HH4374
+ARCH293,"Homework Help","This session will cover key concepts and prepare you for the upcoming exams.","2024-07-16 03:30:00",15,1,42,E21177
+BLKST302,"Problem Solving Session","We'll go over important topics and answer any questions you may have.","2024-08-15 12:15:00",45,5,105,E62694
+GEOG476,"Homework Help","We'll work through lab exercises and discuss key points.","2024-06-26 22:40:00",120,2,169,RCH2445
+ARBUS101,"Lecture Recap","This session will cover key concepts and prepare you for the upcoming exams.","2024-06-13 01:10:00",60,9,81,E74289
+PSCI254,"Lab Review","Join your peers for a group study session.","2024-07-14 15:50:00",60,10,190,AL1698
+HIST113,"Midterm Review","This session will help you stay on top of the course content.","2024-06-06 14:35:00",45,8,157,EIT3489
+SYDE461,"Problem Solving Session","Join us for a comprehensive review of the course material.","2024-07-10 00:45:00",120,10,21,SLC3363
+REES272,"Group Study","This session will help you stay on top of the course content.","2024-05-25 05:55:00",30,10,131,AL3436
+PSCI362,"Problem Solving Session","Improve your problem-solving skills with this focused session.","2024-08-08 09:35:00",60,2,63,HH2649
+CI100,"Lecture Recap","Prepare for the midterm/final with this detailed review session.","2024-08-03 21:25:00",45,8,107,QNC1410
+ARTS490,"Exam Preparation","Join us for a comprehensive review of the course material.","2024-05-29 08:45:00",30,5,191,DC2769
+INTEG275,"Midterm Review","This session will cover key concepts and prepare you for the upcoming exams.","2024-05-13 04:45:00",120,4,108,DC3741
+MUSIC140,"Problem Solving Session","Improve your problem-solving skills with this focused session.","2024-07-20 07:25:00",90,8,173,AL4294
+ARCH142,"Midterm Review","Join us for a comprehensive review of the course material.","2024-08-08 12:50:00",15,7,158,EV12115
+AMATH442,"Group Study","This session will help you stay on top of the course content.","2024-07-24 22:50:00",30,10,158,AL1063
+INDG305,"Midterm Review","Join us for a comprehensive review of the course material.","2024-08-02 13:30:00",120,7,21,SLC3773
+HHUM263,"Exam Preparation","We'll go over important topics and answer any questions you may have.","2024-07-26 21:40:00",90,10,161,PAS1556
+GEOG371,"Homework Help","This study session will help reinforce your understanding of the lectures.","2024-07-02 00:20:00",60,4,22,EV12295
+AFM443,"Midterm Review","This session will help you stay on top of the course content.","2024-05-28 02:15:00",60,10,5,EV14174
+HIST224,"Course Overview","This session will help you stay on top of the course content.","2024-05-22 22:55:00",60,3,166,CPH3395
+INDG390,"Group Study","Prepare for the midterm/final with this detailed review session.","2024-08-01 05:30:00",30,2,101,STC1965
+SOC320,"Final Exam Study Session","Get help with your homework and assignments in this session.","2024-05-27 09:25:00",45,7,139,ML2387
+PSYCH487,"Review Session","We'll work through lab exercises and discuss key points.","2024-07-11 03:25:00",120,8,70,AL2322
+MATH115,"Lab Review","This session will cover key concepts and prepare you for the upcoming exams.","2024-08-16 12:20:00",90,5,94,EIT1879
+SOC229,"Lecture Recap","Get help with your homework and assignments in this session.","2024-07-14 15:30:00",120,7,120,RCH1243
+GEOE123,"Midterm Review","Get help with your homework and assignments in this session.","2024-07-21 06:10:00",120,10,183,EIT2147
+CLAS241,"Review Session","Get help with your homework and assignments in this session.","2024-05-05 15:45:00",90,7,75,PAS3043
+BME384,"Midterm Review","Join your peers for a group study session.","2024-08-04 18:55:00",120,6,150,BMH3208
+SYDE462,"Group Study","Prepare for the midterm/final with this detailed review session.","2024-05-18 09:50:00",60,4,144,QNC1020
+MTE100B,"Lab Review","Get help with your homework and assignments in this session.","2024-06-28 01:20:00",45,6,170,OPT2371
+ACTSC453,"Review Session","This session will help you stay on top of the course content.","2024-05-03 11:05:00",45,9,9,HH3473
+ME547,"Lecture Recap","Improve your problem-solving skills with this focused session.","2024-06-07 23:25:00",45,10,158,OPT4205
+MUSIC317,"Exam Preparation","Join your peers for a group study session.","2024-05-05 12:35:00",60,8,97,E12191
+RS325,"Problem Solving Session","Join us for a comprehensive review of the course material.","2024-06-19 23:35:00",15,10,182,PAS2801
+MTE182,"Final Exam Study Session","This session will cover key concepts and prepare you for the upcoming exams.","2024-07-14 04:25:00",120,7,98,AL1207
+PSYCH291,"Homework Help","This session will cover key concepts and prepare you for the upcoming exams.","2024-07-31 08:50:00",90,10,111,E64445
+CS497,"Lecture Recap","We'll go over important topics and answer any questions you may have.","2024-05-22 21:35:00",90,8,2,OPT2012
+LAT201,"Lecture Recap","Join your peers for a group study session.","2024-07-31 08:40:00",15,9,16,AL2306
+PHIL284,"Homework Help","Get help with your homework and assignments in this session.","2024-07-26 23:20:00",45,9,144,PAS4194
+PACS311,"Lab Review","Prepare for the midterm/final with this detailed review session.","2024-05-14 05:30:00",120,7,88,SLC1849
+PLAN401,"Group Study","This session will cover key concepts and prepare you for the upcoming exams.","2024-07-21 19:20:00",30,7,173,DC3436
+BME101L,"Final Exam Study Session","This session will cover key concepts and prepare you for the upcoming exams.","2024-07-15 01:05:00",60,4,112,EV32293
+PSCI302,"Final Exam Study Session","Get help with your homework and assignments in this session.","2024-08-13 16:40:00",45,4,102,CPH3389
+PMATH330,"Exam Preparation","We'll go over important topics and answer any questions you may have.","2024-07-06 13:50:00",90,6,87,E54323
+KOREA302R,"Homework Help","Join us for a comprehensive review of the course material.","2024-07-12 19:00:00",90,10,95,RCH3563
+GER298,"Review Session","Get help with your homework and assignments in this session.","2024-06-04 05:55:00",120,2,179,E71900
+SDS260R,"Course Overview","Improve your problem-solving skills with this focused session.","2024-08-11 01:30:00",30,2,122,EV32563
+PHARM465,"Course Overview","Prepare for the midterm/final with this detailed review session.","2024-05-16 00:10:00",120,5,33,OPT3103
+OPTOM109,"Review Session","This session will cover key concepts and prepare you for the upcoming exams.","2024-05-07 11:55:00",45,9,165,HH4410
+HIST303,"Review Session","This session will help you stay on top of the course content.","2024-08-16 21:55:00",15,6,165,E53164
+ARCH364,"Review Session","We'll go over important topics and answer any questions you may have.","2024-07-02 14:10:00",45,5,87,ML4262
+BIOL110,"Homework Help","Prepare for the midterm/final with this detailed review session.","2024-07-20 05:25:00",60,6,54,AL1869
+MATH135,"Homework Help","Join us for a comprehensive review of the course material.","2024-07-29 03:50:00",30,10,110,MC3302
+GER331,"Course Overview","This session will help you stay on top of the course content.","2024-08-14 21:10:00",120,2,172,RCH4136
+COMMST499A,"Review Session","This study session will help reinforce your understanding of the lectures.","2024-08-14 23:05:00",15,3,139,EV12539
+SYDE544,"Exam Preparation","This session will cover key concepts and prepare you for the upcoming exams.","2024-06-24 17:55:00",120,4,192,EV22420
+PHYS365,"Problem Solving Session","We'll work through lab exercises and discuss key points.","2024-05-09 09:35:00",15,7,158,STC3546
+GER102,"Final Exam Study Session","Join your peers for a group study session.","2024-07-28 00:45:00",120,8,167,SLC1366
+RS235,"Review Session","Join your peers for a group study session.","2024-05-20 09:30:00",30,6,31,E32665
+RS121,"Lecture Recap","Join your peers for a group study session.","2024-05-18 13:20:00",15,10,42,EV14205
+AMATH383,"Group Study","Get help with your homework and assignments in this session.","2024-06-05 09:25:00",60,7,125,EV11058
+ENVE224,"Review Session","This session will help you stay on top of the course content.","2024-05-11 07:40:00",45,5,11,EV32102
+ARBUS101,"Review Session","Join your peers for a group study session.","2024-07-20 19:40:00",90,7,39,EIT3833
+NE455B,"Homework Help","This study session will help reinforce your understanding of the lectures.","2024-07-18 19:55:00",30,4,115,SLC3445
+ME269,"Midterm Review","Prepare for the midterm/final with this detailed review session.","2024-05-23 16:25:00",60,5,34,E73688
+MSE253,"Review Session","This session will cover key concepts and prepare you for the upcoming exams.","2024-07-01 16:05:00",60,2,90,AL2677
+COMM101,"Final Exam Study Session","We'll go over important topics and answer any questions you may have.","2024-06-29 05:10:00",120,1,52,E72041
+PHYS342,"Final Exam Study Session","Improve your problem-solving skills with this focused session.","2024-06-01 17:10:00",45,10,3,STC2622
+CHE498,"Homework Help","Improve your problem-solving skills with this focused session.","2024-06-21 11:45:00",15,6,125,DC1209
+SWREN443R,"Review Session","We'll work through lab exercises and discuss key points.","2024-05-12 02:20:00",45,1,147,EV33981
+SWREN424R,"Course Overview","Get help with your homework and assignments in this session.","2024-07-10 02:00:00",15,8,29,RCH1300
+AFM347,"Review Session","Join us for a comprehensive review of the course material.","2024-06-03 15:10:00",120,4,92,AL2449
+HIST359,"Lecture Recap","This session will help you stay on top of the course content.","2024-07-17 21:25:00",120,9,124,AL1282
+GEOG100,"Exam Preparation","Improve your problem-solving skills with this focused session.","2024-05-10 21:10:00",15,3,113,EIT3932
+CS241,"Lecture Recap","Join your peers for a group study session.","2024-05-08 02:40:00",45,9,96,E52110
+PD6,"Midterm Review","This session will cover key concepts and prepare you for the upcoming exams.","2024-06-26 06:55:00",45,2,138,E61749
+GBDA306,"Homework Help","Get help with your homework and assignments in this session.","2024-06-21 06:05:00",120,3,137,HH3153
+MTHEL300,"Course Overview","Join your peers for a group study session.","2024-05-25 12:35:00",30,4,140,BMH1870
+SMF366,"Course Overview","This session will cover key concepts and prepare you for the upcoming exams.","2024-06-30 07:15:00",90,1,171,E21027
+LS315,"Exam Preparation","Join your peers for a group study session.","2024-05-21 12:00:00",60,8,93,E22938
+PACS201,"Problem Solving Session","We'll work through lab exercises and discuss key points.","2024-07-08 06:00:00",60,2,193,E32340
+ECE401,"Lecture Recap","Improve your problem-solving skills with this focused session.","2024-06-10 01:15:00",60,5,169,AL3898
+OPTOM150,"Review Session","This session will cover key concepts and prepare you for the upcoming exams.","2024-05-14 04:55:00",120,1,118,QNC4159
+SPAN395,"Midterm Review","Prepare for the midterm/final with this detailed review session.","2024-05-02 10:45:00",90,8,102,QNC3826
+CO380,"Review Session","This session will cover key concepts and prepare you for the upcoming exams.","2024-07-26 04:45:00",90,10,117,PAS3503
+ENVS300,"Lecture Recap","We'll work through lab exercises and discuss key points.","2024-06-10 00:10:00",30,4,108,EIT4180
+EARTH355,"Final Exam Study Session","This study session will help reinforce your understanding of the lectures.","2024-07-29 07:00:00",120,8,4,E21628
+HIST212,"Final Exam Study Session","Improve your problem-solving skills with this focused session.","2024-05-31 21:35:00",60,3,15,CPH1774
+PSCI259,"Lab Review","Prepare for the midterm/final with this detailed review session.","2024-07-09 15:30:00",60,2,132,RCH3488
+PSCI463,"Problem Solving Session","Get help with your homework and assignments in this session.","2024-05-30 05:20:00",45,1,42,BMH4096
+ARTS122,"Problem Solving Session","This session will cover key concepts and prepare you for the upcoming exams.","2024-08-15 11:10:00",60,6,96,E23645
+THPERF200,"Group Study","This study session will help reinforce your understanding of the lectures.","2024-07-29 12:00:00",120,10,77,HH4119
+AMATH361,"Lab Review","Improve your problem-solving skills with this focused session.","2024-05-24 03:00:00",45,7,82,PAS1251
+LAT101,"Group Study","We'll work through lab exercises and discuss key points.","2024-07-27 13:45:00",30,3,17,E62295
+PHARM401,"Group Study","Join your peers for a group study session.","2024-06-02 07:05:00",120,4,41,BMH2218
+ENGL410,"Midterm Review","This study session will help reinforce your understanding of the lectures.","2024-06-18 13:40:00",90,5,58,EV21316
+CLAS325,"Course Overview","Join your peers for a group study session.","2024-05-11 21:55:00",90,9,128,BMH2179
+CHEM430,"Group Study","Improve your problem-solving skills with this focused session.","2024-06-19 10:20:00",120,2,101,MC3857
+KIN492,"Review Session","Get help with your homework and assignments in this session.","2024-07-10 08:25:00",30,9,146,ML1524
+FR220,"Review Session","We'll go over important topics and answer any questions you may have.","2024-05-13 14:55:00",30,4,121,AL2405
+GENE21M,"Lab Review","This session will help you stay on top of the course content.","2024-05-24 10:50:00",90,3,35,AL1395
+CO431,"Lab Review","This session will cover key concepts and prepare you for the upcoming exams.","2024-08-14 19:20:00",120,4,79,OPT3656
+SOC370,"Final Exam Study Session","Get help with your homework and assignments in this session.","2024-05-12 02:25:00",15,6,91,MC2326
+BUS231W,"Lecture Recap","Improve your problem-solving skills with this focused session.","2024-05-13 10:35:00",30,8,49,E63009
+SDS210R,"Lecture Recap","Prepare for the midterm/final with this detailed review session.","2024-07-01 00:10:00",90,9,47,E23861
+RS203,"Midterm Review","We'll work through lab exercises and discuss key points.","2024-05-21 08:10:00",90,10,190,STC3782
+BASE46,"Lecture Recap","This study session will help reinforce your understanding of the lectures.","2024-07-04 21:25:00",45,8,138,E73330
+KIN356,"Lecture Recap","Improve your problem-solving skills with this focused session.","2024-05-28 20:30:00",30,2,169,E21679
+ENGL336,"Midterm Review","Join your peers for a group study session.","2024-05-07 16:55:00",90,3,29,RCH1306
+PHYS112,"Lab Review","We'll go over important topics and answer any questions you may have.","2024-07-13 13:25:00",45,8,23,EIT2751
+BIOL251,"Lecture Recap","Get help with your homework and assignments in this session.","2024-07-29 06:40:00",45,6,101,OPT2607
+SOC428,"Group Study","We'll work through lab exercises and discuss key points.","2024-06-23 06:40:00",15,10,103,E21428
+BIOL438,"Course Overview","Prepare for the midterm/final with this detailed review session.","2024-08-06 05:45:00",15,7,194,SLC2862
+PSCI389,"Review Session","This session will cover key concepts and prepare you for the upcoming exams.","2024-06-24 20:30:00",15,8,17,QNC2497
+NE109,"Final Exam Study Session","This study session will help reinforce your understanding of the lectures.","2024-07-27 06:00:00",15,9,71,BMH1211
+CHE500,"Midterm Review","This session will cover key concepts and prepare you for the upcoming exams.","2024-06-13 03:45:00",45,9,161,E54279
+MATH225,"Group Study","This session will cover key concepts and prepare you for the upcoming exams.","2024-05-21 23:50:00",120,7,145,CPH2969
+APPLS491,"Exam Preparation","We'll work through lab exercises and discuss key points.","2024-06-23 01:05:00",15,6,73,E73139
+PHIL329,"Lab Review","Join your peers for a group study session.","2024-05-09 20:05:00",45,3,21,EV33419
+AMATH451,"Lecture Recap","Prepare for the midterm/final with this detailed review session.","2024-05-11 17:25:00",60,10,175,SLC4139
+COMM400,"Homework Help","Prepare for the midterm/final with this detailed review session.","2024-05-02 20:40:00",15,2,165,E22838
+ECON437,"Final Exam Study Session","Improve your problem-solving skills with this focused session.","2024-06-30 17:55:00",60,3,170,MC1956
+SOCWK301R,"Problem Solving Session","Improve your problem-solving skills with this focused session.","2024-06-06 12:50:00",45,4,106,DC1270
+ECE484,"Lecture Recap","Join us for a comprehensive review of the course material.","2024-06-07 20:25:00",30,10,188,PAS1204
+GEOE153,"Homework Help","Join your peers for a group study session.","2024-08-06 16:40:00",15,5,16,PAS2489
+ENVE392,"Final Exam Study Session","Get help with your homework and assignments in this session.","2024-06-14 13:40:00",15,2,187,E24461
+AE425,"Group Study","Prepare for the midterm/final with this detailed review session.","2024-06-23 19:15:00",60,3,77,E32806
+SWREN331R,"Exam Preparation","Get help with your homework and assignments in this session.","2024-07-07 00:55:00",15,5,184,EV11615
+GSJ430,"Homework Help","Improve your problem-solving skills with this focused session.","2024-05-27 19:25:00",60,9,49,OPT3961
+RS102,"Lab Review","We'll work through lab exercises and discuss key points.","2024-07-02 12:40:00",15,9,155,CPH3513
+EARTH231,"Midterm Review","We'll work through lab exercises and discuss key points.","2024-05-28 02:30:00",15,3,23,E53239
+PMATH399,"Lecture Recap","We'll go over important topics and answer any questions you may have.","2024-06-03 04:20:00",60,2,200,AL1188
+CROAT299,"Review Session","We'll work through lab exercises and discuss key points.","2024-07-11 11:00:00",15,5,150,OPT3866
+SDS499A,"Group Study","We'll go over important topics and answer any questions you may have.","2024-05-18 09:50:00",15,6,2,E33232
+REC405,"Lecture Recap","We'll go over important topics and answer any questions you may have.","2024-05-08 03:05:00",60,3,131,RCH2271
+CO353,"Course Overview","Improve your problem-solving skills with this focused session.","2024-06-28 18:20:00",30,8,73,SLC1930
+THPERF374,"Homework Help","This session will help you stay on top of the course content.","2024-07-03 00:40:00",15,3,141,HH1457
+MATH128,"Lab Review","This study session will help reinforce your understanding of the lectures.","2024-07-01 17:05:00",30,8,91,E63717
+SDS322R,"Lab Review","This study session will help reinforce your understanding of the lectures.","2024-05-07 08:40:00",15,9,39,EV13828
+AVIA417,"Exam Preparation","This study session will help reinforce your understanding of the lectures.","2024-05-28 19:50:00",120,2,13,HH4384
+SDS425R,"Lecture Recap","Improve your problem-solving skills with this focused session.","2024-08-01 23:40:00",30,2,121,STC2757
+HLTH101,"Lab Review","Join us for a comprehensive review of the course material.","2024-06-02 16:30:00",30,3,132,OPT1448
+SDS431R,"Final Exam Study Session","This session will help you stay on top of the course content.","2024-07-27 22:05:00",15,1,181,MC3167
+BUS288W,"Exam Preparation","Join us for a comprehensive review of the course material.","2024-07-06 06:30:00",45,2,174,E61282
+CIVE115,"Lab Review","We'll go over important topics and answer any questions you may have.","2024-06-08 03:00:00",90,1,137,EV21648
+HRTS101,"Homework Help","Join us for a comprehensive review of the course material.","2024-07-16 02:00:00",90,5,154,HH4215
+BIOL490C,"Final Exam Study Session","This session will help you stay on top of the course content.","2024-06-11 04:15:00",15,2,190,E13210
+THPERF400,"Homework Help","Improve your problem-solving skills with this focused session.","2024-07-13 02:40:00",30,2,121,CPH2623
+PLAN442,"Lecture Recap","We'll work through lab exercises and discuss key points.","2024-07-06 12:05:00",30,10,29,EV32130
+GEOG202,"Lecture Recap","Join us for a comprehensive review of the course material.","2024-05-21 12:55:00",90,4,173,AL1199
+SOC499A,"Course Overview","This session will help you stay on top of the course content.","2024-05-26 10:15:00",120,6,44,OPT2892
+ERS275,"Review Session","Prepare for the midterm/final with this detailed review session.","2024-06-20 08:40:00",60,1,42,E11734
+ENGL210I,"Group Study","Join us for a comprehensive review of the course material.","2024-06-05 19:40:00",15,7,174,ML2018
+CS493,"Exam Preparation","We'll go over important topics and answer any questions you may have.","2024-07-06 19:10:00",90,6,164,EIT1714
+BET430,"Lab Review","We'll go over important topics and answer any questions you may have.","2024-06-12 17:30:00",60,2,92,AL3395
+PSYCH487,"Midterm Review","Get help with your homework and assignments in this session.","2024-05-11 21:55:00",90,4,101,EV33974
+SYDE533,"Problem Solving Session","This session will cover key concepts and prepare you for the upcoming exams.","2024-05-19 19:10:00",30,4,51,EV33034
+FINE275,"Exam Preparation","Get help with your homework and assignments in this session.","2024-05-07 15:30:00",45,8,45,MC3758
+PSYCH398R,"Midterm Review","This study session will help reinforce your understanding of the lectures.","2024-07-24 20:20:00",45,6,142,SLC2533
+MATH237,"Exam Preparation","Join us for a comprehensive review of the course material.","2024-05-21 12:50:00",120,3,174,RCH3570
+PLAN432,"Course Overview","Prepare for the midterm/final with this detailed review session.","2024-05-15 08:30:00",45,5,140,CPH3709
+SE465,"Final Exam Study Session","We'll work through lab exercises and discuss key points.","2024-05-14 23:45:00",60,4,133,SLC3680
+CLAS490A,"Final Exam Study Session","This session will cover key concepts and prepare you for the upcoming exams.","2024-06-28 23:10:00",120,9,125,QNC2277
+REC230,"Course Overview","This study session will help reinforce your understanding of the lectures.","2024-05-05 18:05:00",120,1,128,AL3503
+PSYCH213R,"Exam Preparation","We'll work through lab exercises and discuss key points.","2024-06-28 17:35:00",15,4,15,E51627
+STAT444,"Final Exam Study Session","This study session will help reinforce your understanding of the lectures.","2024-06-15 07:40:00",120,2,83,SLC2382
+PSCI405,"Homework Help","This session will help you stay on top of the course content.","2024-07-08 13:10:00",15,3,181,E12229
+HIST423,"Homework Help","We'll go over important topics and answer any questions you may have.","2024-08-03 21:00:00",90,6,194,EIT1764
+SOC224R,"Lab Review","This study session will help reinforce your understanding of the lectures.","2024-08-13 10:05:00",15,5,134,EIT2750
+MATBUS371,"Midterm Review","Improve your problem-solving skills with this focused session.","2024-07-09 20:30:00",45,10,121,E63852
+APPLS306R,"Course Overview","This study session will help reinforce your understanding of the lectures.","2024-05-27 04:35:00",60,2,120,ML3001
+PLAN405,"Final Exam Study Session","We'll work through lab exercises and discuss key points.","2024-08-09 05:40:00",15,3,38,HH4333
+GENE395,"Exam Preparation","We'll go over important topics and answer any questions you may have.","2024-06-11 22:10:00",45,5,54,EV31422
+SOC202,"Group Study","Improve your problem-solving skills with this focused session.","2024-07-02 16:40:00",120,9,45,DC2468
+CLAS242,"Problem Solving Session","Get help with your homework and assignments in this session.","2024-07-06 00:35:00",60,6,64,E61402
+ENGL104,"Lab Review","This study session will help reinforce your understanding of the lectures.","2024-06-30 15:30:00",120,6,141,SLC4255
+CS452,"Course Overview","We'll go over important topics and answer any questions you may have.","2024-05-25 01:50:00",60,7,28,E32169
+PHIL451J,"Lab Review","This session will help you stay on top of the course content.","2024-05-07 11:55:00",15,6,157,E24230
+INDEV302,"Exam Preparation","This study session will help reinforce your understanding of the lectures.","2024-08-03 14:25:00",90,9,67,E34214
+ME571,"Final Exam Study Session","Improve your problem-solving skills with this focused session.","2024-07-03 03:15:00",120,9,23,E21136
+PACS328,"Lecture Recap","Get help with your homework and assignments in this session.","2024-06-09 05:00:00",120,7,176,E51275
+PHARM472,"Group Study","This study session will help reinforce your understanding of the lectures.","2024-08-04 03:15:00",15,3,121,E71695
+PHYS375,"Lecture Recap","Improve your problem-solving skills with this focused session.","2024-06-07 18:30:00",15,10,182,CPH4360
+PLAN351,"Group Study","Prepare for the midterm/final with this detailed review session.","2024-05-14 08:05:00",60,2,121,RCH1915
+ENVS200,"Lecture Recap","We'll go over important topics and answer any questions you may have.","2024-07-06 23:00:00",60,5,45,E54252
+ENGL100B,"Exam Preparation","Improve your problem-solving skills with this focused session.","2024-08-05 09:30:00",90,2,95,HH2994
+GENE23Q,"Review Session","This session will cover key concepts and prepare you for the upcoming exams.","2024-08-10 15:15:00",120,7,200,CPH3024
+SI242R,"Final Exam Study Session","We'll work through lab exercises and discuss key points.","2024-07-13 22:10:00",60,4,60,EV33060
+JS209,"Exam Preparation","Join your peers for a group study session.","2024-08-11 16:40:00",15,3,75,PAS3146
+SOC210,"Final Exam Study Session","Improve your problem-solving skills with this focused session.","2024-05-17 06:45:00",15,9,195,EV11017
+HIST207,"Lecture Recap","This session will cover key concepts and prepare you for the upcoming exams.","2024-05-04 12:20:00",45,3,179,E11099
+PHIL482,"Lab Review","We'll go over important topics and answer any questions you may have.","2024-05-22 13:30:00",30,2,116,EIT2218
+SDS311R,"Midterm Review","This study session will help reinforce your understanding of the lectures.","2024-08-04 17:00:00",120,7,122,EV31685
+PHARM462,"Lecture Recap","Improve your problem-solving skills with this focused session.","2024-06-02 11:30:00",60,4,123,OPT1160
+ECON456,"Homework Help","We'll work through lab exercises and discuss key points.","2024-07-12 12:10:00",45,5,23,OPT3594
+SMF213,"Group Study","Join your peers for a group study session.","2024-05-13 09:20:00",120,3,184,EIT2593
+LS461,"Problem Solving Session","Join your peers for a group study session.","2024-06-14 23:10:00",15,6,196,EV31947
+MSE211,"Course Overview","We'll work through lab exercises and discuss key points.","2024-07-31 18:05:00",15,1,88,E64026
+GEOG414,"Homework Help","Prepare for the midterm/final with this detailed review session.","2024-05-26 09:35:00",30,4,152,CPH1173
+ASL101R,"Problem Solving Session","Join us for a comprehensive review of the course material.","2024-06-18 13:20:00",90,2,12,EIT3190
+PHARM476,"Group Study","This session will help you stay on top of the course content.","2024-06-09 23:45:00",15,8,27,EV22019
+CO471,"Problem Solving Session","This study session will help reinforce your understanding of the lectures.","2024-07-25 11:50:00",15,2,168,E63113
+KIN492,"Exam Preparation","Join your peers for a group study session.","2024-05-27 03:15:00",45,5,180,DC1102
+HUMSC102,"Final Exam Study Session","Join your peers for a group study session.","2024-07-02 02:05:00",15,6,134,OPT1529
+ITAL396,"Problem Solving Session","This session will cover key concepts and prepare you for the upcoming exams.","2024-07-24 07:50:00",15,9,128,AL3557
+SCI396,"Lab Review","This session will help you stay on top of the course content.","2024-06-30 05:00:00",90,5,76,OPT1281
+CIVE491,"Group Study","We'll go over important topics and answer any questions you may have.","2024-07-27 20:10:00",30,2,136,BMH1063
+AMATH362,"Midterm Review","We'll go over important topics and answer any questions you may have.","2024-07-20 23:35:00",120,6,80,RCH1961
+MUSIC217,"Lab Review","This session will cover key concepts and prepare you for the upcoming exams.","2024-07-23 01:55:00",60,6,181,OPT1041
+ENVE499,"Midterm Review","This study session will help reinforce your understanding of the lectures.","2024-05-29 02:40:00",45,1,96,EV33286
+KIN453,"Review Session","Join us for a comprehensive review of the course material.","2024-05-28 12:40:00",120,1,113,SLC4006
+ME562,"Midterm Review","Improve your problem-solving skills with this focused session.","2024-06-24 19:25:00",45,3,113,SLC3285
+ME562,"Group Study","This session will help you stay on top of the course content.","2024-06-05 23:45:00",90,4,111,ML3973
+PACS399,"Problem Solving Session","Join your peers for a group study session.","2024-06-14 04:10:00",45,5,43,CPH3264
+ME563,"Lab Review","We'll work through lab exercises and discuss key points.","2024-06-03 23:50:00",60,6,27,QNC1047
+AFM448,"Review Session","This session will help you stay on top of the course content.","2024-06-25 11:15:00",120,5,58,EV11695
+PSCI301,"Midterm Review","Join your peers for a group study session.","2024-07-27 09:20:00",45,8,18,RCH1150
+PDPHRM2,"Exam Preparation","Join your peers for a group study session.","2024-08-12 19:15:00",90,3,152,ML3658
+PHARM465,"Final Exam Study Session","Join your peers for a group study session.","2024-07-20 10:10:00",60,6,46,E53345
+MUSIC116,"Midterm Review","Get help with your homework and assignments in this session.","2024-07-13 10:35:00",45,8,2,E32160
+PORT102,"Lecture Recap","Join your peers for a group study session.","2024-06-29 02:20:00",15,6,96,E73957
+PHIL315,"Problem Solving Session","This study session will help reinforce your understanding of the lectures.","2024-08-10 06:55:00",60,9,190,QNC2862
+PMATH347,"Review Session","This session will cover key concepts and prepare you for the upcoming exams.","2024-08-07 08:30:00",30,4,174,E51681
+SCI200,"Course Overview","Prepare for the midterm/final with this detailed review session.","2024-06-26 01:00:00",15,7,4,E22363
+PHYS363,"Homework Help","This study session will help reinforce your understanding of the lectures.","2024-08-15 03:40:00",90,6,170,OPT4169
+MATH138,"Course Overview","Improve your problem-solving skills with this focused session.","2024-07-23 04:15:00",30,1,198,EIT4480
+CS105,"Final Exam Study Session","This session will cover key concepts and prepare you for the upcoming exams.","2024-05-29 18:15:00",30,4,127,MC2567
+PHIL200J,"Midterm Review","Prepare for the midterm/final with this detailed review session.","2024-05-21 17:30:00",15,4,4,E14267
+EMLS104R,"Lecture Recap","We'll go over important topics and answer any questions you may have.","2024-08-13 14:35:00",15,3,134,RCH1191
+HIST230,"Homework Help","Get help with your homework and assignments in this session.","2024-05-06 19:20:00",45,8,152,QNC3117
+ECE475,"Lab Review","We'll go over important topics and answer any questions you may have.","2024-07-20 09:30:00",60,3,137,CPH3302
+PDARCH3,"Problem Solving Session","This session will cover key concepts and prepare you for the upcoming exams.","2024-08-15 11:15:00",120,7,109,DC2486
+AFM445,"Lecture Recap","We'll work through lab exercises and discuss key points.","2024-05-10 01:35:00",120,8,53,RCH2514
+PSYCH307,"Lab Review","Join your peers for a group study session.","2024-05-12 19:20:00",60,2,48,E22575
+PSYCH393,"Lecture Recap","Get help with your homework and assignments in this session.","2024-08-04 08:50:00",120,3,133,QNC1658
+SDS311R,"Lab Review","This study session will help reinforce your understanding of the lectures.","2024-06-18 02:20:00",30,4,61,E22604
+PSYCH399R,"Midterm Review","This session will help you stay on top of the course content.","2024-06-22 13:40:00",30,6,114,CPH1929
+INDEV402,"Exam Preparation","Improve your problem-solving skills with this focused session.","2024-05-27 03:45:00",90,7,59,E21408
+NE318,"Problem Solving Session","We'll work through lab exercises and discuss key points.","2024-05-14 13:05:00",60,10,25,EIT2780
+PSYCH463,"Course Overview","Get help with your homework and assignments in this session.","2024-07-25 10:30:00",30,7,115,CPH3354
+CHEM120,"Review Session","Prepare for the midterm/final with this detailed review session.","2024-07-06 05:30:00",120,8,112,E21805
+GBDA465,"Exam Preparation","This session will help you stay on top of the course content.","2024-05-24 18:05:00",15,3,77,EIT3285
+BUS362W,"Lecture Recap","Prepare for the midterm/final with this detailed review session.","2024-06-05 09:35:00",120,2,126,EV12418
+RS220,"Exam Preparation","Join your peers for a group study session.","2024-07-30 11:40:00",30,1,43,MC2013
+BUS452W,"Problem Solving Session","Join us for a comprehensive review of the course material.","2024-07-07 07:25:00",30,6,109,MC4156
+ENGL460D,"Group Study","This session will cover key concepts and prepare you for the upcoming exams.","2024-05-14 14:50:00",60,4,80,E21828
+PMATH445,"Lecture Recap","This session will cover key concepts and prepare you for the upcoming exams.","2024-08-05 05:10:00",120,8,40,AL2049
+MSE434,"Final Exam Study Session","Join us for a comprehensive review of the course material.","2024-08-10 12:35:00",120,6,56,E61587
+HRTS101,"Lecture Recap","This study session will help reinforce your understanding of the lectures.","2024-07-15 04:45:00",45,1,145,EIT3274
+FR151,"Problem Solving Session","This session will help you stay on top of the course content.","2024-07-27 15:35:00",15,4,24,EV31082
+ERS375,"Homework Help","Improve your problem-solving skills with this focused session.","2024-06-19 07:25:00",45,8,11,HH2372
+ITALST120,"Homework Help","We'll go over important topics and answer any questions you may have.","2024-05-21 06:55:00",30,9,151,E63990
+BIOL434,"Group Study","This study session will help reinforce your understanding of the lectures.","2024-06-15 13:40:00",15,9,198,QNC2835
+ENGL119,"Midterm Review","Join your peers for a group study session.","2024-06-25 19:50:00",60,3,140,E12999
+OPTOM367,"Homework Help","We'll go over important topics and answer any questions you may have.","2024-05-05 11:40:00",15,4,172,E73982
+OPTOM375,"Exam Preparation","We'll work through lab exercises and discuss key points.","2024-05-18 04:25:00",15,5,102,EV23409
+COMMST432,"Midterm Review","This study session will help reinforce your understanding of the lectures.","2024-08-12 21:45:00",60,10,192,OPT2865
+ECON424,"Homework Help","This session will cover key concepts and prepare you for the upcoming exams.","2024-06-28 21:25:00",90,8,37,AL2357
+STAT230,"Homework Help","Get help with your homework and assignments in this session.","2024-07-25 05:05:00",120,7,133,E31259
+KIN340,"Problem Solving Session","Get help with your homework and assignments in this session.","2024-05-16 17:40:00",30,10,140,STC2620
+PSYCH389,"Problem Solving Session","We'll go over important topics and answer any questions you may have.","2024-07-02 20:30:00",15,10,165,AL4366
+SOC223R,"Final Exam Study Session","This study session will help reinforce your understanding of the lectures.","2024-06-27 04:35:00",30,4,32,DC4037
+SWREN424R,"Lab Review","We'll work through lab exercises and discuss key points.","2024-06-08 23:40:00",30,2,1,PAS3798
+CHE574,"Problem Solving Session","This session will help you stay on top of the course content.","2024-06-09 14:20:00",45,9,114,CPH2528
+SOC305,"Course Overview","Get help with your homework and assignments in this session.","2024-05-24 17:05:00",120,1,141,SLC1806
+MUSIC381,"Midterm Review","We'll work through lab exercises and discuss key points.","2024-07-11 07:35:00",60,6,95,HH1990
+ERS221,"Course Overview","We'll work through lab exercises and discuss key points.","2024-05-23 06:05:00",60,6,33,PAS2889
+ARBUS102,"Midterm Review","This study session will help reinforce your understanding of the lectures.","2024-07-02 19:35:00",120,10,9,OPT1307
+ENGL315,"Final Exam Study Session","This session will help you stay on top of the course content.","2024-05-12 23:15:00",15,7,37,STC1036
+ARTS280,"Lecture Recap","Prepare for the midterm/final with this detailed review session.","2024-06-01 11:25:00",90,7,79,E71868
+RS218,"Exam Preparation","This study session will help reinforce your understanding of the lectures.","2024-07-25 07:00:00",90,1,118,CPH1091
+CHEM495,"Exam Preparation","This session will help you stay on top of the course content.","2024-07-27 19:20:00",15,3,159,EIT1109
+CS490,"Lab Review","This session will cover key concepts and prepare you for the upcoming exams.","2024-08-07 08:05:00",90,6,116,E21474
+AFM463,"Homework Help","This study session will help reinforce your understanding of the lectures.","2024-08-05 13:25:00",120,3,116,E54119
+CLAS252,"Lab Review","Get help with your homework and assignments in this session.","2024-07-19 19:35:00",120,1,18,E32693
+EMLS102R,"Course Overview","Get help with your homework and assignments in this session.","2024-06-15 13:20:00",30,8,86,MC2956
+BIOL449,"Lecture Recap","Join us for a comprehensive review of the course material.","2024-07-22 07:30:00",30,6,133,E64491
+MTHEL300,"Course Overview","Improve your problem-solving skills with this focused session.","2024-05-16 01:00:00",45,10,187,DC3244
+PHYS260B,"Lecture Recap","Improve your problem-solving skills with this focused session.","2024-07-06 18:00:00",15,10,75,CPH2568
+AVIA475,"Exam Preparation","Join us for a comprehensive review of the course material.","2024-05-27 00:30:00",45,9,151,E22241
+LS328,"Problem Solving Session","We'll work through lab exercises and discuss key points.","2024-07-22 12:20:00",60,4,199,E31405
+MATH211,"Lab Review","We'll go over important topics and answer any questions you may have.","2024-05-11 15:25:00",120,5,23,BMH1522
+ARTS390,"Group Study","Join us for a comprehensive review of the course material.","2024-06-07 15:05:00",120,1,89,BMH1287
+ERS318,"Group Study","Get help with your homework and assignments in this session.","2024-06-26 11:55:00",90,5,156,OPT2716
+GEOG418,"Group Study","This study session will help reinforce your understanding of the lectures.","2024-08-12 01:50:00",120,7,81,E34395
+SDS431R,"Lecture Recap","Join us for a comprehensive review of the course material.","2024-07-04 04:45:00",30,3,128,BMH2581
+ARCH260,"Lab Review","Prepare for the midterm/final with this detailed review session.","2024-06-07 22:30:00",15,6,127,PAS3727
+OPTOM158,"Problem Solving Session","We'll work through lab exercises and discuss key points.","2024-06-08 02:40:00",45,7,89,DC1028
+CHE499,"Group Study","Prepare for the midterm/final with this detailed review session.","2024-07-13 01:35:00",15,3,153,E64360
+FR192A,"Lab Review","Improve your problem-solving skills with this focused session.","2024-05-07 08:30:00",15,1,163,CPH1066
+CIVE583,"Lab Review","This session will cover key concepts and prepare you for the upcoming exams.","2024-06-06 13:15:00",120,7,44,BMH1192
+PHYS363,"Midterm Review","Prepare for the midterm/final with this detailed review session.","2024-06-24 11:15:00",120,3,180,EV12164
+HUMSC301,"Review Session","Get help with your homework and assignments in this session.","2024-06-18 11:40:00",90,7,70,E33660
+HIST258,"Lecture Recap","This study session will help reinforce your understanding of the lectures.","2024-05-16 06:00:00",15,10,144,PAS2869
+CS234,"Review Session","Join your peers for a group study session.","2024-08-14 19:50:00",45,4,95,CPH2014
+ENGL460C,"Review Session","We'll go over important topics and answer any questions you may have.","2024-07-19 11:55:00",60,2,140,RCH1650
+SOC342,"Lecture Recap","This study session will help reinforce your understanding of the lectures.","2024-05-01 05:40:00",120,5,156,E32273
+PACS326,"Problem Solving Session","This session will cover key concepts and prepare you for the upcoming exams.","2024-06-18 01:50:00",30,6,40,AL3274
+AFM272,"Group Study","This study session will help reinforce your understanding of the lectures.","2024-06-17 15:20:00",45,9,88,EV14449
+EMLS101R,"Lab Review","Get help with your homework and assignments in this session.","2024-08-03 08:20:00",15,6,193,E11897
+KIN455,"Course Overview","Join us for a comprehensive review of the course material.","2024-07-11 17:50:00",15,8,154,QNC3042
+CS100,"Review Session","We'll work through lab exercises and discuss key points.","2024-05-18 13:15:00",45,5,107,MC2248
+SPAN300,"Problem Solving Session","Prepare for the midterm/final with this detailed review session.","2024-08-12 21:40:00",45,9,143,E52504
+ENGL222,"Homework Help","We'll work through lab exercises and discuss key points.","2024-07-17 14:00:00",120,6,6,QNC2917
+PD13,"Homework Help","Prepare for the midterm/final with this detailed review session.","2024-07-06 07:00:00",60,4,108,E63370
+HIST213,"Midterm Review","Get help with your homework and assignments in this session.","2024-05-26 04:40:00",15,7,75,RCH4238
+SOC229,"Lecture Recap","This study session will help reinforce your understanding of the lectures.","2024-08-08 19:50:00",90,2,26,BMH1596
+INDENT210,"Group Study","This session will cover key concepts and prepare you for the upcoming exams.","2024-08-01 17:55:00",45,8,119,EIT4116
+FINE228,"Homework Help","Get help with your homework and assignments in this session.","2024-07-04 23:10:00",30,10,151,ML3985
+RS230,"Homework Help","This session will help you stay on top of the course content.","2024-05-13 11:10:00",60,6,80,RCH2634
+OPTOM348A,"Review Session","We'll go over important topics and answer any questions you may have.","2024-08-01 22:20:00",90,9,200,E24031
+PSYCH315,"Lecture Recap","Improve your problem-solving skills with this focused session.","2024-05-11 05:35:00",60,4,42,RCH1396
+SYDE554,"Exam Preparation","We'll go over important topics and answer any questions you may have.","2024-05-12 15:35:00",15,4,59,E62526
+PHIL290,"Homework Help","Get help with your homework and assignments in this session.","2024-05-05 06:00:00",120,9,59,HH4375
+AVIA101,"Exam Preparation","This session will help you stay on top of the course content.","2024-06-03 20:10:00",45,3,189,DC1251
+PLAN102,"Lab Review","Join your peers for a group study session.","2024-08-07 02:35:00",120,8,106,AL4067
+THPERF368,"Review Session","Join us for a comprehensive review of the course material.","2024-05-03 18:10:00",60,10,163,E73667
+ENVE225,"Review Session","We'll go over important topics and answer any questions you may have.","2024-06-08 17:30:00",30,10,66,E52769
+KIN305,"Lecture Recap","This study session will help reinforce your understanding of the lectures.","2024-06-24 14:05:00",45,2,127,AL2189
+ENGL132R,"Lecture Recap","Join your peers for a group study session.","2024-06-18 18:45:00",120,7,15,CPH2157
+SOC248,"Review Session","Prepare for the midterm/final with this detailed review session.","2024-05-16 18:30:00",45,1,100,MC2356
+ERS315,"Lab Review","Get help with your homework and assignments in this session.","2024-05-28 09:30:00",30,9,160,EV34127
+OPTOM246,"Group Study","Improve your problem-solving skills with this focused session.","2024-08-16 14:20:00",15,9,191,MC4257
+BME552,"Problem Solving Session","Get help with your homework and assignments in this session.","2024-06-16 02:25:00",120,7,77,E11092
+CS245E,"Exam Preparation","This study session will help reinforce your understanding of the lectures.","2024-07-28 12:50:00",30,7,80,DC3131
+AFM100,"Midterm Review","We'll work through lab exercises and discuss key points.","2024-06-08 02:40:00",45,3,10,CPH3886
+PHYS467,"Course Overview","Prepare for the midterm/final with this detailed review session.","2024-05-16 13:50:00",30,4,58,QNC4081
+CO255,"Problem Solving Session","This session will help you stay on top of the course content.","2024-06-28 05:35:00",90,7,23,EV34407
+CS487,"Lab Review","Get help with your homework and assignments in this session.","2024-06-07 22:00:00",15,4,164,EV12866
+THPERF316,"Problem Solving Session","We'll go over important topics and answer any questions you may have.","2024-06-04 21:00:00",45,10,56,OPT2230
+HLTH220,"Problem Solving Session","We'll go over important topics and answer any questions you may have.","2024-06-13 13:30:00",15,6,159,STC1103
+PSCI452,"Group Study","Prepare for the midterm/final with this detailed review session.","2024-07-28 04:25:00",30,4,75,DC2223
+HIST304,"Midterm Review","Join us for a comprehensive review of the course material.","2024-07-12 11:40:00",120,5,39,HH1732
+HUMSC489,"Homework Help","Get help with your homework and assignments in this session.","2024-06-16 17:10:00",45,10,34,E64340
+BUS481W,"Problem Solving Session","Join us for a comprehensive review of the course material.","2024-07-23 06:45:00",45,5,108,DC1915
+ME452,"Group Study","This study session will help reinforce your understanding of the lectures.","2024-08-15 19:55:00",15,1,5,OPT4171
+RS358,"Group Study","Prepare for the midterm/final with this detailed review session.","2024-05-01 23:20:00",30,2,86,EV12325
+SOC404,"Final Exam Study Session","This session will help you stay on top of the course content.","2024-05-22 20:10:00",15,4,152,MC2667
+ENGL430B,"Final Exam Study Session","Improve your problem-solving skills with this focused session.","2024-07-27 09:05:00",30,4,5,E74075
+CHEM240,"Lab Review","We'll work through lab exercises and discuss key points.","2024-06-22 16:30:00",90,3,151,QNC4182
+RS210,"Course Overview","Prepare for the midterm/final with this detailed review session.","2024-08-12 05:10:00",15,6,69,RCH2209
+CO331,"Course Overview","This session will cover key concepts and prepare you for the upcoming exams.","2024-06-03 02:40:00",30,10,120,ML3591
+RS325,"Exam Preparation","We'll work through lab exercises and discuss key points.","2024-08-15 21:00:00",60,9,78,AL3138
+CLAS390,"Course Overview","Join us for a comprehensive review of the course material.","2024-07-18 03:25:00",120,10,105,DC1501
+ENGL318,"Group Study","Join your peers for a group study session.","2024-06-07 07:15:00",30,2,134,CPH2435
+PHIL331,"Final Exam Study Session","Join your peers for a group study session.","2024-07-08 11:05:00",45,9,10,QNC3425
+GER261,"Midterm Review","This session will help you stay on top of the course content.","2024-08-14 17:25:00",45,2,91,E12056
+AMATH445,"Group Study","We'll work through lab exercises and discuss key points.","2024-07-21 19:05:00",60,7,69,E12706
+ENGL262,"Group Study","We'll go over important topics and answer any questions you may have.","2024-08-04 03:35:00",120,1,158,RCH2435
+PHARM491,"Review Session","We'll work through lab exercises and discuss key points.","2024-07-28 23:15:00",60,2,19,RCH4026
+SPAN390,"Lecture Recap","We'll work through lab exercises and discuss key points.","2024-07-01 23:20:00",120,5,135,OPT3867
+AFM132,"Problem Solving Session","This session will help you stay on top of the course content.","2024-06-26 23:15:00",45,3,81,E24175
+PSCI452,"Exam Preparation","This study session will help reinforce your understanding of the lectures.","2024-05-14 19:05:00",60,6,181,QNC1610
+BIOL431,"Final Exam Study Session","Prepare for the midterm/final with this detailed review session.","2024-05-19 04:50:00",90,6,144,E22777
+MATH239,"Midterm Review","We'll work through lab exercises and discuss key points.","2024-05-14 08:50:00",45,1,123,E21688
+GER303,"Group Study","This session will cover key concepts and prepare you for the upcoming exams.","2024-07-31 22:10:00",30,4,144,BMH2305
+NE343,"Final Exam Study Session","This study session will help reinforce your understanding of the lectures.","2024-05-19 20:25:00",90,3,1,QNC1843
+CHEM267,"Course Overview","We'll go over important topics and answer any questions you may have.","2024-06-19 11:45:00",15,4,189,AL3056
+LS240,"Exam Preparation","We'll work through lab exercises and discuss key points.","2024-06-07 16:55:00",45,4,126,E32387
+ARABIC201R,"Midterm Review","We'll go over important topics and answer any questions you may have.","2024-06-25 22:25:00",30,6,179,CPH1007
+MSE452,"Final Exam Study Session","Join us for a comprehensive review of the course material.","2024-07-24 03:45:00",15,6,122,EV14401
+HLTH475,"Midterm Review","Join us for a comprehensive review of the course material.","2024-06-01 21:20:00",90,10,4,QNC2471
+CHE161,"Problem Solving Session","We'll go over important topics and answer any questions you may have.","2024-07-22 10:45:00",120,4,8,CPH3254
+SYDE182,"Homework Help","Get help with your homework and assignments in this session.","2024-07-02 00:45:00",15,7,192,E52358
+SDS355R,"Lab Review","This session will cover key concepts and prepare you for the upcoming exams.","2024-06-02 22:30:00",60,2,7,E33817
+STAT441,"Homework Help","Improve your problem-solving skills with this focused session.","2024-08-03 15:35:00",60,10,15,EV22893
+ENGL495A,"Course Overview","This session will cover key concepts and prepare you for the upcoming exams.","2024-05-08 15:50:00",30,6,176,EIT3244
+ECE459,"Review Session","Join us for a comprehensive review of the course material.","2024-06-21 06:10:00",15,3,3,EV14423
+BLKST203,"Group Study","This study session will help reinforce your understanding of the lectures.","2024-05-08 10:50:00",45,1,92,EIT4297
+RS420R,"Problem Solving Session","This study session will help reinforce your understanding of the lectures.","2024-07-29 06:00:00",60,3,196,QNC1580
+RS123,"Group Study","Get help with your homework and assignments in this session.","2024-06-01 06:55:00",30,5,163,RCH3869
+BIOL361,"Final Exam Study Session","We'll work through lab exercises and discuss key points.","2024-05-02 14:45:00",15,5,44,HH3880
+ARCH484,"Homework Help","Join your peers for a group study session.","2024-07-02 03:40:00",30,10,200,E12181
+MSE200A,"Final Exam Study Session","Get help with your homework and assignments in this session.","2024-05-09 20:00:00",60,1,25,RCH4022
+HIST315,"Midterm Review","This session will cover key concepts and prepare you for the upcoming exams.","2024-07-15 16:15:00",45,4,127,EIT1858
+SOC398R,"Lecture Recap","We'll work through lab exercises and discuss key points.","2024-05-26 10:10:00",120,10,155,QNC2784
+CI329,"Problem Solving Session","Join your peers for a group study session.","2024-08-13 09:40:00",60,5,79,EV21936
+GENE404,"Homework Help","Improve your problem-solving skills with this focused session.","2024-08-13 10:20:00",120,6,193,QNC1003
+FINE252,"Exam Preparation","This session will cover key concepts and prepare you for the upcoming exams.","2024-07-04 09:05:00",90,6,38,E21723
+LS435,"Review Session","We'll work through lab exercises and discuss key points.","2024-06-21 02:25:00",45,3,111,SLC2558
+HIST257,"Final Exam Study Session","This study session will help reinforce your understanding of the lectures.","2024-06-25 21:50:00",120,6,170,E72760
+SYDE292,"Problem Solving Session","We'll work through lab exercises and discuss key points.","2024-05-04 00:20:00",30,10,73,EIT1144
+LS291,"Group Study","Improve your problem-solving skills with this focused session.","2024-06-11 01:25:00",30,6,180,E73156
+PHIL283,"Problem Solving Session","We'll go over important topics and answer any questions you may have.","2024-06-04 23:00:00",15,7,196,RCH3139
+HRTS301,"Group Study","We'll work through lab exercises and discuss key points.","2024-08-05 01:10:00",90,7,188,EV32265
+ERS446,"Final Exam Study Session","This session will cover key concepts and prepare you for the upcoming exams.","2024-05-22 10:50:00",90,2,125,E62544
+HIST305,"Midterm Review","Improve your problem-solving skills with this focused session.","2024-07-25 20:05:00",60,6,34,CPH2272
+THPERF499A,"Course Overview","Join us for a comprehensive review of the course material.","2024-07-11 22:15:00",90,10,170,AL3091
+CHEM331,"Lab Review","Improve your problem-solving skills with this focused session.","2024-06-20 00:10:00",15,5,29,PAS1705
+PACS399,"Lab Review","Improve your problem-solving skills with this focused session.","2024-05-18 06:20:00",15,6,126,DC2413
+PHARM364,"Homework Help","This session will cover key concepts and prepare you for the upcoming exams.","2024-05-11 19:10:00",15,8,44,E31836
+ENGL309G,"Review Session","This study session will help reinforce your understanding of the lectures.","2024-08-02 16:45:00",15,8,44,E63375
+ECON381,"Final Exam Study Session","This study session will help reinforce your understanding of the lectures.","2024-07-31 22:10:00",15,5,81,SLC2253
+PHIL286J,"Review Session","This session will cover key concepts and prepare you for the upcoming exams.","2024-08-14 10:50:00",120,4,129,E34367
+RS101,"Exam Preparation","This study session will help reinforce your understanding of the lectures.","2024-08-01 00:50:00",15,2,150,OPT2049
+CHE161,"Lecture Recap","Prepare for the midterm/final with this detailed review session.","2024-06-21 18:10:00",30,10,150,OPT3338
+EARTH390,"Lecture Recap","This session will cover key concepts and prepare you for the upcoming exams.","2024-06-30 18:40:00",120,1,42,CPH3774
+ERS456,"Group Study","This session will help you stay on top of the course content.","2024-07-30 15:00:00",30,9,91,AL3424
+PHIL246,"Lecture Recap","This study session will help reinforce your understanding of the lectures.","2024-06-04 17:40:00",90,7,106,EV34148
+AFM231,"Problem Solving Session","We'll work through lab exercises and discuss key points.","2024-05-11 06:40:00",15,4,140,EV13359
+ENGL494,"Homework Help","Get help with your homework and assignments in this session.","2024-07-30 11:20:00",90,6,151,E61672
+CIVE505,"Homework Help","Improve your problem-solving skills with this focused session.","2024-05-15 17:55:00",15,10,104,E13670
+ECE463,"Lab Review","This session will help you stay on top of the course content.","2024-08-07 08:55:00",30,3,165,OPT2160
+ARTS122,"Final Exam Study Session","This session will help you stay on top of the course content.","2024-08-14 14:40:00",30,3,66,STC3158
+MSE401,"Problem Solving Session","This study session will help reinforce your understanding of the lectures.","2024-07-07 22:40:00",45,5,170,CPH1617
+PSCI485,"Group Study","Join us for a comprehensive review of the course material.","2024-06-04 06:15:00",15,4,110,E33264
+FR255,"Final Exam Study Session","We'll go over important topics and answer any questions you may have.","2024-05-08 21:50:00",120,7,47,CPH1001
+AE121,"Review Session","Join your peers for a group study session.","2024-06-24 14:15:00",15,10,74,ML1557
+REC251,"Exam Preparation","Join us for a comprehensive review of the course material.","2024-06-04 12:35:00",120,3,143,EIT2613
+HIST421,"Homework Help","Improve your problem-solving skills with this focused session.","2024-07-05 18:15:00",90,8,157,EV32502
+BME530,"Group Study","We'll work through lab exercises and discuss key points.","2024-07-17 10:40:00",60,10,169,AL3110
+MSE442,"Review Session","This session will cover key concepts and prepare you for the upcoming exams.","2024-07-24 01:05:00",15,8,15,EV33170
+SYDE114,"Problem Solving Session","Join your peers for a group study session.","2024-08-15 11:20:00",120,4,195,EV13044
+SDS421R,"Final Exam Study Session","Get help with your homework and assignments in this session.","2024-06-08 04:15:00",30,1,112,E31631
+PHYS232L,"Course Overview","We'll go over important topics and answer any questions you may have.","2024-06-08 03:00:00",45,7,17,E72953
+CHEM481,"Homework Help","Join us for a comprehensive review of the course material.","2024-05-20 04:30:00",90,4,50,E33070
+GSJ203,"Exam Preparation","Join your peers for a group study session.","2024-07-16 14:30:00",45,7,93,SLC4348
+KIN427,"Exam Preparation","We'll work through lab exercises and discuss key points.","2024-05-18 03:15:00",15,10,154,SLC1944
+JAPAN301R,"Lecture Recap","This session will help you stay on top of the course content.","2024-07-01 17:05:00",30,2,90,RCH1146
+ECON474,"Homework Help","Improve your problem-solving skills with this focused session.","2024-08-16 09:30:00",45,8,67,SLC2451
+SE302,"Course Overview","We'll go over important topics and answer any questions you may have.","2024-05-27 01:30:00",60,3,98,EIT177

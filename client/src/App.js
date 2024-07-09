@@ -8,6 +8,7 @@ import { Datapage } from "./pages";
 import SignUp from "./pages/signup/signup";
 import Verify from "./pages/verify/verify";
 import Login from "./pages/login/login";
+import Courses from "./pages/courses/courses";
 
 function App() {
     return (
@@ -20,6 +21,8 @@ function App() {
                 <Route path="/signup" element={<SignUp />} />
                 <Route path="/verify" element={<Verify />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/courses" element={<Courses />} />
+
             </Routes>
         </div>
     );

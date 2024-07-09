@@ -1,56 +1,39 @@
-import React from "react";
-import {
-    Card,
-    CardActions,
-    CardContent,
-    Typography,
-    Button,
-    Box,
-    CardActionArea,
-    Modal,
-} from "@mui/material";
-import PeopleIcon from "@mui/icons-material/People";
+import React from 'react';
+import { Card, CardContent, Typography, Button, Box } from '@mui/material';
 
-const SessionCard = ({ studySession }) => {
-    const {
-        subject,
-        title,
-        description,
-        session_date,
-        duration,
-        group_size,
-        creator_fk,
-        location,
-    } = studySession;
-    
-    const card = (
-        <React.Fragment>
-            <CardContent>
-                <Typography
-                    sx={{ fontSize: 14 }}
-                    color="text.secondary"
-                    gutterBottom
-                >
-                    {title} @ {location}
-                </Typography>
-                <Typography variant="h5" component="div"></Typography>
-                <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                    {subject}
-                </Typography>
-                <Typography variant="body2">{description}</Typography>
-            </CardContent>
-            <CardActions>
-                <PeopleIcon />
-                {group_size}
-            </CardActions>
-        </React.Fragment>
-    );
+const SessionCard = ({ studySession, onDelete, onJoin }) => {
     return (
-        <Box sx={{ minWidth: 275 }}>
-            <Card variant="outlined" sx={{ width: "15vw", height: 300 }}>
-                {card}
-            </Card>
-        </Box>
+        <Card sx={{ marginBottom: 2, padding: 2, width: 300 }}>
+            <CardContent>
+                <Typography variant="h5" component="div">
+                    {studySession.subject}
+                </Typography>
+                <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                    {studySession.courseNumber} - {studySession.title}
+
+                </Typography>
+                <Typography variant="body2">
+                    {studySession.description}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                    Date: {studySession.session_date}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                    Duration: {studySession.duration} hours
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                    Location: {studySession.location}
+                </Typography>
+                <Box sx={{ marginTop: 2, display: 'flex', gap: 2 }}>
+                    <Button variant="contained" color="secondary" onClick={() => onDelete(studySession.id)}>
+                        Delete
+                    </Button>
+                    <Button variant="contained" color="primary" onClick={() => onJoin(studySession.id)}>
+                        Join
+                    </Button>
+                </Box>
+            </CardContent>
+        </Card>
     );
 };
 

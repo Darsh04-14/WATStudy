@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useStudySessions } from "../../hooks/emailHooks";
-import { Typography, Box, CircularProgress, Button, TextField, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
+import { Typography, Box, CircularProgress, Button, TextField, Dialog, DialogActions, DialogContent, DialogTitle, Card, CardContent, CardActions } from "@mui/material";
 
 const Email = () => {
     const initialUserId = JSON.parse(localStorage.getItem('user') ?? '{}')?.uid || '';
@@ -44,7 +44,7 @@ const Email = () => {
     };
 
     return (
-        <Box>
+        <Box sx={{ p: 2 }}>
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>Enter User ID</DialogTitle>
                 <DialogContent>
@@ -67,21 +67,25 @@ const Email = () => {
                 </DialogActions>
             </Dialog>
 
-            {isLoading ? <CircularProgress /> : error ? <Typography>{error.message}</Typography> : (
+            {isLoading ? <CircularProgress /> : error ? <Typography color="error">{error.message}</Typography> : (
                 studySpots && (
-                    <Box>
-                        <Typography variant="h6">Session Details</Typography>
-                        <Typography>{`Subject: ${studySpots[0].subject}`}</Typography>
-                        <Typography>{`Title: ${studySpots[0].title}`}</Typography>
-                        <Typography>{`Description: ${studySpots[0].description}`}</Typography>
-                        <Typography>{`Date: ${new Date(studySpots[0].session_date).toLocaleString()}`}</Typography>
-                        <Typography>{`Duration: ${studySpots[0].duration} minutes`}</Typography>
-                        <Typography>{`Group Size: ${studySpots[0].group_size}`}</Typography>
-                        <Typography>{`Location: ${studySpots[0].location}`}</Typography>
-                        <Button variant="contained" color="primary" onClick={handleSendEmail}>
-                            Send Email
-                        </Button>
-                    </Box>
+                    <Card>
+                        <CardContent>
+                            <Typography variant="h6" gutterBottom>Session Details</Typography>
+                            <Typography variant="body1"><strong>Subject:</strong> {studySpots[0].subject}</Typography>
+                            <Typography variant="body1"><strong>Title:</strong> {studySpots[0].title}</Typography>
+                            <Typography variant="body1"><strong>Description:</strong> {studySpots[0].description}</Typography>
+                            <Typography variant="body1"><strong>Date:</strong> {new Date(studySpots[0].session_date).toLocaleString()}</Typography>
+                            <Typography variant="body1"><strong>Duration:</strong> {studySpots[0].duration} minutes</Typography>
+                            <Typography variant="body1"><strong>Group Size:</strong> {studySpots[0].group_size}</Typography>
+                            <Typography variant="body1"><strong>Location:</strong> {studySpots[0].location}</Typography>
+                        </CardContent>
+                        <CardActions>
+                            <Button variant="contained" color="primary" onClick={handleSendEmail}>
+                                Send Email
+                            </Button>
+                        </CardActions>
+                    </Card>
                 )
             )}
         </Box>

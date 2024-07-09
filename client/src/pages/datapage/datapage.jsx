@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useStudySessions } from "../../hooks/datapageHooks";
+import { Card, CardContent, Button, Typography, Box, Grid } from "@mui/material";
 
 const Datapage = () => {
     const [userId, setUserId] = useState(null);
+    const [userName, setUserName] = useState('');
+    const [view, setView] = useState(null);
 
     useEffect(() => {
-        const id = JSON.parse(localStorage.getItem('user') ?? '{}')?.uid;
-        if (id) {
-            setUserId(id);
+        const user = JSON.parse(localStorage.getItem('user') ?? '{}');
+        if (user?.uid) {
+            setUserId(user.uid);
+            setUserName(user.name);
         } else {
             alert("User ID is required to view the page.");
         }
@@ -67,41 +71,73 @@ const Datapage = () => {
     if (isStudySpotsLoading || isTopStudySpotLoading || istop5usersLoading || isTopCourseLoading) return <div>Loading...</div>;
 
     return (
-        <div>
-            Hi, this is the data analytics page:
-            <div>
-                <div>
-                    <p>Total Hours Studied: {studySpots?.total_hours}</p>
-                </div>
-                <div>
-                    <p>Top Study Spot: {topStudySpot?.location}</p>
-                    <p>Time Spent At Top Study Spot: {topStudySpot?.max_duration} Hours</p>
-                </div>
-                <div>
-                    <p>Top Course: {topCourse?.subject}</p>
-                    <p>Time Spent On Top Course: {topCourse?.total_hours} Hours</p>
-                </div>
-                <div>
-                    <p> Top 5 users:
-                        {top5users[0] && (
-                            <div>
-                                {top5users[0].name}: {top5users[0].avgrating},
-                                {top5users[1].name}: {top5users[1].avgrating},
-                                {top5users[2].name}: {top5users[2].avgrating},
-                                {top5users[3].name}: {top5users[3].avgrating},
-                                {top5users[4].name}: {top5users[4].avgrating}
-
-                            </div>
-                        )}
-
-
-
-
-
-                    </p>
-                </div>
-            </div>
-        </div>
+        <Box>
+            <Typography variant="h4" gutterBottom>Hi {userName}, this is your data analytics page:</Typography>
+            <Grid container spacing={2}>
+                <Grid item xs={12} sm={6} md={3}>
+                    <Card>
+                        <CardContent>
+                            <Typography variant="h6">Total Hours Studied</Typography>
+                            <Button variant="contained" onClick={() => setView('hours')}>
+                                View Details
+                            </Button>
+                            {view === 'hours' && (
+                                <Typography variant="body2">Total Hours: {studySpots?.total_hours}</Typography>
+                            )}
+                        </CardContent>
+                    </Card>
+                </Grid>
+                <Grid item xs={12} sm={6} md={3}>
+                    <Card>
+                        <CardContent>
+                            <Typography variant="h6">Top Study Spot</Typography>
+                            <Button variant="contained" onClick={() => setView('studySpot')}>
+                                View Details
+                            </Button>
+                            {view === 'studySpot' && (
+                                <>
+                                    <Typography variant="body2">Location: {topStudySpot?.location}</Typography>
+                                    <Typography variant="body2">Time Spent: {topStudySpot?.max_duration} Hours</Typography>
+                                </>
+                            )}
+                        </CardContent>
+                    </Card>
+                </Grid>
+                <Grid item xs={12} sm={6} md={3}>
+                    <Card>
+                        <CardContent>
+                            <Typography variant="h6">Top Course</Typography>
+                            <Button variant="contained" onClick={() => setView('course')}>
+                                View Details
+                            </Button>
+                            {view === 'course' && (
+                                <>
+                                    <Typography variant="body2">Subject: {topCourse?.subject}</Typography>
+                                    <Typography variant="body2">Time Spent: {topCourse?.total_hours} Hours</Typography>
+                                </>
+                            )}
+                        </CardContent>
+                    </Card>
+                </Grid>
+                <Grid item xs={12} sm={6} md={3}>
+                    <Card>
+                        <CardContent>
+                            <Typography variant="h6">Top 5 Users</Typography>
+                            <Button variant="contained" onClick={() => setView('users')}>
+                                View Details
+                            </Button>
+                            {view === 'users' && top5users && (
+                                <Box>
+                                    {top5users.map((user, index) => (
+                                        <Typography key={index} variant="body2">{user.name}: {user.avgrating}</Typography>
+                                    ))}
+                                </Box>
+                            )}
+                        </CardContent>
+                    </Card>
+                </Grid>
+            </Grid>
+        </Box>
     );
 };
 
