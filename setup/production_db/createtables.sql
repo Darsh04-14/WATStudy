@@ -119,6 +119,7 @@ END //
 DELIMITER ;
 
 
+ALTER TABLE watstudy.session_table ADD INDEX idx_subject (subject);
 ALTER TABLE watstudy.session_table ADD INDEX idx_creator_fk (creator_fk);
 ALTER TABLE watstudy.friends ADD INDEX idx_uid1_uid2 (uid1, uid2);
 ALTER TABLE watstudy.participants ADD INDEX idx_sessionId_userId (sessionId, userId);
