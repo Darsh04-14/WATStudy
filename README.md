@@ -12,7 +12,8 @@ Additionally, WATStudy aims to streamline the process of finding and booking stu
 The frontend & backend is built using React.js and Node.js, allowing cross-platform functionality and ensuring seamless user experiences. The backend is supported by a GCP MySQL database, chosen for its reliability and scalability. This setup provides the necessary infrastructure to handle the anticipated high volume of data transactions efficiently. Additionally, security protocols are implemented to protect user data and maintain system integrity, such as incorporating JWT for user authentication.
 
 ## Datasets (Sample & Production)
-There is no need to generate the datasets since we have both the sample and production datasets uploaded here in the GitHub repo - they are located under the `data` folder in the `sample` and `production` folders respectively. If you want to generate additional data, then the highly refined script is located here: `setup/data_scripts/gen_data.py`. The script for loading them into the database is located here: `setup/data_scripts/gen_imports.py`. And the corresponding SQL inserts can be found at `setup/sample_db/populatetables.sql` and `setup/production_db/populatetables.sql`.
+There is no need to generate the datasets since we have both the sample and production datasets uploaded here in the GitHub repo - they are located under the `data` folder in the `sample` and `production` folders respectively. If you want to generate additional data, then the highly refined script is located here: `setup/data_scripts/gen_data.py`. The script for loading them into the database is located here: `setup/data_scripts/gen_imports.py`. And the corresponding SQL inserts can be found at `setup/sample_db/populatetables.sql` and `setup/production_db/populatetables.sql`. SQL Code for creating tables, constraints, and triggers is located at `setup/sample_db/createtables.sql` and `setup/production_db/createtables.sql` respectively.
+
 
 ## Implemented Features
 All of the following features have been implemented, and the implementations can be found in the `sample_queries` and `production_queries` folders, along with their corresponding outputs (as a `.out` file). We have implemented the 6 full features (3 required, and 3 for earning bonus marks):
@@ -30,15 +31,16 @@ As for some of the fancy features, here is a list of what we have added:
 - Query Optimization (using indexes, smart filtering)
 - Locally Hosted Sign-up Flow for verifying University of Waterloo email
 
-#### SQL Code for Creating Tables, Constraints, and Triggers
-The script for creating tables is located at `setup/sample_db/createtables.sql` and `setup/production_db/createtables.sql` respectively.
-
-
 ## Setup
 ### Database
 We are utilizing Google Cloud MySQL to host our database, ensuring it is live 24/7. Google Cloud Platform (GCP) was selected due to its reliability, scalability, and robust security features.
 
-To access the database, please contact us for the `.env` file. This file contains the necessary environment variables and credentials for connecting to our Google Cloud MySQL Server. Once you have the `.env` file, place it in the `server` folder and follow the instructions below to get started.
+**To create a local copy of the database:**
+1. Install and run MySQL workbench from [dev.mysql.com](https://dev.mysql.com/downloads/workbench/)
+2. Run the `createtables.sql` script located at `setup/production_db/` (or `setup/sample_db/` if you want to work with the sample dataset) to create the tables
+3. Run the `populatetables.sql` script in the same folder to populate the local database copy
+
+To access the database on GCP, please contact us for the `.env` file. This file contains the necessary environment variables and credentials for connecting to our Google Cloud MySQL Server. Once you have the `.env` file, place it in the `server` folder and follow the instructions below to get started.
 
 ### Frontend & Backend
 1. Clone the repo:
