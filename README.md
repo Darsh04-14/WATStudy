@@ -11,14 +11,27 @@ WATStudy aims to streamline the process of finding and booking study spaces, mak
 
 The frontend & backend is built using React.js and Node.js, allowing cross-platform functionality and ensuring seamless user experiences. The backend is supported by a GCP MySQL database, chosen for its reliability and scalability. This setup provides the necessary infrastructure to handle the anticipated high volume of data transactions efficiently. Additionally, security protocols are implemented to protect user data and maintain system integrity, such as incorporating JWT for user authentication.
 
-## Working Features
+## Datasets (Sample & Production)
+There is no need to generate the datasets since we have both the sample and production datasets uploaded here in the GitHub repo - they are located under the `data` folder in the `sample` and `production` folders respectively. If you want to generate additional data, then the highly refined script is located here: `setup/data_scripts/gen_data.py`. The script for loading them into the database is located here: `setup/data_scripts/gen_imports.py`. And the corresponding SQL inserts can be found at `setup/sample_db/populatetables.sql` and `setup/production_db/populatetables.sql`.
 
+## Implemented Features
+All of the following features have been implemented, and the implementations can be found in the `sample_queries` and `production_queries` folders, along with their corresponding outputs (as a `.out` file). We have implemented the 6 full features (3 required, and 3 for earning bonus marks):
 - **Search Filter**: Provides advanced querying capabilities based on constraints to return all relevant study sessions from the database
 - **Reminder Email**: Enables users to send notification emails to all participants of a study session, containing essential event details
 - **Upcoming Weekly Sessions**: Displays a comprehensive dashboard of all upcoming weekly study sessions that a user is registered for
 - **Most Studied Course**: Identifies and displays the course that a user has studied the most
 - **Most Effective Study Buddies**: Shows users which of their friends have been the most consistent study partners
 - **Session Recommendation**: Utilizes a complex algorithm to recommend study sessions to users based on their study history and preferences
+
+As for some of the fancy features, here is a list of what we have added:
+- User Friendly Interface
+- User Authentication using JWT
+- Protection against SQL injection in search filter
+- Query Optimization (using indexes, smart filtering)
+- Locally Hosted Sign-up Flow for verifying University of Waterloo email
+
+#### SQL Code for Creating Tables, Constraints, and Triggers
+The script for creating tables is located at `setup/sample_db/createtables.sql` and `setup/production_db/createtables.sql` respectively.
 
 
 ## Setup
