@@ -142,7 +142,7 @@ app.post("/login", async (req, res) => {
             email: userRecord.email,
         };
         const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {
-            expiresIn: 1800,
+            expiresIn: 3885500,
         });
         res.send(accessToken);
     } else {

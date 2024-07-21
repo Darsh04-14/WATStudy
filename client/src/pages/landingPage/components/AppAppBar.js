@@ -90,6 +90,17 @@ function AppAppBar({ mode, toggleColorMode }) {
         >
           Analytics
         </Button>
+        <Box component="span" sx={{ mx: 1 }}> | </Box>
+        <Button
+          variant="text"
+          color="primary"
+          component={Link}
+          to="/upcomingsessions"
+          target="_blank"
+          sx={{ textTransform: 'none', fontSize:'1.2rem' }}
+        >
+          Upcoming Sessions
+        </Button>
         
       </Box>
     </Box>
