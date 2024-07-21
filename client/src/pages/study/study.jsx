@@ -1,12 +1,61 @@
 import React, { useState, useEffect } from "react";
 import { useDeleteSession, useStudySessions, useJoinSession } from "../../hooks/studyHooks";
-import { Box, CircularProgress, Button, TextField, Pagination, Typography } from "@mui/material";
+import { Box, CircularProgress, Button, TextField, Pagination, Typography, ThemeProvider, createTheme } from "@mui/material";
 import _ from "lodash";
 import SessionCard from "../../components/sessionCard/sessionCard";
 import SessionModal from "../../components/sessionModal/sessionModal";
 import { useNavigate } from "react-router-dom";
+import { styled } from "@mui/system";
+import AppAppBar from '../landingPage/components/AppAppBar';
+import getLPTheme from "../landingPage/getLPTheme";
+
+const FullPageContainer = styled(Box)({
+    minHeight: '100vh', 
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'black', 
+});
+
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'black',
+    boxShadow: '0 0 35px 10px #F4BB00',
+    padding: 3,
+    color: 'white'
+  };
+    
+const inputStyle = {
+textAlign: 'center', 
+fontSize: '1.25rem',
+padding: '8px'
+};
+
+const modalStyle = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
+};
+
+
+
+
+
 
 const Study = () => {
+    const [mode, setMode] = React.useState('dark');
+    const LPtheme = createTheme(getLPTheme(mode));
+
     const [filter, setFilter] = useState({ search: "" });
     const { studySpots, isStudySpotsLoading } = useStudySessions(filter);
     const { deleteSession } = useDeleteSession();
@@ -14,7 +63,7 @@ const Study = () => {
     const [open, setOpen] = useState(false);
     const [userId, setUserId] = useState(null);
     const [page, setPage] = useState(1);
-    const itemsPerPage = 10;
+    const itemsPerPage = 9;
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -63,25 +112,54 @@ const Study = () => {
 
     const paginatedSpots = studySpots?.slice((page - 1) * itemsPerPage, page * itemsPerPage);
 
+    
     return (
-        <Box sx={{ padding: 3 }}>
-            <Typography variant="h4" component="h1" gutterBottom>
-                Study Sessions
-            </Typography>
-            <TextField
-                id="outlined-basic"
-                label="Search"
-                variant="outlined"
-                onChange={debounceSearch}
-                sx={{ marginBottom: 2 }}
-            />
+        <ThemeProvider theme={LPtheme}>
+        <AppAppBar mode={mode} />
+        <FullPageContainer>
+        <Box sx={{ style }}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', }}>
+                <Typography variant="h3" component="h1" gutterBottom style={{ color: 'white'}}>
+                    Study Sessions
+                </Typography>
+                
+            </Box>
+            <Box sx={{ display: 'flex', justifyContent:'space-between' }}>
+            <Box sx={{alignItems: 'flex-start', marginLeft: '180px' }}>
+            
+            <TextField 
+                    id="outlined-basic"
+                    label=" Search"
+                    variant="outlined"
+                    onChange={debounceSearch}
+                    sx={{ 
+                        marginBottom: 2, 
+                        display: "flex", 
+                        flexWrap: "wrap", 
+                        justifyContent: "center", 
+                        textAlign: 'center', 
+                        fontSize: '1.25rem',
+                        padding: '8px'
+                    }}
+                />
+            </Box>
+
+                <Box sx={{ marginRight: '185px' }}>
+                    <Button variant="contained" onClick={handleOpen} >
+                        Make Post
+                    </Button>
+                </Box>
+
+            </Box>
+
             <Box
                 sx={{
                     display: "flex",
                     flexWrap: "wrap",
                     justifyContent: "center",
-                    gap: 2,
-                    marginBottom: "2vh",
+                    gap: 3,
+                    marginBottom: "1vh",
+                    
                 }}
             >
                 {isStudySpotsLoading ? (
@@ -102,31 +180,14 @@ const Study = () => {
                 page={page}
                 onChange={handleChangePage}
                 color="primary"
-                sx={{ marginTop: 2 }}
+                sx={{ margin: 2, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}
             />
-            <Button variant="contained" onClick={handleOpen} sx={{ marginTop: 2 }}>
-                Make Post
-            </Button>
-            <SessionModal open={open} handleClose={handleClose} />
-            <Box
-                sx={{
-                    display: "flex",
-                    justifyContent: "center",
-                    gap: 2,
-                    marginTop: 4,
-                }}
-            >
-                <Button variant="contained" color="primary" onClick={() => navigate("/datapage")}>
-                    Data Page
-                </Button>
-                <Button variant="contained" color="primary" onClick={() => navigate("/email")}>
-                    Email
-                </Button>
-                <Button variant="contained" color="primary" onClick={() => navigate("/courses")}>
-                    Courses
-                </Button>
-            </Box>
+            
+            <SessionModal open={open} handleClose={handleClose} sx={modalStyle}/>
+            
         </Box>
+        </FullPageContainer>
+    </ThemeProvider>
     );
 };
 
