@@ -142,7 +142,7 @@ const getDesignTokens = (mode) => ({
     },
   },
   typography: {
-    fontFamily: ["Calibri"].join(','),
+    fontFamily: ["Tahoma"].join(','),
     h1: {
       fontSize: 60,
       fontWeight: 600,

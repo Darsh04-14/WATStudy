@@ -209,7 +209,7 @@ const Courses = () => {
         <ThemeProvider theme={LPtheme}>
             <AppAppBar mode={mode} />
             <FullPageContainer>
-                <Box sx={{ style }}>
+            <Box sx={{ style }}>
                 <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', }}>
                 <Typography variant="h3" component="h1" gutterBottom style={{ color: 'white'}}>
                     Suggested Courses
