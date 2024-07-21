@@ -364,9 +364,11 @@ app.get("/studysession", authenticateToken, (req, res) => {
         }
     }
 
+    query += " LIMIT 1000";
+
     db.query(query, (err, result) => {
         if (err) {
-            console.log("Error");
+            console.log("Error", err);
         } else {
             res.send(result);
         }

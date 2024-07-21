@@ -41,6 +41,8 @@ const Datapage = () => {
         }
     }, []);
 
+    console.log(userId);
+
     const {
         studySpots,
         studySpotsError,

@@ -58,7 +58,7 @@ const Study = () => {
 
     const [filter, setFilter] = useState({ search: "" });
     const { studySpots, isStudySpotsLoading } = useStudySessions(filter);
-    const { deleteSession } = useDeleteSession();
+    const { deleteSession } = useDeleteSession(filter);
     const { joinSession } = useJoinSession();
     const [open, setOpen] = useState(false);
     const [userId, setUserId] = useState(null);
