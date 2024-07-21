@@ -35,6 +35,18 @@ fontSize: '1.25rem',
 padding: '8px'
 };
 
+const modalStyle = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
+};
+
 
 
 
@@ -129,7 +141,6 @@ const Study = () => {
                         fontSize: '1.25rem',
                         padding: '8px'
                     }}
-
                 />
             </Box>
 
@@ -138,6 +149,7 @@ const Study = () => {
                         Make Post
                     </Button>
                 </Box>
+
             </Box>
 
             <Box
@@ -171,7 +183,7 @@ const Study = () => {
                 sx={{ margin: 2, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}
             />
             
-            <SessionModal open={open} handleClose={handleClose} />
+            <SessionModal open={open} handleClose={handleClose} sx={modalStyle}/>
             
         </Box>
         </FullPageContainer>
