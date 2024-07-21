@@ -7,7 +7,7 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import JoinRoomModal from '../../../components/joinRoom/joinRoomModal';
 import CreateRoomModal from '../../../components/createRoom/createRoomModal';
-
+import {Link} from 'react-router-dom'
 
 export default function Hero() {
 
@@ -83,19 +83,33 @@ export default function Hero() {
             Connecting Students, Raising GPAs
           </Typography>
           <Stack
-            direction={{ xs: 'column', sm: 'row' }}
-            alignSelf="center"
-            spacing={1}
-            useFlexGap
-            sx={{ pt: 2, width: { xs: '100%', sm: 'auto' } }}
-          >
-            <Button variant="contained" color="primary" onClick={handleOpenCreateModal}>
-              Create Room
-            </Button>
-            <Button variant="contained" color="primary" onClick={handleOpenJoinModal}>
-              Join Room
-            </Button>
-          </Stack>
+      direction={{ xs: 'column', sm: 'row' }}
+      alignSelf="center"
+      spacing={4}
+      useFlexGap
+      sx={{ pt: 2, width: { xs: '100%', sm: 'auto' } }}
+    >
+      <Button
+        color="primary"
+        variant="outlined"
+        size="large"
+        component={Link}
+        to="/login"
+        sx={{ textTransform: 'none', fontSize: '1.5rem', padding: '20px 40px' }}
+      >
+        Log in
+      </Button>
+      <Button
+        color="primary"
+        variant="contained"
+        size="large"
+        component={Link}
+        to="/signup"
+        sx={{ textTransform: 'none', fontSize: '1.5rem', padding: '20px 40px' }}
+      >
+        Sign up
+      </Button>
+    </Stack>
         </Stack>
       </Container>
       <JoinRoomModal open={openJoinModal} handleClose={handleCloseJoinModal} />

@@ -11,6 +11,9 @@ const logoStyle = {
   cursor: 'pointer',
 };
 
+
+const user = JSON.parse(localStorage.getItem("user") ?? "{}");
+
 function AppAppBar({ mode, toggleColorMode }) {
   const [open, setOpen] = React.useState(false);
 
@@ -105,29 +108,31 @@ function AppAppBar({ mode, toggleColorMode }) {
     </Box>
 
         <Box display="flex" justifyContent="flex-end" alignItems="center" sx={{textTransform: 'none', fontSize:'1.2rem'}} >
-                  
+        
+        {!user?.uid ? (
+        <Button
+          color="primary"
+          variant="text"
+          size="small"
+          sx={{ textTransform: 'none', fontSize: '1.5rem', padding: '20px' }}
+        >
+          null
+        </Button>
+      ) : (
+        <Box display="flex" justifyContent="flex-end" alignItems="center" sx={{ textTransform: 'none', fontSize: '1.2rem' }}>
           <Button
             color="primary"
-            variant="text"
+            variant="outlined"
             size="small"
             component={Link}
-            to="/login"
-            
-            sx={{ textTransform: 'none', fontSize:'1rem' }}
+            to="/"
+            sx={{ textTransform: 'none', fontSize: '1rem', padding: '20px 30px' }}
           >
-            Log in
+            Log out
           </Button>
-          <Button
-            color="primary"
-            variant="contained"
-            size="small"
-            component={Link}
-            to="/signup"
-            
-            sx={{ textTransform: 'none', fontSize:'1rem' }}
-          >
-            Sign up
-          </Button>
+        </Box>
+      )}
+          
           </Box>
       </Box>
     </div>
@@ -140,3 +145,4 @@ AppAppBar.propTypes = {
 };
 
 export default AppAppBar;
+
