@@ -4,6 +4,7 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { useLogin } from "../../hooks/authHooks";
 import getLPTheme from "../landingPage/getLPTheme";
+import useSignOut from 'react-auth-kit/hooks/useSignOut';
 import { styled } from "@mui/system";
 import AppAppBar from '../landingPage/components/AppAppBar';
 
@@ -48,6 +49,7 @@ const Login = () => {
     const LPtheme = createTheme(getLPTheme('dark'));
     
     const { login } = useLogin();
+    const signOut = useSignOut();
 
     const formik = useFormik({
         initialValues: {
@@ -56,6 +58,7 @@ const Login = () => {
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
+            signOut();
             login(values);
         },
     });

@@ -1,6 +1,7 @@
 import useSWRMutation from "swr/mutation";
 import axios from "axios";
 import useSignIn from "react-auth-kit/hooks/useSignIn";
+import { useNavigate } from "react-router-dom";
 
 export const useSignUp = () => {
     const { trigger, isMutating } = useSWRMutation(
@@ -33,6 +34,8 @@ export const useVerify = (token) => {
 
 export const useLogin = () => {
     const signIn = useSignIn();
+    const navigate = useNavigate();
+
     const { trigger, isMutating } = useSWRMutation(
         ["/login", new Date()],
         async (url, { arg }) => {
@@ -54,6 +57,7 @@ export const useLogin = () => {
                         type: "Bearer"
                     },
                 });
+                navigate('/study');
             },
         }
     );
