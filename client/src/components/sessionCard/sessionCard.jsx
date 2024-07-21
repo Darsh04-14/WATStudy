@@ -3,7 +3,9 @@ import { Card, CardContent, Typography, Button, Box } from '@mui/material';
 
 const SessionCard = ({ studySession, onDelete, onJoin }) => {
     return (
-        <Card sx={{ marginBottom: 2, padding: 2, width: 300 }}>
+        <Card sx={{ marginBottom: 2, padding: 2, width: 300,  bgcolor: 'black',
+            boxShadow: '0 0 10px 1px #F4BB00',
+            p: 4, }}>
             <CardContent>
                 <Typography variant="h5" component="div">
                     {studySession.subject}

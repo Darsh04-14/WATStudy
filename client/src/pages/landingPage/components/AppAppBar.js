@@ -8,7 +8,7 @@ import Button from '@mui/material/Button';
 import ToggleColorMode from './ToggleColorMode';
 
 const logoStyle = {
-  width: '50px',
+  width: '70px',
   cursor: 'pointer',
 };
 
@@ -39,13 +39,63 @@ function AppAppBar({ mode, toggleColorMode }) {
         display="flex"
         justifyContent="space-between"
         alignItems="center"
-        sx={{ backgroundColor: 'black', padding: '16px' }}
+        sx={{ backgroundColor: 'black', padding: '16px 32px' }}
       >
-         <Link to="/">
-                <img src={logo} alt="Logo" style={logoStyle} />
-            </Link>
-        <Box display="flex" justifyContent="flex-end" alignItems="center">
-          {/* <ToggleColorMode sx={{backgroundColor: 'blue'}} mode={mode} toggleColorMode={toggleColorMode} /> */}
+
+<Box sx={{ display: 'flex', alignItems: 'center', gap: 4, }}>
+      <Link to="/">
+        <img src={logo} alt="Logo" style={logoStyle} />
+      </Link>
+      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        <Button
+          variant="text"
+          color="primary"
+          component={Link}
+          to="/study"
+          target="_blank"
+          sx={{ textTransform: 'none', fontSize:'1.2rem' }}
+        >
+          Study
+        </Button>
+        <Box component="span" sx={{ mx: 1 }}> | </Box>
+        <Button
+          variant="text"
+          color="primary"
+          component={Link}
+          to="/email"
+          target="_blank"
+          sx={{ textTransform: 'none', fontSize:'1.2rem' }}
+        >
+          Email
+        </Button>
+        <Box component="span" sx={{ mx: 1 }}> | </Box>
+        <Button
+          variant="text"
+          color="primary"
+          component={Link}
+          to="/courses"
+          target="_blank"
+          sx={{ textTransform: 'none', fontSize:'1.2rem' }}
+        >
+          Courses
+        </Button>
+        <Box component="span" sx={{ mx: 1 }}> | </Box>
+        <Button
+          variant="text"
+          color="primary"
+          component={Link}
+          to="/datapage"
+          target="_blank"
+          sx={{ textTransform: 'none', fontSize:'1.2rem' }}
+        >
+          Analytics
+        </Button>
+        
+      </Box>
+    </Box>
+
+        <Box display="flex" justifyContent="flex-end" alignItems="center" sx={{textTransform: 'none', fontSize:'1.2rem'}} >
+                  
           <Button
             color="primary"
             variant="text"
@@ -53,6 +103,7 @@ function AppAppBar({ mode, toggleColorMode }) {
             component={Link}
             to="/signup"
             target="_blank"
+            sx={{ textTransform: 'none', fontSize:'1rem' }}
           >
             Log in
           </Button>
@@ -63,11 +114,11 @@ function AppAppBar({ mode, toggleColorMode }) {
             component={Link}
             to="/login"
             target="_blank"
+            sx={{ textTransform: 'none', fontSize:'1rem' }}
           >
             Sign up
           </Button>
-
-                  </Box>
+          </Box>
       </Box>
     </div>
   );
