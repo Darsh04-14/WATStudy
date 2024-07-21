@@ -332,6 +332,7 @@ app.post("/api/participants", authenticateToken, (req, res) => {
 app.get("/studysession", authenticateToken, (req, res) => {
     const searchFilter = req.query.filter;
     let query = "SELECT * FROM session_table";
+    
     if (searchFilter) {
         const params = JSON.parse(searchFilter);
         const { subject, group_size, duration, search } = params;
