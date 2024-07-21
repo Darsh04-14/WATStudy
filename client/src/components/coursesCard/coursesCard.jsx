@@ -43,8 +43,9 @@ const CourseSessionCard = ({ courseSession, onClick }) => {
             onClick={onClick}
         >
             <CardContent>
-                <Typography variant="h6">{courseSession.title}</Typography>
+                <Typography variant="h6">{courseSession.subject}</Typography>
                 <Typography variant="body2">Total Hours: {courseSession.total_hours}</Typography>
+                <Typography variant="body2">Title: {courseSession.title}</Typography>
                 <Box sx={{ marginTop: 2, display: 'flex', gap: 2 }}>
                     <Button 
                         variant="contained" 

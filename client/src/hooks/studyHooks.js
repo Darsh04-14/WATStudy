@@ -1,4 +1,4 @@
-import useSWR from "swr";
+import useSWR, {mutate} from "swr";
 import axios from "axios";
 
 const axiosInstance = axios.create({
@@ -37,12 +37,14 @@ export const useCreateSession = () => {
     return { createSession };
 };
 
-export const useDeleteSession = () => {
+export const useDeleteSession = (filter) => {
     const deleteSession = async (id) => {
         try {
             await axiosInstance.delete(`http://localhost:3800/studysession`, {
                 data: { id }
             });
+            console.log("Mutating");
+            mutate(`/studysession?filter=${encodeURI(JSON.stringify(filter))}`);
         } catch (error) {
             console.error("Error deleting session:", error);
             throw error;

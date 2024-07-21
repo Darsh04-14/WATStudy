@@ -174,6 +174,8 @@ const Courses = () => {
 
     const { courses, coursesError, isCoursesLoading, joinCourse } = useCourses(userId);
 
+    console.log(courses);
+
     const handleJoinCourse = async (subject) => {
                 try {
                     // Fetch sessionId using the course name
@@ -228,7 +230,7 @@ const Courses = () => {
                         {courses.map((course, index) => (
                             <CourseSessionCard
                                 key={index}
-                                courseSession={{ title: course.subject, total_hours: course.total_hours }}
+                                courseSession={{ subject: course.subject, total_hours: course.total_hours, title: course.upcoming_session_title }}
                                 onClick={() => handleJoinCourse(course.subject)}
                             />
                         ))}
