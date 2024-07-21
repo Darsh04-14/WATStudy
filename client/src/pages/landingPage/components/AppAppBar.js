@@ -112,7 +112,7 @@ function AppAppBar({ mode, toggleColorMode }) {
             variant="text"
             size="small"
             component={Link}
-            to="/signup"
+            to="/login"
             target="_blank"
             sx={{ textTransform: 'none', fontSize:'1rem' }}
           >
@@ -123,7 +123,7 @@ function AppAppBar({ mode, toggleColorMode }) {
             variant="contained"
             size="small"
             component={Link}
-            to="/login"
+            to="/signup"
             target="_blank"
             sx={{ textTransform: 'none', fontSize:'1rem' }}
           >
