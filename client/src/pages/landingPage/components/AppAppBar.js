@@ -2,7 +2,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import logo from '../../../assets/logo.png';
 import {Link} from 'react-router-dom'
-
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import ToggleColorMode from './ToggleColorMode';
@@ -52,7 +51,7 @@ function AppAppBar({ mode, toggleColorMode }) {
           color="primary"
           component={Link}
           to="/study"
-          target="_blank"
+
           sx={{ textTransform: 'none', fontSize:'1.2rem' }}
         >
           Study
@@ -63,7 +62,7 @@ function AppAppBar({ mode, toggleColorMode }) {
           color="primary"
           component={Link}
           to="/email"
-          target="_blank"
+          
           sx={{ textTransform: 'none', fontSize:'1.2rem' }}
         >
           Email
@@ -74,7 +73,7 @@ function AppAppBar({ mode, toggleColorMode }) {
           color="primary"
           component={Link}
           to="/courses"
-          target="_blank"
+          
           sx={{ textTransform: 'none', fontSize:'1.2rem' }}
         >
           Courses
@@ -85,7 +84,7 @@ function AppAppBar({ mode, toggleColorMode }) {
           color="primary"
           component={Link}
           to="/datapage"
-          target="_blank"
+          
           sx={{ textTransform: 'none', fontSize:'1.2rem' }}
         >
           Analytics
@@ -96,7 +95,7 @@ function AppAppBar({ mode, toggleColorMode }) {
           color="primary"
           component={Link}
           to="/upcomingsessions"
-          target="_blank"
+          
           sx={{ textTransform: 'none', fontSize:'1.2rem' }}
         >
           Upcoming Sessions
@@ -113,7 +112,7 @@ function AppAppBar({ mode, toggleColorMode }) {
             size="small"
             component={Link}
             to="/login"
-            target="_blank"
+            
             sx={{ textTransform: 'none', fontSize:'1rem' }}
           >
             Log in
@@ -124,7 +123,7 @@ function AppAppBar({ mode, toggleColorMode }) {
             size="small"
             component={Link}
             to="/signup"
-            target="_blank"
+            
             sx={{ textTransform: 'none', fontSize:'1rem' }}
           >
             Sign up
