@@ -1,3 +1,4 @@
+import { useState, useEffect} from 'react';
 import * as React from 'react';
 import { alpha } from '@mui/material';
 import Box from '@mui/material/Box';
@@ -8,8 +9,30 @@ import Typography from '@mui/material/Typography';
 import JoinRoomModal from '../../../components/joinRoom/joinRoomModal';
 import CreateRoomModal from '../../../components/createRoom/createRoomModal';
 import {Link} from 'react-router-dom'
+import Logo from '../logo/logo.js'
+import AnimatedLetters from '../animatedLetters'
+import Fade from '@mui/material/Fade';
 
 export default function Hero() {
+
+  const [letterClass, setLetterClass] = useState('text-animate')
+  const nameArray = ['W','A','T',' ','S','t','u','d','y']
+  
+  useEffect(() => {
+    setTimeout(() => {
+        setLetterClass('text-animate-hover')
+    }, 4000);     
+},[])
+
+const [showContent, setShowContent] = useState(false);
+
+  useEffect(() => {
+    // Trigger fade-in animation after a delay
+    const timer = setTimeout(() => setShowContent(true), 1000); // Adjust delay as needed
+    return () => clearTimeout(timer);
+  }, []);
+
+
 
   const [openJoinModal, setOpenJoinModal] = React.useState(false);
   const [openCreateModal, setOpenCreateModal] = React.useState(false);
@@ -31,6 +54,8 @@ export default function Hero() {
   };
 
   return (
+    <>
+    <Fade  in={showContent} timeout={1000}>
     <Box
       id="hero"
       sx={(theme) => ({
@@ -63,7 +88,10 @@ export default function Hero() {
               fontSize: 'clamp(3.5rem, 10vw, 4rem)',
             }}
           >
-            WAT Study
+             <AnimatedLetters letterClass={letterClass}
+                    strArray={nameArray}
+                    idx={9}/>
+
             <Typography
               component="span"
               variant="h1"
@@ -110,10 +138,16 @@ export default function Hero() {
         Sign up
       </Button>
     </Stack>
-        </Stack>
+    <Logo/>
+      </Stack>
       </Container>
       <JoinRoomModal open={openJoinModal} handleClose={handleCloseJoinModal} />
       <CreateRoomModal open={openCreateModal} handleClose={handleCloseCreateModal} />
+      
     </Box>
+    </Fade>
+
+  </>
+
   );
 }

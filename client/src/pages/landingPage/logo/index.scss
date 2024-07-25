@@ -1,0 +1,100 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.logo {
+
+    .outline {
+        svg {
+            z-index: 2; /* Ensure the outline is above the background */
+            position: absolute;
+            top: 58%;
+            left: 43%;
+            transform: translate(25%);
+            animation: fillOutline 1s ease forwards 2s; /* Adjusted timing */
+        }
+        
+        path:nth-child(1) {
+            stroke-dasharray: 1185px;
+            stroke-dashoffset: 1185px;
+            animation: line-anim 5s ease forwards 2s; /* Adjusted timing */
+
+            &:hover {
+                opacity: 0;
+                animation: fadeout 1s;
+                color: #ED7D31;
+
+                &::after {
+                    animation: line-anim 5s ease forwards 0s;
+                }
+            }
+        }
+
+        @keyframes line-anim {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        @keyframes fillOutline {
+            from {
+                fill: transparent;
+            }
+            to { 
+                fill: #262626;
+            }
+        }
+    }
+
+    .background {
+        svg {
+            position: absolute;
+            z-index: 1; /* Ensure the background is below the outline */
+            top: 55%;
+            left: 41%;
+            transform: translate(32%, 5%);
+            animation: fillBackground 0.5s ease forwards 0s; /* Adjusted timing */
+        }
+        
+        path:nth-child(1) {
+            opacity: 0;
+            offset-position: 20px;
+            animation: anim1 3.7s ease forwards 0s; /* Adjusted timing */
+            transform: translate(-1%) scale(95%);
+        }
+        path:nth-child(2) {
+            opacity: 0;
+            transform: scale(95.5%);
+            animation: anim1 3.7s ease forwards 0s; /* Adjusted timing */
+        }
+
+        @keyframes anim1 {
+            from {
+                opacity: 0;
+            }
+            to { 
+                opacity: 1;
+            }
+        }
+
+        @keyframes fillBackground {
+            from {
+                fill: transparent;
+            }
+            to { 
+                fill: #F4BB00; /* Change to desired background color */
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .logo {
+        .outline {
+            position: initial;
+            width: 20vh;
+        }
+    }
+}
