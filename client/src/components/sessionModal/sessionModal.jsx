@@ -38,6 +38,7 @@ const SessionModal = ({ open, handleClose }) => {
             session_date: '',
             duration: 0,
             location: '',
+            group_size: 0,
           }}
           onSubmit={(values) => {
             createSession(values);
@@ -99,6 +100,15 @@ const SessionModal = ({ open, handleClose }) => {
                 as={TextField}
                 type="number"
                 label="Duration (minutes)"
+                fullWidth
+                variant="outlined"
+                sx={{ mb: 2 }}
+              />
+              <Field
+                name="group_size"
+                as={TextField}
+                type="number"
+                label="Group Size"
                 fullWidth
                 variant="outlined"
                 sx={{ mb: 2 }}
