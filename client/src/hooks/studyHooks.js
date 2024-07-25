@@ -1,16 +1,22 @@
-import useSWR, {mutate} from "swr";
+import useSWR, { mutate } from "swr";
 import axios from "axios";
 
 const axiosInstance = axios.create({
-    withCredentials: true // Ensure credentials are sent with every request
+    withCredentials: true, // Ensure credentials are sent with every request
 });
 
 export const useStudySessions = (filter = {}) => {
-    const { data: studySpots, error: studySpotsError, isLoading: isStudySpotsLoading } = useSWR(
+    const {
+        data: studySpots,
+        error: studySpotsError,
+        isLoading: isStudySpotsLoading,
+    } = useSWR(
         `/studysession?filter=${encodeURI(JSON.stringify(filter))}`,
         async () => {
             const res = await axiosInstance.get(
-                `http://localhost:3800/studysession?filter=${encodeURI(JSON.stringify(filter))}`
+                `http://localhost:3800/studysession?filter=${encodeURI(
+                    JSON.stringify(filter)
+                )}`
             );
             return res.data;
         }
@@ -25,8 +31,15 @@ export const useStudySessions = (filter = {}) => {
 
 export const useCreateSession = () => {
     const createSession = async (data) => {
+        const { uid } = JSON.parse(localStorage.getItem("user"));
+        data.creator_fk = uid;
+        console.log("Data", data);
         try {
-            const response = await axiosInstance.post('http://localhost:3800/studysession', data);
+            const response = await axiosInstance.post(
+                "http://localhost:3800/studysession",
+                data
+            );
+            mutate(key => typeof key === 'string' && key.startsWith("/studysession?filter="));
             return response.data;
         } catch (error) {
             console.error("Error creating session:", error);
@@ -41,7 +54,7 @@ export const useDeleteSession = (filter) => {
     const deleteSession = async (id) => {
         try {
             await axiosInstance.delete(`http://localhost:3800/studysession`, {
-                data: { id }
+                data: { id },
             });
             console.log("Mutating");
             mutate(`/studysession?filter=${encodeURI(JSON.stringify(filter))}`);
@@ -57,14 +70,19 @@ export const useDeleteSession = (filter) => {
 export const useJoinSession = () => {
     const joinSession = async (sessionId, userId) => {
         try {
-            console.log(`Joining session with User ID: ${userId}, Session ID: ${sessionId}`);
-            const response = await axiosInstance.post('http://localhost:3800/api/participants', {
-                sessionId,
-                userId
-            });
+            console.log(
+                `Joining session with User ID: ${userId}, Session ID: ${sessionId}`
+            );
+            const response = await axiosInstance.post(
+                "http://localhost:3800/api/participants",
+                {
+                    sessionId,
+                    userId,
+                }
+            );
             return response.data;
         } catch (error) {
-            console.error('Error joining session:', error);
+            console.error("Error joining session:", error);
             throw error;
         }
     };
