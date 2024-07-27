@@ -11,6 +11,7 @@ import getLPTheme from "../landingPage/getLPTheme";
 
 const FullPageContainer = styled(Box)({
     minHeight: '100vh', 
+    
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -21,7 +22,6 @@ const style = {
     position: 'absolute',
     top: '50%',
     left: '50%',
-    transform: 'translate(-50%, -50%)',
     width: 400,
     bgcolor: 'black',
     boxShadow: '0 0 35px 10px #F4BB00',
@@ -37,9 +37,6 @@ padding: '8px'
 
 const modalStyle = {
     position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
     width: 400,
     bgcolor: "background.paper",
     border: "2px solid #000",
@@ -58,12 +55,12 @@ const Study = () => {
 
     const [filter, setFilter] = useState({ search: "" });
     const { studySpots, isStudySpotsLoading } = useStudySessions(filter);
-    const { deleteSession } = useDeleteSession();
+    const { deleteSession } = useDeleteSession(filter);
     const { joinSession } = useJoinSession();
     const [open, setOpen] = useState(false);
     const [userId, setUserId] = useState(null);
     const [page, setPage] = useState(1);
-    const itemsPerPage = 9;
+    const itemsPerPage = 12;
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -159,6 +156,8 @@ const Study = () => {
                     justifyContent: "center",
                     gap: 3,
                     marginBottom: "1vh",
+                    marginLeft: '60px',
+                    marginRight: '60px'
                     
                 }}
             >

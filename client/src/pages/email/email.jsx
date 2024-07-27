@@ -1,8 +1,54 @@
 import React, { useState, useEffect } from "react";
 import { useStudySessions } from "../../hooks/emailHooks";
-import { Typography, Box, CircularProgress, Button, TextField, Dialog, DialogActions, DialogContent, DialogTitle, Card, CardContent, CardActions } from "@mui/material";
+import { Typography, Box, CircularProgress, Button, TextField, Dialog, DialogActions, DialogContent, DialogTitle, Card, CardContent, CardActions, ThemeProvider, createTheme } from "@mui/material";
+import AppAppBar from '../landingPage/components/AppAppBar';
+import getLPTheme from "../landingPage/getLPTheme";
+import { styled } from "@mui/system";
+
+
+const FullPageContainer = styled(Box)({
+    minHeight: '100vh', 
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'black', 
+});
+
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'black',
+    boxShadow: '0 0 35px 10px #F4BB00',
+    padding: 3,
+    color: 'white'
+  };
+    
+const inputStyle = {
+textAlign: 'center', 
+fontSize: '1.25rem',
+padding: '8px'
+};
+
+const modalStyle = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
+};
+
 
 const Email = () => {
+
+    const [mode, setMode] = React.useState('dark');
+    const LPtheme = createTheme(getLPTheme(mode));
     const initialUserId = JSON.parse(localStorage.getItem('user') ?? '{}')?.uid || '';
     const [userId, setUserId] = useState(initialUserId);
     const [open, setOpen] = useState(!initialUserId);
@@ -44,7 +90,10 @@ const Email = () => {
     };
 
     return (
-        <Box sx={{ p: 2 }}>
+        <ThemeProvider theme={LPtheme}>
+        <AppAppBar mode={mode} />
+        <FullPageContainer>
+        <Box sx={{ style }}>
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>Enter User ID</DialogTitle>
                 <DialogContent>
@@ -69,7 +118,7 @@ const Email = () => {
 
             {isLoading ? <CircularProgress /> : error ? <Typography color="error">{error.message}</Typography> : (
                 studySpots && (
-                    <Card>
+                    <Card sx={style}>
                         <CardContent>
                             <Typography variant="h6" gutterBottom>Session Details</Typography>
                             <Typography variant="body1"><strong>Subject:</strong> {studySpots[0].subject}</Typography>
@@ -89,6 +138,8 @@ const Email = () => {
                 )
             )}
         </Box>
+        </FullPageContainer>
+        </ThemeProvider>
     );
 };
 

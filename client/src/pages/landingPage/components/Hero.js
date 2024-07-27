@@ -1,3 +1,4 @@
+import { useState, useEffect} from 'react';
 import * as React from 'react';
 import { alpha } from '@mui/material';
 import Box from '@mui/material/Box';
@@ -7,9 +8,31 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import JoinRoomModal from '../../../components/joinRoom/joinRoomModal';
 import CreateRoomModal from '../../../components/createRoom/createRoomModal';
-
+import {Link} from 'react-router-dom'
+import Logo from '../logo/logo.js'
+import AnimatedLetters from '../animatedLetters'
+import Fade from '@mui/material/Fade';
 
 export default function Hero() {
+
+  const [letterClass, setLetterClass] = useState('text-animate')
+  const nameArray = ['W','A','T',' ','S','t','u','d','y']
+  
+  useEffect(() => {
+    setTimeout(() => {
+        setLetterClass('text-animate-hover')
+    }, 4000);     
+},[])
+
+const [showContent, setShowContent] = useState(false);
+
+  useEffect(() => {
+    // Trigger fade-in animation after a delay
+    const timer = setTimeout(() => setShowContent(true), 1000); // Adjust delay as needed
+    return () => clearTimeout(timer);
+  }, []);
+
+
 
   const [openJoinModal, setOpenJoinModal] = React.useState(false);
   const [openCreateModal, setOpenCreateModal] = React.useState(false);
@@ -31,6 +54,8 @@ export default function Hero() {
   };
 
   return (
+    <>
+    <Fade  in={showContent} timeout={1000}>
     <Box
       id="hero"
       sx={(theme) => ({
@@ -63,7 +88,10 @@ export default function Hero() {
               fontSize: 'clamp(3.5rem, 10vw, 4rem)',
             }}
           >
-            WAT Study
+             <AnimatedLetters letterClass={letterClass}
+                    strArray={nameArray}
+                    idx={9}/>
+
             <Typography
               component="span"
               variant="h1"
@@ -83,23 +111,43 @@ export default function Hero() {
             Connecting Students, Raising GPAs
           </Typography>
           <Stack
-            direction={{ xs: 'column', sm: 'row' }}
-            alignSelf="center"
-            spacing={1}
-            useFlexGap
-            sx={{ pt: 2, width: { xs: '100%', sm: 'auto' } }}
-          >
-            <Button variant="contained" color="primary" onClick={handleOpenCreateModal}>
-              Create Room
-            </Button>
-            <Button variant="contained" color="primary" onClick={handleOpenJoinModal}>
-              Join Room
-            </Button>
-          </Stack>
-        </Stack>
+      direction={{ xs: 'column', sm: 'row' }}
+      alignSelf="center"
+      spacing={4}
+      useFlexGap
+      sx={{ pt: 2, width: { xs: '100%', sm: 'auto' } }}
+    >
+      <Button
+        color="primary"
+        variant="outlined"
+        size="large"
+        component={Link}
+        to="/login"
+        sx={{ textTransform: 'none', fontSize: '1.5rem', padding: '20px 40px' }}
+      >
+        Log in
+      </Button>
+      <Button
+        color="primary"
+        variant="contained"
+        size="large"
+        component={Link}
+        to="/signup"
+        sx={{ textTransform: 'none', fontSize: '1.5rem', padding: '20px 40px' }}
+      >
+        Sign up
+      </Button>
+    </Stack>
+    <Logo/>
+      </Stack>
       </Container>
       <JoinRoomModal open={openJoinModal} handleClose={handleCloseJoinModal} />
       <CreateRoomModal open={openCreateModal} handleClose={handleCloseCreateModal} />
+      
     </Box>
+    </Fade>
+
+  </>
+
   );
 }

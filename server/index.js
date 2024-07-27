@@ -142,7 +142,7 @@ app.post("/login", async (req, res) => {
             email: userRecord.email,
         };
         const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {
-            expiresIn: 1800,
+            expiresIn: 3885500,
         });
         res.send(accessToken);
     } else {
@@ -332,28 +332,44 @@ app.post("/api/participants", authenticateToken, (req, res) => {
 app.get("/studysession", authenticateToken, (req, res) => {
     const searchFilter = req.query.filter;
     let query = "SELECT * FROM session_table";
+
+    let deps = [];
+    
     if (searchFilter) {
         const params = JSON.parse(searchFilter);
         const { subject, group_size, duration, search } = params;
         let filterQuery = "";
 
-        if (subject)
-            filterQuery = filterQuery.concat(` subject = "${subject}" AND`);
+        if (subject) {
+            filterQuery = filterQuery.concat(` subject = ? AND`);
+            deps.push(subject);
+        }
 
-        if (group_size)
+        if (group_size) {
             filterQuery = filterQuery.concat(
-                ` group_size >= ${group_size[0]} AND group_size <= ${group_size[1]} AND`
+                ` group_size >= ? AND group_size <= ? AND`
             );
+            deps.push(group_size[0]);
+            deps.push(group_size[1]);
+        }
 
-        if (duration)
+        if (duration) {
             filterQuery = filterQuery.concat(
-                ` duration >= ${duration[0]} AND duration <= ${duration[1]} AND`
+                ` duration >= ? AND duration <= ? AND`
             );
+            deps.push(duration[0]);
+            deps.push(duration[1]);
+        }
+
 
         if (search && search !== "") {
             filterQuery = filterQuery.concat(
-                ` (subject LIKE "%${search}%" OR title LIKE "%${search}%" OR description LIKE "%${search}%" OR location LIKE "%${search}%") AND`
+                ` (subject LIKE ? OR title LIKE ? OR description LIKE ? OR location LIKE ?) AND`
             );
+            deps.push("%" + search + "%");
+            deps.push("%" + search + "%");
+            deps.push("%" + search + "%");
+            deps.push("%" + search + "%");
         }
 
         if (filterQuery !== "") {
@@ -364,9 +380,11 @@ app.get("/studysession", authenticateToken, (req, res) => {
         }
     }
 
-    db.query(query, (err, result) => {
+    query += " LIMIT 1000";
+
+    db.query(query, deps, (err, result) => {
         if (err) {
-            console.log("Error");
+            console.log("Error", err);
         } else {
             res.send(result);
         }
