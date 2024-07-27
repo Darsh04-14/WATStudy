@@ -117,43 +117,71 @@ function AppAppBar({ mode, toggleColorMode }) {
                     </Box>
                 </Box>
 
-                <Box
-                    display="flex"
-                    justifyContent="flex-end"
-                    alignItems="center"
-                    sx={{ textTransform: "none", fontSize: "1.2rem" }}
-                >
-                    {isAuthenticated && (
-                        <Box
-                            display="flex"
-                            justifyContent="flex-end"
-                            alignItems="center"
-                            sx={{ textTransform: "none", fontSize: "1.2rem" }}
-                        >
-                            <Button
-                                color="primary"
-                                variant="outlined"
-                                size="small"
-                                component={Link}
-                                to="/"
-                                sx={{
-                                    textTransform: "none",
-                                    fontSize: "1rem",
-                                    padding: "20px 30px",
-                                }}
-                                onClick={() => {
-                                    signOut();
-                                    localStorage.removeItem("user");
-                                }}
-                            >
-                                Log out
-                            </Button>
-                        </Box>
-                    )}
-                </Box>
-            </Box>
-        </div>
-    );
+//                 <Box
+//                     display="flex"
+//                     justifyContent="flex-end"
+//                     alignItems="center"
+//                     sx={{ textTransform: "none", fontSize: "1.2rem" }}
+//                 >
+//                     {isAuthenticated && (
+//                         <Box
+//                             display="flex"
+//                             justifyContent="flex-end"
+//                             alignItems="center"
+//                             sx={{ textTransform: "none", fontSize: "1.2rem" }}
+//                         >
+//                             <Button
+//                                 color="primary"
+//                                 variant="outlined"
+//                                 size="small"
+//                                 component={Link}
+//                                 to="/"
+//                                 sx={{
+//                                     textTransform: "none",
+//                                     fontSize: "1rem",
+//                                     padding: "20px 30px",
+//                                 }}
+//                                 onClick={() => {
+//                                     signOut();
+//                                     localStorage.removeItem("user");
+//                                 }}
+//                             >
+//                                 Log out
+//                             </Button>
+//                         </Box>
+//                     )}
+//                 </Box>
+//             </Box>
+//         </div>
+//     );
+        <Box display="flex" justifyContent="flex-end" alignItems="center" sx={{textTransform: 'none', fontSize:'1.2rem'}} >
+                  
+          <Button
+            color="primary"
+            variant="text"
+            size="small"
+            component={Link}
+            to="/login"
+            target="_blank"
+            sx={{ textTransform: 'none', fontSize:'1rem' }}
+          >
+            Log in
+          </Button>
+          <Button
+            color="primary"
+            variant="contained"
+            size="small"
+            component={Link}
+            to="/signup"
+            target="_blank"
+            sx={{ textTransform: 'none', fontSize:'1rem' }}
+          >
+            Sign up
+          </Button>
+          </Box>
+      </Box>
+    </div>
+  );
 }
 
 AppAppBar.propTypes = {

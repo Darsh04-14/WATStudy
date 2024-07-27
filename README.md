@@ -1,6 +1,5 @@
 <img width="1212" alt="image" src="https://github.com/Darsh04-14/WATStudy/assets/85283195/719b57e0-26e2-458f-8915-23aeb79e749b">
 
-
 # WATStudy
 
 WATStudy is an application designed to help students at the University of Waterloo connect and study together on campus. By enabling students to select study rooms and meet up to study in groups, WATStudy aims to create a collaborative and supportive learning environment.
@@ -30,6 +29,9 @@ As for some of the fancy features, here is a list of what we have added:
 - Protection against SQL injection in search filter
 - Query Optimization (using indexes, smart filtering)
 - Locally Hosted Sign-up Flow for verifying University of Waterloo email
+
+## Project Video
+[![Watch the video](https://img.youtube.com/vi/SQRgHQNICu0/maxresdefault.jpg)](https://www.youtube.com/watch?v=SQRgHQNICu0)
 
 ## Setup
 ### Database
